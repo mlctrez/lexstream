@@ -214,7 +214,6 @@ type PlaybackInfo struct {
 //
 // https://developer.amazon.com/en-US/docs/alexa/music-skills/api-components-reference.html#itemcontrol
 type ItemControl struct {
-
 }
 
 // ItemRules describes rules for what the user can do with an item.

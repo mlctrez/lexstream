@@ -106,5 +106,3 @@ type ContentActions struct {
 	Playable  bool `json:"playable"`
 	Browsable bool `json:"browsable"`
 }
-
-
