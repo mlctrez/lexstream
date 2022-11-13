@@ -69,8 +69,10 @@ TODO: this should be able to be automated
     * upload audio files and cover art to s3
     * extract metadata from id tags in audio and create catalog files
     * automate upload of catalog data
-        * The `ask cli` does a browser login to get the access token so this may not be possible
+        * ~~The `ask cli` does a browser login to get the access token so this may not be possible~~
         * [more research](https://developer.amazon.com/en-US/docs/alexa/smapi/get-access-token-smapi.html)
+        * This is possible using LWA tokens and calling the upload catalog api directly
+        * Add documentation on how this works
 
 * Metadata notes showing id -> api mappings
     * [MUSICBRAINZ_ARTISTID](https://musicbrainz.org/ws/2/artist/7944ed53-2a58-4035-9b93-140a71e41c34?fmt=json)
@@ -89,6 +91,6 @@ TODO: this should be able to be automated
         * It can also be used as an anchor for
           the [release page](https://musicbrainz.org/release/fe425df3-1844-397d-95b3-a85528aa98d7/disc/1#a022f133-009d-3e9f-b0c1-d2e30e86e98e)
 
-* Saving whipper command `whipper cd rip -p -k`
+* Saving whipper command `whipper cd rip -p`
 
 Initial readme created by [tigwen](https://github.com/mlctrez/tigwen)
