@@ -2,9 +2,9 @@ package interactionmodel
 
 type Prompt struct {
 	// The prompt id, this id can be used from dialog definitions.
-	Id string `json,omitempty:"id"`
+	Id string `json:"id,omitempty"`
 	// List of variations of the prompt, each variation can be either a text string or a well defined ssml string depending on the type defined.
-	Variations []*PromptItems `json,omitempty:"variations"`
+	Variations []*PromptItems `json:"variations,omitempty"`
 }
 
 /*

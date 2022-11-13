@@ -1,9 +1,9 @@
 package invocations
 
 type SkillExecutionInfo struct {
-	InvocationRequest  map[string]Request  `json,omitempty:"invocationRequest"`
-	InvocationResponse map[string]Response `json,omitempty:"invocationResponse"`
-	Metrics            map[string]Metrics  `json,omitempty:"metrics"`
+	InvocationRequest  map[string]Request  `json:"invocationRequest,omitempty"`
+	InvocationResponse map[string]Response `json:"invocationResponse,omitempty"`
+	Metrics            map[string]Metrics  `json:"metrics,omitempty"`
 }
 
 /*

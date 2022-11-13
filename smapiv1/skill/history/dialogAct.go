@@ -4,7 +4,7 @@ package history
 DialogAct The dialog act used in the interaction.
 */
 type DialogAct struct {
-	Name *DialogActName `json,omitempty:"name"`
+	Name *DialogActName `json:"name,omitempty"`
 }
 
 /*

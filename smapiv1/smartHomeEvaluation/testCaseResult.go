@@ -1,14 +1,14 @@
 package smarthomeevaluation
 
 type TestCaseResult struct {
-	ActualCapabilityStates   []*SHCapabilityState   `json,omitempty:"actualCapabilityStates"`
-	ActualResponse           *SHCapabilityResponse  `json,omitempty:"actualResponse"`
-	Directive                *SHCapabilityDirective `json,omitempty:"directive"`
-	Error                    *SHCapabilityError     `json,omitempty:"error"`
-	ExpectedCapabilityStates []*SHCapabilityState   `json,omitempty:"expectedCapabilityStates"`
-	ExpectedResponse         *SHCapabilityResponse  `json,omitempty:"expectedResponse"`
-	Name                     string                 `json,omitempty:"name"`
-	Status                   *TestCaseResultStatus  `json,omitempty:"status"`
+	ActualCapabilityStates   []*SHCapabilityState   `json:"actualCapabilityStates,omitempty"`
+	ActualResponse           *SHCapabilityResponse  `json:"actualResponse,omitempty"`
+	Directive                *SHCapabilityDirective `json:"directive,omitempty"`
+	Error                    *SHCapabilityError     `json:"error,omitempty"`
+	ExpectedCapabilityStates []*SHCapabilityState   `json:"expectedCapabilityStates,omitempty"`
+	ExpectedResponse         *SHCapabilityResponse  `json:"expectedResponse,omitempty"`
+	Name                     string                 `json:"name,omitempty"`
+	Status                   *TestCaseResultStatus  `json:"status,omitempty"`
 }
 
 /*

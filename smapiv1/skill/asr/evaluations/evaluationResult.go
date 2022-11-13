@@ -4,10 +4,10 @@ package evaluations
 EvaluationResult evaluation detailed result
 */
 type EvaluationResult struct {
-	Status     *EvaluationResultStatus   `json,omitempty:"status"`
-	Annotation *AnnotationWithAudioAsset `json,omitempty:"annotation"`
-	Output     *EvaluationResultOutput   `json,omitempty:"output"`
-	Error      *ErrorObject              `json,omitempty:"error"`
+	Status     *EvaluationResultStatus   `json:"status,omitempty"`
+	Annotation *AnnotationWithAudioAsset `json:"annotation,omitempty"`
+	Output     *EvaluationResultOutput   `json:"output,omitempty"`
+	Error      *ErrorObject              `json:"error,omitempty"`
 }
 
 /*

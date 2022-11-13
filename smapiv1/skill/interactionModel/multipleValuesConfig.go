@@ -5,7 +5,7 @@ MultipleValuesConfig Configuration object for multiple values capturing behavior
 */
 type MultipleValuesConfig struct {
 	// Boolean that indicates whether this slot can capture multiple values.
-	Enabled bool `json,omitempty:"enabled"`
+	Enabled bool `json:"enabled,omitempty"`
 }
 
 /*

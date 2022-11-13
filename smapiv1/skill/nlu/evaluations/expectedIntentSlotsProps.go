@@ -1,7 +1,7 @@
 package evaluations
 
 type ExpectedIntentSlotsProps struct {
-	Value string `json,omitempty:"value"`
+	Value string `json:"value,omitempty"`
 }
 
 /*

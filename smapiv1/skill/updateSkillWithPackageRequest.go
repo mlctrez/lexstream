@@ -2,7 +2,7 @@ package skill
 
 type UpdateSkillWithPackageRequest struct {
 	// The URL for the skill package.
-	Location string `json,omitempty:"location"`
+	Location string `json:"location,omitempty"`
 }
 
 /*

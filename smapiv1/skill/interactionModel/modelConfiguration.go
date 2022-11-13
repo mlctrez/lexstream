@@ -4,7 +4,7 @@ package interactionmodel
 ModelConfiguration Global configurations applicable to a skill's model.
 */
 type ModelConfiguration struct {
-	FallbackIntentSensitivity *FallbackIntentSensitivity `json,omitempty:"fallbackIntentSensitivity"`
+	FallbackIntentSensitivity *FallbackIntentSensitivity `json:"fallbackIntentSensitivity,omitempty"`
 }
 
 /*

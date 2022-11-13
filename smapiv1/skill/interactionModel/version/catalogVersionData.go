@@ -4,11 +4,11 @@ package version
 CatalogVersionData Catalog version data with metadata.
 */
 type CatalogVersionData struct {
-	Source *InputSource `json,omitempty:"source"`
+	Source *InputSource `json:"source,omitempty"`
 	// Description string for specific catalog version.
-	Description string `json,omitempty:"description"`
+	Description string `json:"description,omitempty"`
 	// Specific catalog version.
-	Version string `json,omitempty:"version"`
+	Version string `json:"version,omitempty"`
 }
 
 /*

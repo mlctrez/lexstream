@@ -4,14 +4,14 @@ package version
 ListCatalogEntityVersionsResponse List of catalog versions of a catalog for the vendor in sortDirection order, descending as default.
 */
 type ListCatalogEntityVersionsResponse struct {
-	Links *Links `json,omitempty:"_links"`
+	Links *Links `json:"_links,omitempty"`
 	/*
 	   List of catalog entity versions.
 	*/
-	CatalogVersions []*CatalogEntityVersion `json,omitempty:"catalogVersions"`
-	IsTruncated     bool                    `json,omitempty:"isTruncated"`
-	NextToken       string                  `json,omitempty:"nextToken"`
-	TotalCount      int                     `json,omitempty:"totalCount"`
+	CatalogVersions []*CatalogEntityVersion `json:"catalogVersions,omitempty"`
+	IsTruncated     bool                    `json:"isTruncated,omitempty"`
+	NextToken       string                  `json:"nextToken,omitempty"`
+	TotalCount      int                     `json:"totalCount,omitempty"`
 }
 
 /*

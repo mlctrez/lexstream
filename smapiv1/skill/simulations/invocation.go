@@ -1,9 +1,9 @@
 package simulations
 
 type Invocation struct {
-	InvocationRequest  *InvocationRequest  `json,omitempty:"invocationRequest"`
-	InvocationResponse *InvocationResponse `json,omitempty:"invocationResponse"`
-	Metrics            *Metrics            `json,omitempty:"metrics"`
+	InvocationRequest  *InvocationRequest  `json:"invocationRequest,omitempty"`
+	InvocationResponse *InvocationResponse `json:"invocationResponse,omitempty"`
+	Metrics            *Metrics            `json:"metrics,omitempty"`
 }
 
 /*

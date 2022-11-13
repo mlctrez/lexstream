@@ -5,7 +5,7 @@ Trigger Condition when jobs will be executed.
 */
 type Trigger struct {
 	// Polymorphic type of the trigger
-	Type_ string `json,omitempty:"type"`
+	Type_ string `json:"type,omitempty"`
 }
 
 /*

@@ -6,8 +6,8 @@ import "time"
 VersionSubmission Submission for a skill version
 */
 type VersionSubmission struct {
-	Status         *VersionSubmissionStatus `json,omitempty:"status"`
-	SubmissionTime time.Time                `json,omitempty:"submissionTime"`
+	Status         *VersionSubmissionStatus `json:"status,omitempty"`
+	SubmissionTime time.Time                `json:"submissionTime,omitempty"`
 }
 
 /*

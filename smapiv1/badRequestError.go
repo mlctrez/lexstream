@@ -2,9 +2,9 @@ package smapiv1
 
 type BadRequestError struct {
 	// Human readable description of error.
-	Message string `json,omitempty:"message"`
+	Message string `json:"message,omitempty"`
 	// An array of violation messages.
-	Violations []*Error `json,omitempty:"violations"`
+	Violations []*Error `json:"violations,omitempty"`
 }
 
 /*

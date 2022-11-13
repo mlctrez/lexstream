@@ -3,12 +3,12 @@ package evaluations
 import "time"
 
 type EvaluationEntity struct {
-	StartTimestamp time.Time `json,omitempty:"startTimestamp"`
-	EndTimestamp   time.Time `json,omitempty:"endTimestamp"`
-	Status         *Status   `json,omitempty:"status"`
+	StartTimestamp time.Time `json:"startTimestamp,omitempty"`
+	EndTimestamp   time.Time `json:"endTimestamp,omitempty"`
+	Status         *Status   `json:"status,omitempty"`
 	// Error message when evaluation job fails
-	ErrorMessage string            `json,omitempty:"errorMessage"`
-	Inputs       *EvaluationInputs `json,omitempty:"inputs"`
+	ErrorMessage string            `json:"errorMessage,omitempty"`
+	Inputs       *EvaluationInputs `json:"inputs,omitempty"`
 }
 
 /*

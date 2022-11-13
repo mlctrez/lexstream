@@ -4,10 +4,10 @@ package version
 VersionItems Version metadata about the entity.
 */
 type VersionItems struct {
-	Version      string `json,omitempty:"version"`
-	CreationTime string `json,omitempty:"creationTime"`
-	Description  string `json,omitempty:"description"`
-	Links        *Links `json,omitempty:"_links"`
+	Version      string `json:"version,omitempty"`
+	CreationTime string `json:"creationTime,omitempty"`
+	Description  string `json:"description,omitempty"`
+	Links        *Links `json:"_links,omitempty"`
 }
 
 /*

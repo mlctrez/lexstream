@@ -4,8 +4,8 @@ import "time"
 
 type SkillPublicationResponse struct {
 	// Used to determine when the skill Publishing should start.
-	PublishesAtDate time.Time               `json,omitempty:"publishesAtDate"`
-	Status          *SkillPublicationStatus `json,omitempty:"status"`
+	PublishesAtDate time.Time               `json:"publishesAtDate,omitempty"`
+	Status          *SkillPublicationStatus `json:"status,omitempty"`
 }
 
 /*

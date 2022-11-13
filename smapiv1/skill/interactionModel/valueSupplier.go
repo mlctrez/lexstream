@@ -5,7 +5,7 @@ ValueSupplier Supplier object to provide slot values.
 */
 type ValueSupplier struct {
 	// The exact type of validation e.g.CatalogValueSupplier etc.
-	Type_ string `json,omitempty:"type"`
+	Type_ string `json:"type,omitempty"`
 }
 
 /*

@@ -4,7 +4,7 @@ package evaluations
 ResolutionsPerAuthorityStatus An object representing the status of entity resolution for the slot.
 */
 type ResolutionsPerAuthorityStatus struct {
-	Code *ResolutionsPerAuthorityStatusCode `json,omitempty:"code"`
+	Code *ResolutionsPerAuthorityStatusCode `json:"code,omitempty"`
 }
 
 /*

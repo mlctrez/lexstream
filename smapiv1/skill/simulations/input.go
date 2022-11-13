@@ -4,7 +4,7 @@ type Input struct {
 	/*
 	   A string corresponding to the utterance text of what a customer would say to Alexa.
 	*/
-	Content string `json,omitempty:"content"`
+	Content string `json:"content,omitempty"`
 }
 
 /*

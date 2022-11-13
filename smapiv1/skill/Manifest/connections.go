@@ -5,8 +5,8 @@ Connections Skill connection object.
 */
 type Connections struct {
 	// Name of the connection.
-	Name    string              `json,omitempty:"name"`
-	Payload *ConnectionsPayload `json,omitempty:"payload"`
+	Name    string              `json:"name,omitempty"`
+	Payload *ConnectionsPayload `json:"payload,omitempty"`
 }
 
 /*

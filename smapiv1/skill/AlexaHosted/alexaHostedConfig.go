@@ -4,7 +4,7 @@ package alexahosted
 AlexaHostedConfig Alexa hosted skill create configuration
 */
 type AlexaHostedConfig struct {
-	Runtime *HostedSkillRuntime `json,omitempty:"runtime"`
+	Runtime *HostedSkillRuntime `json:"runtime,omitempty"`
 }
 
 /*

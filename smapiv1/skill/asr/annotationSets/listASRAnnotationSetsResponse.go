@@ -1,8 +1,8 @@
 package annotationsets
 
 type ListASRAnnotationSetsResponse struct {
-	AnnotationSets    []*AnnotationSetItems `json,omitempty:"annotationSets"`
-	PaginationContext *PaginationContext    `json,omitempty:"paginationContext"`
+	AnnotationSets    []*AnnotationSetItems `json:"annotationSets,omitempty"`
+	PaginationContext *PaginationContext    `json:"paginationContext,omitempty"`
 }
 
 /*

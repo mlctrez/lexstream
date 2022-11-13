@@ -2,9 +2,9 @@ package conflictdetection
 
 type ConflictIntent struct {
 	// Conflict intent name
-	Name string `json,omitempty:"name"`
+	Name string `json:"name,omitempty"`
 	// List of conflict intent slots
-	Slots map[string]ConflictIntentSlot `json,omitempty:"slots"`
+	Slots map[string]ConflictIntentSlot `json:"slots,omitempty"`
 }
 
 /*

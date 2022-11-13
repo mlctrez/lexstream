@@ -1,8 +1,8 @@
 package smarthomeevaluation
 
 type PaginationContext struct {
-	NextToken  string `json,omitempty:"nextToken"`
-	TotalCount int    `json,omitempty:"totalCount"`
+	NextToken  string `json:"nextToken,omitempty"`
+	TotalCount int    `json:"totalCount,omitempty"`
 }
 
 /*

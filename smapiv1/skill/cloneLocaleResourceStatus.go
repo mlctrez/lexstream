@@ -4,8 +4,8 @@ package skill
 CloneLocaleResourceStatus an object detailing the status of a locale clone request and if applicable the errors occurred when saving/building resources during clone process.
 */
 type CloneLocaleResourceStatus struct {
-	Status *CloneLocaleStatus   `json,omitempty:"status"`
-	Errors []*StandardizedError `json,omitempty:"errors"`
+	Status *CloneLocaleStatus   `json:"status,omitempty"`
+	Errors []*StandardizedError `json:"errors,omitempty"`
 }
 
 /*

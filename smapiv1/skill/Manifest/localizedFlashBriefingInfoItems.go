@@ -2,20 +2,20 @@ package manifest
 
 type LocalizedFlashBriefingInfoItems struct {
 	// Logical name of the feed. This is used to signify relation among feeds across different locales. Example If you have "weather" feed in multiple locale then consider naming it "weather_update" and we will make sure to play the right feed if customer changes the language on device.
-	LogicalName string `json,omitempty:"logicalName"`
+	LogicalName string `json:"logicalName,omitempty"`
 	// Name that identifies this feed.
-	Name string `json,omitempty:"name"`
+	Name string `json:"name,omitempty"`
 	// Url for the feed
-	Url string `json,omitempty:"url"`
+	Url string `json:"url,omitempty"`
 	// Uri for the feed image
-	ImageUri        string                        `json,omitempty:"imageUri"`
-	ContentType     *FlashBriefingContentType     `json,omitempty:"contentType"`
-	Genre           *FlashBriefingGenre           `json,omitempty:"genre"`
-	UpdateFrequency *FlashBriefingUpdateFrequency `json,omitempty:"updateFrequency"`
+	ImageUri        string                        `json:"imageUri,omitempty"`
+	ContentType     *FlashBriefingContentType     `json:"contentType,omitempty"`
+	Genre           *FlashBriefingGenre           `json:"genre,omitempty"`
+	UpdateFrequency *FlashBriefingUpdateFrequency `json:"updateFrequency,omitempty"`
 	// A short introduction for the feed that Alexa reads to the customer before the feed contents. Should start with "In" or "From".
-	VuiPreamble string `json,omitempty:"vuiPreamble"`
+	VuiPreamble string `json:"vuiPreamble,omitempty"`
 	// True if this should be the default feed to be enabled when customer enables the skill false otherwise.
-	IsDefault bool `json,omitempty:"isDefault"`
+	IsDefault bool `json:"isDefault,omitempty"`
 }
 
 /*

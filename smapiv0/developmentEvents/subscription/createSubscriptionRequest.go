@@ -2,13 +2,13 @@ package subscription
 
 type CreateSubscriptionRequest struct {
 	// Name of the subscription.
-	Name string `json,omitempty:"name"`
+	Name string `json:"name,omitempty"`
 	// The list of events that the subscriber should be notified for.
-	Events []*Event `json,omitempty:"events"`
+	Events []*Event `json:"events,omitempty"`
 	// The vendorId of the event publisher.
-	VendorId string `json,omitempty:"vendorId"`
+	VendorId string `json:"vendorId,omitempty"`
 	// The id of the subscriber that would receive the events.
-	SubscriberId string `json,omitempty:"subscriberId"`
+	SubscriberId string `json:"subscriberId,omitempty"`
 }
 
 /*

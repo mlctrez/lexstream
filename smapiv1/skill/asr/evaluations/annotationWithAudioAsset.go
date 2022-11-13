@@ -5,7 +5,7 @@ AnnotationWithAudioAsset object containing annotation content and audio file dow
 */
 type AnnotationWithAudioAsset struct {
 	Annotation
-	AudioAsset *AudioAsset `json,omitempty:"audioAsset"`
+	AudioAsset *AudioAsset `json:"audioAsset,omitempty"`
 }
 
 /*

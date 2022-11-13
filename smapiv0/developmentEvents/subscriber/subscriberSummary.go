@@ -2,13 +2,13 @@ package subscriber
 
 type SubscriberSummary struct {
 	// Unique identifier of the subscriber resource.
-	SubscriberId string `json,omitempty:"subscriberId"`
+	SubscriberId string `json:"subscriberId,omitempty"`
 	// Name of the subscriber.
-	Name   string            `json,omitempty:"name"`
-	Status *SubscriberStatus `json,omitempty:"status"`
+	Name   string            `json:"name,omitempty"`
+	Status *SubscriberStatus `json:"status,omitempty"`
 	// Client Id of the subscriber resource.
-	ClientId string    `json,omitempty:"clientId"`
-	Endpoint *Endpoint `json,omitempty:"endpoint"`
+	ClientId string    `json:"clientId,omitempty"`
+	Endpoint *Endpoint `json:"endpoint,omitempty"`
 }
 
 /*

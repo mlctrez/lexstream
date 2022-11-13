@@ -2,8 +2,8 @@ package subscriber
 
 type Endpoint struct {
 	// Uri of the endpoint that receives the notification.
-	Uri           string                 `json,omitempty:"uri"`
-	Authorization *EndpointAuthorization `json,omitempty:"authorization"`
+	Uri           string                 `json:"uri,omitempty"`
+	Authorization *EndpointAuthorization `json:"authorization,omitempty"`
 }
 
 /*

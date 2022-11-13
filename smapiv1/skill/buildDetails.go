@@ -6,7 +6,7 @@ to this array as they become IN_PROGRESS.
 */
 type BuildDetails struct {
 	// An array where each element represents a build step.
-	Steps []*BuildStep `json,omitempty:"steps"`
+	Steps []*BuildStep `json:"steps,omitempty"`
 }
 
 /*

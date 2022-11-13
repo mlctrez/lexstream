@@ -5,7 +5,7 @@ Source Use Annotation Set as evaluation source
 */
 type Source struct {
 	// ID of the annotation set
-	AnnotationId string `json,omitempty:"annotationId"`
+	AnnotationId string `json:"annotationId,omitempty"`
 }
 
 /*

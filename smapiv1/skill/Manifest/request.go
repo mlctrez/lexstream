@@ -1,7 +1,7 @@
 package manifest
 
 type Request struct {
-	Name *RequestName `json,omitempty:"name"`
+	Name *RequestName `json:"name,omitempty"`
 }
 
 /*

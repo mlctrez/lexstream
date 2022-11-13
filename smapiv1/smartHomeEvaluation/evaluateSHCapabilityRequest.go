@@ -1,9 +1,9 @@
 package smarthomeevaluation
 
 type EvaluateSHCapabilityRequest struct {
-	CapabilityTestPlan *CapabilityTestPlan `json,omitempty:"capabilityTestPlan"`
-	Endpoint           *Endpoint           `json,omitempty:"endpoint"`
-	Stage              *Stage              `json,omitempty:"stage"`
+	CapabilityTestPlan *CapabilityTestPlan `json:"capabilityTestPlan,omitempty"`
+	Endpoint           *Endpoint           `json:"endpoint,omitempty"`
+	Stage              *Stage              `json:"stage,omitempty"`
 }
 
 /*

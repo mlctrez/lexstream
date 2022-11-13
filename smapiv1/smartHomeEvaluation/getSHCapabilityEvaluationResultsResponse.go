@@ -2,7 +2,7 @@ package smarthomeevaluation
 
 type GetSHCapabilityEvaluationResultsResponse struct {
 	PagedResponse
-	TestCaseResults []*TestCaseResult `json,omitempty:"testCaseResults"`
+	TestCaseResults []*TestCaseResult `json:"testCaseResults,omitempty"`
 }
 
 /*

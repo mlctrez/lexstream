@@ -6,11 +6,11 @@ import smapiv1 "github.com/mlctrez/lexstream/smapiv1"
 ListInSkillProduct List of in-skill products.
 */
 type ListInSkillProduct struct {
-	Links *smapiv1.Links `json,omitempty:"_links"`
+	Links *smapiv1.Links `json:"_links,omitempty"`
 	// Information for each in-skill product.
-	InSkillProducts []*InSkillProductSummary `json,omitempty:"inSkillProducts"`
-	IsTruncated     bool                     `json,omitempty:"isTruncated"`
-	NextToken       string                   `json,omitempty:"nextToken"`
+	InSkillProducts []*InSkillProductSummary `json:"inSkillProducts,omitempty"`
+	IsTruncated     bool                     `json:"isTruncated,omitempty"`
+	NextToken       string                   `json:"nextToken,omitempty"`
 }
 
 /*

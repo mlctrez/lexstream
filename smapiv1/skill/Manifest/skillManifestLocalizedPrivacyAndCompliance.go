@@ -5,9 +5,9 @@ SkillManifestLocalizedPrivacyAndCompliance Defines the structure for locale spec
 */
 type SkillManifestLocalizedPrivacyAndCompliance struct {
 	// Link to the privacy policy that applies to this skill.
-	PrivacyPolicyUrl string `json,omitempty:"privacyPolicyUrl"`
+	PrivacyPolicyUrl string `json:"privacyPolicyUrl,omitempty"`
 	// link to the terms of use document for this skill
-	TermsOfUseUrl string `json,omitempty:"termsOfUseUrl"`
+	TermsOfUseUrl string `json:"termsOfUseUrl,omitempty"`
 }
 
 /*

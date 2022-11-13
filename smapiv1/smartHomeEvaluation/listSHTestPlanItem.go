@@ -1,8 +1,8 @@
 package smarthomeevaluation
 
 type ListSHTestPlanItem struct {
-	Id   string `json,omitempty:"id"`
-	Name string `json,omitempty:"name"`
+	Id   string `json:"id,omitempty"`
+	Name string `json:"name,omitempty"`
 }
 
 /*

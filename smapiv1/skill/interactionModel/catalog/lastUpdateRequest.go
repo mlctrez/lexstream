@@ -6,10 +6,10 @@ import skill "github.com/mlctrez/lexstream/smapiv1/skill"
 LastUpdateRequest Contains attributes related to last modification request of a resource.
 */
 type LastUpdateRequest struct {
-	Status *CatalogStatusType `json,omitempty:"status"`
+	Status *CatalogStatusType `json:"status,omitempty"`
 	// The version id of the entity returned.
-	Version string                     `json,omitempty:"version"`
-	Errors  []*skill.StandardizedError `json,omitempty:"errors"`
+	Version string                     `json:"version,omitempty"`
+	Errors  []*skill.StandardizedError `json:"errors,omitempty"`
 }
 
 /*

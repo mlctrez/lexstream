@@ -6,9 +6,9 @@ import smapiv1 "github.com/mlctrez/lexstream/smapiv1"
 GetExecutionsResponse The response of get execution history.
 */
 type GetExecutionsResponse struct {
-	PaginationContext *JobAPIPaginationContext `json,omitempty:"paginationContext"`
-	Links             *smapiv1.Links           `json,omitempty:"_links"`
-	Executions        []*Execution             `json,omitempty:"executions"`
+	PaginationContext *JobAPIPaginationContext `json:"paginationContext,omitempty"`
+	Links             *smapiv1.Links           `json:"_links,omitempty"`
+	Executions        []*Execution             `json:"executions,omitempty"`
 }
 
 /*

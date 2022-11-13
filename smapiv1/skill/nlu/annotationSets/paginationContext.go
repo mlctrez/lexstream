@@ -2,7 +2,7 @@ package annotationsets
 
 type PaginationContext struct {
 	// Opaque token returned if there are more results for the given inputs than `maxResults` from the request.
-	NextToken string `json,omitempty:"nextToken"`
+	NextToken string `json:"nextToken,omitempty"`
 }
 
 /*

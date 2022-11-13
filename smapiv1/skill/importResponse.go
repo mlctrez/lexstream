@@ -1,10 +1,10 @@
 package skill
 
 type ImportResponse struct {
-	Status   *ResponseStatus      `json,omitempty:"status"`
-	Errors   []*StandardizedError `json,omitempty:"errors"`
-	Warnings []*StandardizedError `json,omitempty:"warnings"`
-	Skill    *ImportResponseSkill `json,omitempty:"skill"`
+	Status   *ResponseStatus      `json:"status,omitempty"`
+	Errors   []*StandardizedError `json:"errors,omitempty"`
+	Warnings []*StandardizedError `json:"warnings,omitempty"`
+	Skill    *ImportResponseSkill `json:"skill,omitempty"`
 }
 
 /*

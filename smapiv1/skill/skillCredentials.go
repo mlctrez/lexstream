@@ -4,7 +4,7 @@ package skill
 SkillCredentials Structure for skill credentials response.
 */
 type SkillCredentials struct {
-	SkillMessagingCredentials *SkillMessagingCredentials `json,omitempty:"skillMessagingCredentials"`
+	SkillMessagingCredentials *SkillMessagingCredentials `json:"skillMessagingCredentials,omitempty"`
 }
 
 /*

@@ -4,9 +4,9 @@ package manifest
 VideoRegion Defines the structure for endpoint information.
 */
 type VideoRegion struct {
-	Endpoint *LambdaEndpoint `json,omitempty:"endpoint"`
+	Endpoint *LambdaEndpoint `json:"endpoint,omitempty"`
 	// The channel through which the partner skill can communicate to Alexa.
-	Upchannel []*UpChannelItems `json,omitempty:"upchannel"`
+	Upchannel []*UpChannelItems `json:"upchannel,omitempty"`
 }
 
 /*

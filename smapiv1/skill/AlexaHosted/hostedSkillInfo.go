@@ -1,8 +1,8 @@
 package alexahosted
 
 type HostedSkillInfo struct {
-	Repository *HostedSkillRepositoryInfo `json,omitempty:"repository"`
-	Runtime    *HostedSkillRuntime        `json,omitempty:"runtime"`
+	Repository *HostedSkillRepositoryInfo `json:"repository,omitempty"`
+	Runtime    *HostedSkillRuntime        `json:"runtime,omitempty"`
 }
 
 /*

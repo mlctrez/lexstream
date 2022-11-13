@@ -1,7 +1,7 @@
 package manifest
 
 type VideoCatalogInfo struct {
-	SourceId string `json,omitempty:"sourceId"`
+	SourceId string `json:"sourceId,omitempty"`
 }
 
 /*

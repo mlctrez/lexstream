@@ -2,7 +2,7 @@ package conflictdetection
 
 type GetConflictsResponse struct {
 	PagedResponse
-	Results []*GetConflictsResponseResult `json,omitempty:"results"`
+	Results []*GetConflictsResponseResult `json:"results,omitempty"`
 }
 
 /*

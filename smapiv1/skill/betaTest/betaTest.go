@@ -7,14 +7,14 @@ BetaTest Beta test for an Alexa skill.
 */
 type BetaTest struct {
 	// Expiry date of the beta test.
-	ExpiryDate time.Time `json,omitempty:"expiryDate"`
-	Status     *Status   `json,omitempty:"status"`
+	ExpiryDate time.Time `json:"expiryDate,omitempty"`
+	Status     *Status   `json:"status,omitempty"`
 	// Email address for providing feedback
-	FeedbackEmail string `json,omitempty:"feedbackEmail"`
+	FeedbackEmail string `json:"feedbackEmail,omitempty"`
 	// Deeplinking for getting authorized to the beta test.
-	InvitationUrl string `json,omitempty:"invitationUrl"`
+	InvitationUrl string `json:"invitationUrl,omitempty"`
 	// Remaining invite count for the beta test.
-	InvitesRemaining int `json,omitempty:"invitesRemaining"`
+	InvitesRemaining int `json:"invitesRemaining,omitempty"`
 }
 
 /*

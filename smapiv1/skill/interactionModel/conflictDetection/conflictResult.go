@@ -2,8 +2,8 @@ package conflictdetection
 
 type ConflictResult struct {
 	// Sample utterance provided by 3P developers for intents.
-	SampleUtterance string          `json,omitempty:"sampleUtterance"`
-	Intent          *ConflictIntent `json,omitempty:"intent"`
+	SampleUtterance string          `json:"sampleUtterance,omitempty"`
+	Intent          *ConflictIntent `json:"intent,omitempty"`
 }
 
 /*

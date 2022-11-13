@@ -1,9 +1,9 @@
 package interactionmodel
 
 type PromptItems struct {
-	Type_ *PromptItemsType `json,omitempty:"type"`
+	Type_ *PromptItemsType `json:"type,omitempty"`
 	// Specifies the prompt.
-	Value string `json,omitempty:"value"`
+	Value string `json:"value,omitempty"`
 }
 
 /*

@@ -4,9 +4,9 @@ package skill
 BuildStep Describes the status of a build step.
 */
 type BuildStep struct {
-	Name   *BuildStepName       `json,omitempty:"name"`
-	Status *Status              `json,omitempty:"status"`
-	Errors []*StandardizedError `json,omitempty:"errors"`
+	Name   *BuildStepName       `json:"name,omitempty"`
+	Status *Status              `json:"status,omitempty"`
+	Errors []*StandardizedError `json:"errors,omitempty"`
 }
 
 /*

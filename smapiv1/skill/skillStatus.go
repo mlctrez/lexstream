@@ -4,11 +4,11 @@ package skill
 SkillStatus Defines the structure for skill status response.
 */
 type SkillStatus struct {
-	Manifest *ManifestStatus `json,omitempty:"manifest"`
+	Manifest *ManifestStatus `json:"manifest,omitempty"`
 	// Status for available interaction models, keyed by locale.
-	InteractionModel        map[string]SkillInteractionModelStatus `json,omitempty:"interactionModel"`
-	HostedSkillDeployment   *HostedSkillDeploymentStatus           `json,omitempty:"hostedSkillDeployment"`
-	HostedSkillProvisioning *HostedSkillProvisioningStatus         `json,omitempty:"hostedSkillProvisioning"`
+	InteractionModel        map[string]SkillInteractionModelStatus `json:"interactionModel,omitempty"`
+	HostedSkillDeployment   *HostedSkillDeploymentStatus           `json:"hostedSkillDeployment,omitempty"`
+	HostedSkillProvisioning *HostedSkillProvisioningStatus         `json:"hostedSkillProvisioning,omitempty"`
 }
 
 /*

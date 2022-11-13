@@ -1,10 +1,10 @@
 package interactionmodel
 
 type InteractionModelSchema struct {
-	LanguageModel *LanguageModel `json,omitempty:"languageModel"`
-	Dialog        *Dialog        `json,omitempty:"dialog"`
+	LanguageModel *LanguageModel `json:"languageModel,omitempty"`
+	Dialog        *Dialog        `json:"dialog,omitempty"`
 	// List of prompts.
-	Prompts []*Prompt `json,omitempty:"prompts"`
+	Prompts []*Prompt `json:"prompts,omitempty"`
 }
 
 /*

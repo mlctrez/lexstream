@@ -1,10 +1,10 @@
 package smarthomeevaluation
 
 type SHEvaluationResultsMetric struct {
-	ErrorTestCases  int `json,omitempty:"errorTestCases"`
-	FailedTestCases int `json,omitempty:"failedTestCases"`
-	PassedTestCases int `json,omitempty:"passedTestCases"`
-	TotalTestCases  int `json,omitempty:"totalTestCases"`
+	ErrorTestCases  int `json:"errorTestCases,omitempty"`
+	FailedTestCases int `json:"failedTestCases,omitempty"`
+	PassedTestCases int `json:"passedTestCases,omitempty"`
+	TotalTestCases  int `json:"totalTestCases,omitempty"`
 }
 
 /*

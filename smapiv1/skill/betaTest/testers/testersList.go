@@ -5,7 +5,7 @@ TestersList List of testers.
 */
 type TestersList struct {
 	// List of the email address of testers.
-	Testers []*Tester `json,omitempty:"testers"`
+	Testers []*Tester `json:"testers,omitempty"`
 }
 
 /*

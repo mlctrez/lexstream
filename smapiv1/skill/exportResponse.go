@@ -1,8 +1,8 @@
 package skill
 
 type ExportResponse struct {
-	Status *ResponseStatus      `json,omitempty:"status"`
-	Skill  *ExportResponseSkill `json,omitempty:"skill"`
+	Status *ResponseStatus      `json:"status,omitempty"`
+	Skill  *ExportResponseSkill `json:"skill,omitempty"`
 }
 
 /*

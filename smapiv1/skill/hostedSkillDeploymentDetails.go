@@ -4,8 +4,8 @@ package skill
 HostedSkillDeploymentDetails Details about hosted skill deployment.
 */
 type HostedSkillDeploymentDetails struct {
-	CommitId string `json,omitempty:"commitId"`
-	LogUrl   string `json,omitempty:"logUrl"`
+	CommitId string `json:"commitId,omitempty"`
+	LogUrl   string `json:"logUrl,omitempty"`
 }
 
 /*

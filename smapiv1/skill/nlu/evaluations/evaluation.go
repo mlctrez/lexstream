@@ -3,7 +3,7 @@ package evaluations
 type Evaluation struct {
 	EvaluationEntity
 	// id of the job
-	Id string `json,omitempty:"id"`
+	Id string `json:"id,omitempty"`
 }
 
 /*

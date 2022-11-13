@@ -5,9 +5,9 @@ ValidationFeature Structure representing a public feature.
 */
 type ValidationFeature struct {
 	// Name of the feature.
-	Name string `json,omitempty:"name"`
+	Name string `json:"name,omitempty"`
 	// Contact URL or email for the feature.
-	Contact string `json,omitempty:"contact"`
+	Contact string `json:"contact,omitempty"`
 }
 
 /*

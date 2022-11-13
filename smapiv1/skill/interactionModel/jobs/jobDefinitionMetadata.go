@@ -5,10 +5,10 @@ JobDefinitionMetadata Metadata of the job definition.
 */
 type JobDefinitionMetadata struct {
 	// Job identifier.
-	Id string `json,omitempty:"id"`
+	Id string `json:"id,omitempty"`
 	// Polymorphic type of the job.
-	Type_  string               `json,omitempty:"type"`
-	Status *JobDefinitionStatus `json,omitempty:"status"`
+	Type_  string               `json:"type,omitempty"`
+	Status *JobDefinitionStatus `json:"status,omitempty"`
 }
 
 /*

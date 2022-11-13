@@ -4,11 +4,11 @@ package skill
 SkillInteractionModelStatus Defines the structure for interaction model build status.
 */
 type SkillInteractionModelStatus struct {
-	LastUpdateRequest *InteractionModelLastUpdateRequest `json,omitempty:"lastUpdateRequest"`
+	LastUpdateRequest *InteractionModelLastUpdateRequest `json:"lastUpdateRequest,omitempty"`
 	// An opaque identifier for last successfully updated resource.
-	ETag string `json,omitempty:"eTag"`
+	ETag string `json:"eTag,omitempty"`
 	// Version for last successfully built model.
-	Version string `json,omitempty:"version"`
+	Version string `json:"version,omitempty"`
 }
 
 /*

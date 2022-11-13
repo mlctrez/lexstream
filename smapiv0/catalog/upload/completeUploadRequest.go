@@ -2,7 +2,7 @@ package upload
 
 type CompleteUploadRequest struct {
 	// List of (eTag, part number) pairs for each part of the file uploaded.
-	PartETags []*PreSignedUrlItem `json,omitempty:"partETags"`
+	PartETags []*PreSignedUrlItem `json:"partETags,omitempty"`
 }
 
 /*

@@ -2,7 +2,7 @@ package annotationsets
 
 type CreateNLUAnnotationSetResponse struct {
 	// Id used to retrieve the NLU annotation set.
-	Id string `json,omitempty:"id"`
+	Id string `json:"id,omitempty"`
 }
 
 /*

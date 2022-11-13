@@ -3,9 +3,9 @@ package simulations
 import smapiv1 "github.com/mlctrez/lexstream/smapiv1"
 
 type SimulationResult struct {
-	AlexaExecutionInfo *AlexaExecutionInfo `json,omitempty:"alexaExecutionInfo"`
-	SkillExecutionInfo *Invocation         `json,omitempty:"skillExecutionInfo"`
-	Error              *smapiv1.Error      `json,omitempty:"error"`
+	AlexaExecutionInfo *AlexaExecutionInfo `json:"alexaExecutionInfo,omitempty"`
+	SkillExecutionInfo *Invocation         `json:"skillExecutionInfo,omitempty"`
+	Error              *smapiv1.Error      `json:"error,omitempty"`
 }
 
 /*

@@ -1,8 +1,8 @@
 package upload
 
 type PreSignedUrlItem struct {
-	ETag       string `json,omitempty:"eTag"`
-	PartNumber int    `json,omitempty:"partNumber"`
+	ETag       string `json:"eTag,omitempty"`
+	PartNumber int    `json:"partNumber,omitempty"`
 }
 
 /*

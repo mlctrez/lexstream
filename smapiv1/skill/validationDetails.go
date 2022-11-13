@@ -5,53 +5,53 @@ ValidationDetails Standardized, machine readable structure that wraps all the in
 */
 type ValidationDetails struct {
 	// Set of properties of the image provided by the customer.
-	ActualImageAttributes *ImageAttributes `json,omitempty:"actualImageAttributes"`
+	ActualImageAttributes *ImageAttributes `json:"actualImageAttributes,omitempty"`
 	// Number of items in an array provided by the customer.
-	ActualNumberOfItems int `json,omitempty:"actualNumberOfItems"`
+	ActualNumberOfItems int `json:"actualNumberOfItems,omitempty"`
 	// Number of characters in a string provided by the customer.
-	ActualStringLength int `json,omitempty:"actualStringLength"`
+	ActualStringLength int `json:"actualStringLength,omitempty"`
 	// List of allowed content types for a resource.
-	AllowedContentTypes []string `json,omitempty:"allowedContentTypes"`
+	AllowedContentTypes []string `json:"allowedContentTypes,omitempty"`
 	// List of allowed data types for an instance.
-	AllowedDataTypes []*ValidationDataTypes `json,omitempty:"allowedDataTypes"`
+	AllowedDataTypes []*ValidationDataTypes `json:"allowedDataTypes,omitempty"`
 	// List of set of properties representing all possible allowed images.
-	AllowedImageAttributes []*ImageAttributes `json,omitempty:"allowedImageAttributes"`
+	AllowedImageAttributes []*ImageAttributes `json:"allowedImageAttributes,omitempty"`
 	// Instance conflicting with another instance.
-	ConflictingInstance *Instance `json,omitempty:"conflictingInstance"`
+	ConflictingInstance *Instance `json:"conflictingInstance,omitempty"`
 	// Format in which instance value is expected in.
-	ExpectedFormat *Format `json,omitempty:"expectedFormat"`
+	ExpectedFormat *Format `json:"expectedFormat,omitempty"`
 	// Instance that is expected by a related instance.
-	ExpectedInstance *Instance `json,omitempty:"expectedInstance"`
+	ExpectedInstance *Instance `json:"expectedInstance,omitempty"`
 	// Regular expression that a string instance is expected to match.
-	ExpectedRegexPattern string `json,omitempty:"expectedRegexPattern"`
+	ExpectedRegexPattern string `json:"expectedRegexPattern,omitempty"`
 	// Type of the agreement that the customer must be compliant to.
-	AgreementType *AgreementType `json,omitempty:"agreementType"`
+	AgreementType *AgreementType `json:"agreementType,omitempty"`
 	// Properties of a publicly known feature that has restricted access.
-	Feature *ValidationFeature `json,omitempty:"feature"`
+	Feature *ValidationFeature `json:"feature,omitempty"`
 	// Endpoint which has a different value for property named type when compared to original endpoint.
-	InconsistentEndpoint *ValidationEndpoint `json,omitempty:"inconsistentEndpoint"`
+	InconsistentEndpoint *ValidationEndpoint `json:"inconsistentEndpoint,omitempty"`
 	// Minimum allowed value of an integer instance.
-	MinimumIntegerValue int `json,omitempty:"minimumIntegerValue"`
+	MinimumIntegerValue int `json:"minimumIntegerValue,omitempty"`
 	// Minimum allowed number of items in an array.
-	MinimumNumberOfItems int `json,omitempty:"minimumNumberOfItems"`
+	MinimumNumberOfItems int `json:"minimumNumberOfItems,omitempty"`
 	// Minimum allowed number of characters in a string.
-	MinimumStringLength int `json,omitempty:"minimumStringLength"`
+	MinimumStringLength int `json:"minimumStringLength,omitempty"`
 	// Maximum allowed value of an integer instance.
-	MaximumIntegerValue int `json,omitempty:"maximumIntegerValue"`
+	MaximumIntegerValue int `json:"maximumIntegerValue,omitempty"`
 	// Maximum allowed number of items in an array.
-	MaximumNumberOfItems int `json,omitempty:"maximumNumberOfItems"`
+	MaximumNumberOfItems int `json:"maximumNumberOfItems,omitempty"`
 	// Maximum allowed number of characters in a string.
-	MaximumStringLength int `json,omitempty:"maximumStringLength"`
+	MaximumStringLength int `json:"maximumStringLength,omitempty"`
 	// An Endpoint instance
-	OriginalEndpoint *ValidationEndpoint `json,omitempty:"originalEndpoint"`
+	OriginalEndpoint *ValidationEndpoint `json:"originalEndpoint,omitempty"`
 	// An Instance
-	OriginalInstance *Instance `json,omitempty:"originalInstance"`
+	OriginalInstance *Instance `json:"originalInstance,omitempty"`
 	// Represents what is wrong in the request.
-	Reason *ValidationFailureReason `json,omitempty:"reason"`
+	Reason *ValidationFailureReason `json:"reason,omitempty"`
 	// Property required but missing in the object.
-	RequiredProperty string `json,omitempty:"requiredProperty"`
+	RequiredProperty string `json:"requiredProperty,omitempty"`
 	// Property not expected but present in the object.
-	UnexpectedProperty string `json,omitempty:"unexpectedProperty"`
+	UnexpectedProperty string `json:"unexpectedProperty,omitempty"`
 }
 
 /*

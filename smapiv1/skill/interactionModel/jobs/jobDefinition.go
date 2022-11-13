@@ -5,10 +5,10 @@ JobDefinition Definition for dynamic job.
 */
 type JobDefinition struct {
 	// Polymorphic type of the job
-	Type_   string   `json,omitempty:"type"`
-	Trigger *Trigger `json,omitempty:"trigger"`
+	Type_   string   `json:"type,omitempty"`
+	Trigger *Trigger `json:"trigger,omitempty"`
 	// Current status of the job definition.
-	Status string `json,omitempty:"status"`
+	Status string `json:"status,omitempty"`
 }
 
 /*

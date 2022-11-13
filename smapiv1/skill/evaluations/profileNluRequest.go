@@ -2,9 +2,9 @@ package evaluations
 
 type ProfileNluRequest struct {
 	// Actual representation of user input to Alexa.
-	Utterance string `json,omitempty:"utterance"`
+	Utterance string `json:"utterance,omitempty"`
 	// Opaque string which contains multi-turn related context.
-	MultiTurnToken string `json,omitempty:"multiTurnToken"`
+	MultiTurnToken string `json:"multiTurnToken,omitempty"`
 }
 
 /*

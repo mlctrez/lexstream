@@ -3,9 +3,9 @@ package evaluations
 import smapiv1 "github.com/mlctrez/lexstream/smapiv1"
 
 type Skill struct {
-	Stage *smapiv1.StageType `json,omitempty:"stage"`
+	Stage *smapiv1.StageType `json:"stage,omitempty"`
 	// skill locale in bcp 47 format
-	Locale string `json,omitempty:"locale"`
+	Locale string `json:"locale,omitempty"`
 }
 
 /*

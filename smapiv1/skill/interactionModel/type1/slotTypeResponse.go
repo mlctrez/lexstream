@@ -4,7 +4,7 @@ package type1
 SlotTypeResponse Slot Type information.
 */
 type SlotTypeResponse struct {
-	SlotType *SlotTypeResponseEntity `json,omitempty:"slotType"`
+	SlotType *SlotTypeResponseEntity `json:"slotType,omitempty"`
 }
 
 /*

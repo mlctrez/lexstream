@@ -5,7 +5,7 @@ CatalogResponse CatalogId information.
 */
 type CatalogResponse struct {
 	// ID of the catalog created.
-	CatalogId string `json,omitempty:"catalogId"`
+	CatalogId string `json:"catalogId,omitempty"`
 }
 
 /*

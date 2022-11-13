@@ -5,10 +5,10 @@ LanguageModel Define the language model.
 */
 type LanguageModel struct {
 	// Invocation name of the skill.
-	InvocationName     string              `json,omitempty:"invocationName"`
-	Types              []*SlotType         `json,omitempty:"types"`
-	Intents            []*Intent           `json,omitempty:"intents"`
-	ModelConfiguration *ModelConfiguration `json,omitempty:"modelConfiguration"`
+	InvocationName     string              `json:"invocationName,omitempty"`
+	Types              []*SlotType         `json:"types,omitempty"`
+	Intents            []*Intent           `json:"intents,omitempty"`
+	ModelConfiguration *ModelConfiguration `json:"modelConfiguration,omitempty"`
 }
 
 /*

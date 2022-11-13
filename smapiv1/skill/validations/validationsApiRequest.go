@@ -1,7 +1,7 @@
 package validations
 
 type ValidationsApiRequest struct {
-	Locales []string `json,omitempty:"locales"`
+	Locales []string `json:"locales,omitempty"`
 }
 
 /*

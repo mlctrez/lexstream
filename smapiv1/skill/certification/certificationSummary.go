@@ -7,11 +7,11 @@ CertificationSummary Summary of the certification resource. This is a leaner vie
 */
 type CertificationSummary struct {
 	// Certification Id for the skill.
-	Id     string               `json,omitempty:"id"`
-	Status *CertificationStatus `json,omitempty:"status"`
+	Id     string               `json:"id,omitempty"`
+	Status *CertificationStatus `json:"status,omitempty"`
 	// Timestamp for when the skill was submitted for certification.
-	SkillSubmissionTimestamp time.Time                  `json,omitempty:"skillSubmissionTimestamp"`
-	ReviewTrackingInfo       *ReviewTrackingInfoSummary `json,omitempty:"reviewTrackingInfo"`
+	SkillSubmissionTimestamp time.Time                  `json:"skillSubmissionTimestamp,omitempty"`
+	ReviewTrackingInfo       *ReviewTrackingInfoSummary `json:"reviewTrackingInfo,omitempty"`
 }
 
 /*

@@ -1,7 +1,7 @@
 package smarthomeevaluation
 
 type PagedResponse struct {
-	PaginationContext *PaginationContext `json,omitempty:"paginationContext"`
+	PaginationContext *PaginationContext `json:"paginationContext,omitempty"`
 }
 
 /*

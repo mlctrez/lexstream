@@ -1,9 +1,9 @@
 package skill
 
 type SubmitSkillForCertificationRequest struct {
-	PublicationMethod *PublicationMethod `json,omitempty:"publicationMethod"`
+	PublicationMethod *PublicationMethod `json:"publicationMethod,omitempty"`
 	// Description of the version (limited to 300 characters).
-	VersionMessage string `json,omitempty:"versionMessage"`
+	VersionMessage string `json:"versionMessage,omitempty"`
 }
 
 /*

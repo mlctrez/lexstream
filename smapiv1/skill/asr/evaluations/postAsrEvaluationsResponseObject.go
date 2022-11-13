@@ -2,7 +2,7 @@ package evaluations
 
 type PostAsrEvaluationsResponseObject struct {
 	// ID used to retrieve the evaluation status/results later.
-	Id string `json,omitempty:"id"`
+	Id string `json:"id,omitempty"`
 }
 
 /*

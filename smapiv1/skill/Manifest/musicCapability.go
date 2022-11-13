@@ -2,11 +2,11 @@ package manifest
 
 type MusicCapability struct {
 	// Namespace of music skill api.
-	Namespace string `json,omitempty:"namespace"`
+	Namespace string `json:"namespace,omitempty"`
 	// Name of music skill api.
-	Name string `json,omitempty:"name"`
+	Name string `json:"name,omitempty"`
 	// Version of music skill api.
-	Version string `json,omitempty:"version"`
+	Version string `json:"version,omitempty"`
 }
 
 /*

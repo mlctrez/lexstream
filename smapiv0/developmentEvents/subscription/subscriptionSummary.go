@@ -2,15 +2,15 @@ package subscription
 
 type SubscriptionSummary struct {
 	// Name of the subscription.
-	Name string `json,omitempty:"name"`
+	Name string `json:"name,omitempty"`
 	// Unique identifier of the subscription resource.
-	SubscriptionId string `json,omitempty:"subscriptionId"`
+	SubscriptionId string `json:"subscriptionId,omitempty"`
 	// Subscriber Id of the event-reciever.
-	SubscriberId string `json,omitempty:"subscriberId"`
+	SubscriberId string `json:"subscriberId,omitempty"`
 	// VendorId of the event-publisher.
-	VendorId string `json,omitempty:"vendorId"`
+	VendorId string `json:"vendorId,omitempty"`
 	// The list of events that the subscriber should be notified for.
-	Events []*Event `json,omitempty:"events"`
+	Events []*Event `json:"events,omitempty"`
 }
 
 /*

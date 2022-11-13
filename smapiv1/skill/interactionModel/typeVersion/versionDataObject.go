@@ -4,9 +4,9 @@ package typeversion
 VersionDataObject Slot Type version fields with specific data.
 */
 type VersionDataObject struct {
-	Definition *ValueSupplierObject `json,omitempty:"definition"`
+	Definition *ValueSupplierObject `json:"definition,omitempty"`
 	// Description string for specific slot type version.
-	Description string `json,omitempty:"description"`
+	Description string `json:"description,omitempty"`
 }
 
 /*

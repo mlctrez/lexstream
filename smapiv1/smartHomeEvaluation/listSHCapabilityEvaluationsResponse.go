@@ -1,8 +1,8 @@
 package smarthomeevaluation
 
 type ListSHCapabilityEvaluationsResponse struct {
-	PaginationContextToken *PaginationContextToken `json,omitempty:"paginationContextToken"`
-	Evaluations            []*EvaluationObject     `json,omitempty:"evaluations"`
+	PaginationContextToken *PaginationContextToken `json:"paginationContextToken,omitempty"`
+	Evaluations            []*EvaluationObject     `json:"evaluations,omitempty"`
 }
 
 /*

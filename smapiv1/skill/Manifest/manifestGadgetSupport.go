@@ -4,15 +4,15 @@ package manifest
 ManifestGadgetSupport Defines the structure for gadget buttons support in the skill manifest.
 */
 type ManifestGadgetSupport struct {
-	Requirement *GadgetSupport `json,omitempty:"requirement"`
+	Requirement *GadgetSupport `json:"requirement,omitempty"`
 	// Minimum number of gadget buttons required.
-	MinGadgetButtons int `json,omitempty:"minGadgetButtons"`
+	MinGadgetButtons int `json:"minGadgetButtons,omitempty"`
 	// Maximum number of gadget buttons required.
-	MaxGadgetButtons int `json,omitempty:"maxGadgetButtons"`
+	MaxGadgetButtons int `json:"maxGadgetButtons,omitempty"`
 	// Maximum number of players in the game.
-	NumPlayersMax int `json,omitempty:"numPlayersMax"`
+	NumPlayersMax int `json:"numPlayersMax,omitempty"`
 	// Minimum number of players in the game.
-	NumPlayersMin int `json,omitempty:"numPlayersMin"`
+	NumPlayersMin int `json:"numPlayersMin,omitempty"`
 }
 
 /*

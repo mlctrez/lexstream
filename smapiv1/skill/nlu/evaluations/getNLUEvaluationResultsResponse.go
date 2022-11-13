@@ -5,8 +5,8 @@ type GetNLUEvaluationResultsResponse struct {
 	/*
 	   count of tests failed. A test fails when the expected intent and expected slots are not identical.
 	*/
-	TotalFailed int         `json,omitempty:"totalFailed"`
-	TestCases   []*TestCase `json,omitempty:"testCases"`
+	TotalFailed int         `json:"totalFailed,omitempty"`
+	TestCases   []*TestCase `json:"testCases,omitempty"`
 }
 
 /*

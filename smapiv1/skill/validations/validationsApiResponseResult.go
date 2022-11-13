@@ -3,8 +3,8 @@ package validations
 import smapiv1 "github.com/mlctrez/lexstream/smapiv1"
 
 type ValidationsApiResponseResult struct {
-	Validations []*ResponseValidation `json,omitempty:"validations"`
-	Error       *smapiv1.Error        `json,omitempty:"error"`
+	Validations []*ResponseValidation `json:"validations,omitempty"`
+	Error       *smapiv1.Error        `json:"error,omitempty"`
 }
 
 /*

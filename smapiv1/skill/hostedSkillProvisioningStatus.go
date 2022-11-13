@@ -4,7 +4,7 @@ package skill
 HostedSkillProvisioningStatus Defines the provisioning status for hosted skill.
 */
 type HostedSkillProvisioningStatus struct {
-	LastUpdateRequest *HostedSkillProvisioningLastUpdateRequest `json,omitempty:"lastUpdateRequest"`
+	LastUpdateRequest *HostedSkillProvisioningLastUpdateRequest `json:"lastUpdateRequest,omitempty"`
 }
 
 /*

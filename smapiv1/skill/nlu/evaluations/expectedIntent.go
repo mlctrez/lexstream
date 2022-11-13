@@ -1,8 +1,8 @@
 package evaluations
 
 type ExpectedIntent struct {
-	Name  string                              `json,omitempty:"name"`
-	Slots map[string]ExpectedIntentSlotsProps `json,omitempty:"slots"`
+	Name  string                              `json:"name,omitempty"`
+	Slots map[string]ExpectedIntentSlotsProps `json:"slots,omitempty"`
 }
 
 /*

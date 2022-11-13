@@ -7,8 +7,8 @@ SummaryMarketplacePricing Localized in-skill product pricing information.
 */
 type SummaryMarketplacePricing struct {
 	// Date when in-skill product is available to customers for both purchase and use. Prior to this date the in-skill product will appear unavailable to customers and will not be purchasable.
-	ReleaseDate         time.Time            `json,omitempty:"releaseDate"`
-	DefaultPriceListing *SummaryPriceListing `json,omitempty:"defaultPriceListing"`
+	ReleaseDate         time.Time            `json:"releaseDate,omitempty"`
+	DefaultPriceListing *SummaryPriceListing `json:"defaultPriceListing,omitempty"`
 }
 
 /*

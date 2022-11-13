@@ -5,13 +5,13 @@ SkillManifest Defines the structure for a skill's metadata.
 */
 type SkillManifest struct {
 	// Version of the skill manifest.
-	ManifestVersion       string                              `json,omitempty:"manifestVersion"`
-	PublishingInformation *SkillManifestPublishingInformation `json,omitempty:"publishingInformation"`
-	PrivacyAndCompliance  *SkillManifestPrivacyAndCompliance  `json,omitempty:"privacyAndCompliance"`
-	Events                *SkillManifestEvents                `json,omitempty:"events"`
+	ManifestVersion       string                              `json:"manifestVersion,omitempty"`
+	PublishingInformation *SkillManifestPublishingInformation `json:"publishingInformation,omitempty"`
+	PrivacyAndCompliance  *SkillManifestPrivacyAndCompliance  `json:"privacyAndCompliance,omitempty"`
+	Events                *SkillManifestEvents                `json:"events,omitempty"`
 	// Defines the structure for required permissions information in the skill manifest.
-	Permissions []*PermissionItems `json,omitempty:"permissions"`
-	Apis        *SkillManifestApis `json,omitempty:"apis"`
+	Permissions []*PermissionItems `json:"permissions,omitempty"`
+	Apis        *SkillManifestApis `json:"apis,omitempty"`
 }
 
 /*

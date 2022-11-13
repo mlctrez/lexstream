@@ -1,7 +1,7 @@
 package manifest
 
 type EventName struct {
-	EventName *EventNameType `json,omitempty:"eventName"`
+	EventName *EventNameType `json:"eventName,omitempty"`
 }
 
 /*

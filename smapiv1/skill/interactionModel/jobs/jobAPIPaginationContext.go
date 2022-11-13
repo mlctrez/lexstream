@@ -1,7 +1,7 @@
 package jobs
 
 type JobAPIPaginationContext struct {
-	NextToken string `json,omitempty:"nextToken"`
+	NextToken string `json:"nextToken,omitempty"`
 }
 
 /*

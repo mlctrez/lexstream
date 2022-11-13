@@ -3,9 +3,9 @@ package evaluations
 import "time"
 
 type Inputs struct {
-	Utterance string `json,omitempty:"utterance"`
+	Utterance string `json:"utterance,omitempty"`
 	// Datetime to use to base date operations on.
-	ReferenceTimestamp time.Time `json,omitempty:"referenceTimestamp"`
+	ReferenceTimestamp time.Time `json:"referenceTimestamp,omitempty"`
 }
 
 /*

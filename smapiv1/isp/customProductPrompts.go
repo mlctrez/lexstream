@@ -5,9 +5,9 @@ CustomProductPrompts Custom prompts used for in-skill product purchasing options
 */
 type CustomProductPrompts struct {
 	// Description of in-skill product heard before customer is prompted for purchase.
-	PurchasePromptDescription string `json,omitempty:"purchasePromptDescription"`
+	PurchasePromptDescription string `json:"purchasePromptDescription,omitempty"`
 	// A description of the product that displays on the skill card in the Alexa app.
-	BoughtCardDescription string `json,omitempty:"boughtCardDescription"`
+	BoughtCardDescription string `json:"boughtCardDescription,omitempty"`
 }
 
 /*

@@ -4,9 +4,9 @@ package skill
 WithdrawRequest The payload for the withdraw operation.
 */
 type WithdrawRequest struct {
-	Reason *Reason `json,omitempty:"reason"`
+	Reason *Reason `json:"reason,omitempty"`
 	// The message only in case the reason in OTHER.
-	Message string `json,omitempty:"message"`
+	Message string `json:"message,omitempty"`
 }
 
 /*

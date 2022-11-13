@@ -2,9 +2,9 @@ package catalog
 
 type CreateContentUploadUrlResponse struct {
 	// Unique identifier for collection of generated urls.
-	UrlId string `json,omitempty:"urlId"`
+	UrlId string `json:"urlId,omitempty"`
 	// Ordered list of presigned upload parts to perform a partitioned (multipart) file upload
-	PreSignedUploadParts []*PresignedUploadPartItems `json,omitempty:"preSignedUploadParts"`
+	PreSignedUploadParts []*PresignedUploadPartItems `json:"preSignedUploadParts,omitempty"`
 }
 
 /*

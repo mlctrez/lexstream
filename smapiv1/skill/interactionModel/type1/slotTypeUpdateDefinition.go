@@ -5,7 +5,7 @@ SlotTypeUpdateDefinition Slot type update definition object.
 */
 type SlotTypeUpdateDefinition struct {
 	// The slot type description with a 255 character maximum.
-	Description string `json,omitempty:"description"`
+	Description string `json:"description,omitempty"`
 }
 
 /*

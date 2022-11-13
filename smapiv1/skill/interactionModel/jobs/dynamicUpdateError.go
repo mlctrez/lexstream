@@ -5,9 +5,9 @@ DynamicUpdateError Error schema for dynamic update.
 */
 type DynamicUpdateError struct {
 	// Dynamic update error code.
-	Code string `json,omitempty:"code"`
+	Code string `json:"code,omitempty"`
 	// Readable description of error.
-	Message string `json,omitempty:"message"`
+	Message string `json:"message,omitempty"`
 }
 
 /*

@@ -2,7 +2,7 @@ package evaluations
 
 type EvaluateResponse struct {
 	// Id used to retrieve the evaluation later.
-	Id string `json,omitempty:"id"`
+	Id string `json:"id,omitempty"`
 }
 
 /*

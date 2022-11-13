@@ -6,19 +6,19 @@ import smapiv1 "github.com/mlctrez/lexstream/smapiv1"
 ListCertificationsResponse List of certification summary for a skill.
 */
 type ListCertificationsResponse struct {
-	Links *smapiv1.Links `json,omitempty:"_links"`
+	Links *smapiv1.Links `json:"_links,omitempty"`
 	/*
 	   boolean value for if the response is truncated. isTruncated = true if more than the assigned maxResults parameter value certification items are available for the skill. The results are then paginated and the remaining results can be retrieved in a similar paginated manner by using 'next' link in the _links or using the nextToken in a following request.
 	*/
-	IsTruncated bool `json,omitempty:"isTruncated"`
+	IsTruncated bool `json:"isTruncated,omitempty"`
 	// Encrypted token present when isTruncated is true.
-	NextToken string `json,omitempty:"nextToken"`
+	NextToken string `json:"nextToken,omitempty"`
 	// Total number of certification results available for the skill.
-	TotalCount int `json,omitempty:"totalCount"`
+	TotalCount int `json:"totalCount,omitempty"`
 	/*
 	   List of certifications available for a skill. The list of certifications is sorted in a default descending sort order on id field.
 	*/
-	Items []*CertificationSummary `json,omitempty:"items"`
+	Items []*CertificationSummary `json:"items,omitempty"`
 }
 
 /*

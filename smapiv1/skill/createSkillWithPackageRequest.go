@@ -2,9 +2,9 @@ package skill
 
 type CreateSkillWithPackageRequest struct {
 	// ID of the vendor owning the skill.
-	VendorId string `json,omitempty:"vendorId"`
+	VendorId string `json:"vendorId,omitempty"`
 	// The URL for the skill package.
-	Location string `json,omitempty:"location"`
+	Location string `json:"location,omitempty"`
 }
 
 /*

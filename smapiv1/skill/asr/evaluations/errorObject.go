@@ -5,9 +5,9 @@ ErrorObject Object containing information about the error occurred during an eva
 */
 type ErrorObject struct {
 	// human-readable error message
-	Message string `json,omitempty:"message"`
+	Message string `json:"message,omitempty"`
 	// machine-readable error code
-	Code string `json,omitempty:"code"`
+	Code string `json:"code,omitempty"`
 }
 
 /*

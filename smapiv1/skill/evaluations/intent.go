@@ -1,12 +1,12 @@
 package evaluations
 
 type Intent struct {
-	Name               string                  `json,omitempty:"name"`
-	ConfirmationStatus *ConfirmationStatusType `json,omitempty:"confirmationStatus"`
+	Name               string                  `json:"name,omitempty"`
+	ConfirmationStatus *ConfirmationStatusType `json:"confirmationStatus,omitempty"`
 	/*
 	   A map of key-value pairs that further describes what the user meant based on a predefined intent schema. The map can be empty.
 	*/
-	Slots map[string]Slot `json,omitempty:"slots"`
+	Slots map[string]Slot `json:"slots,omitempty"`
 }
 
 /*

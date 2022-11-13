@@ -1,9 +1,9 @@
 package evaluations
 
 type Intent struct {
-	Name               string                `json,omitempty:"name"`
-	ConfirmationStatus *ConfirmationStatus   `json,omitempty:"confirmationStatus"`
-	Slots              map[string]SlotsProps `json,omitempty:"slots"`
+	Name               string                `json:"name,omitempty"`
+	ConfirmationStatus *ConfirmationStatus   `json:"confirmationStatus,omitempty"`
+	Slots              map[string]SlotsProps `json:"slots,omitempty"`
 }
 
 /*

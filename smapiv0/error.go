@@ -4,9 +4,9 @@ type Error struct {
 	/*
 	   Error code that maps to an error message. Developers with different locales should be able to lookup the error description based on this code.
 	*/
-	Code string `json,omitempty:"code"`
+	Code string `json:"code,omitempty"`
 	// Readable description of error.
-	Message string `json,omitempty:"message"`
+	Message string `json:"message,omitempty"`
 }
 
 /*

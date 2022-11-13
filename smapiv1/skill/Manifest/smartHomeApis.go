@@ -5,9 +5,9 @@ SmartHomeApis Defines the structure for smart home api of the skill.
 */
 type SmartHomeApis struct {
 	// Contains an array of the supported <region> Objects.
-	Regions         map[string]LambdaRegion `json,omitempty:"regions"`
-	Endpoint        *LambdaEndpoint         `json,omitempty:"endpoint"`
-	ProtocolVersion *SmartHomeProtocol      `json,omitempty:"protocolVersion"`
+	Regions         map[string]LambdaRegion `json:"regions,omitempty"`
+	Endpoint        *LambdaEndpoint         `json:"endpoint,omitempty"`
+	ProtocolVersion *SmartHomeProtocol      `json:"protocolVersion,omitempty"`
 }
 
 /*

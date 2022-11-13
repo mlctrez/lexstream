@@ -4,9 +4,9 @@ package alexahosted
 HostedSkillPermission Customer's permission about Hosted skill features.
 */
 type HostedSkillPermission struct {
-	Permission *HostedSkillPermissionType   `json,omitempty:"permission"`
-	Status     *HostedSkillPermissionStatus `json,omitempty:"status"`
-	ActionUrl  string                       `json,omitempty:"actionUrl"`
+	Permission *HostedSkillPermissionType   `json:"permission,omitempty"`
+	Status     *HostedSkillPermissionStatus `json:"status,omitempty"`
+	ActionUrl  string                       `json:"actionUrl,omitempty"`
 }
 
 /*

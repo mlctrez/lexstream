@@ -1,8 +1,8 @@
 package version
 
 type ValueSchemaName struct {
-	Value    string   `json,omitempty:"value"`
-	Synonyms []string `json,omitempty:"synonyms"`
+	Value    string   `json:"value,omitempty"`
+	Synonyms []string `json:"synonyms,omitempty"`
 }
 
 /*

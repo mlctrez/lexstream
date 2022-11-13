@@ -5,7 +5,7 @@ ProductResponse Product ID information.
 */
 type ProductResponse struct {
 	// ID of the in-skill product created.
-	ProductId string `json,omitempty:"productId"`
+	ProductId string `json:"productId,omitempty"`
 }
 
 /*

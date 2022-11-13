@@ -5,7 +5,7 @@ LocalizedPrivacyAndCompliance Defines the structure for localized privacy and co
 */
 type LocalizedPrivacyAndCompliance struct {
 	// Link to the privacy policy that applies to this in-skill product.
-	PrivacyPolicyUrl string `json,omitempty:"privacyPolicyUrl"`
+	PrivacyPolicyUrl string `json:"privacyPolicyUrl,omitempty"`
 }
 
 /*

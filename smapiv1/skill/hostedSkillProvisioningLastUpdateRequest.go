@@ -4,9 +4,9 @@ package skill
 HostedSkillProvisioningLastUpdateRequest Contains attributes related to last modification request of a hosted skill provisioning resource.
 */
 type HostedSkillProvisioningLastUpdateRequest struct {
-	Status   *Status              `json,omitempty:"status"`
-	Errors   []*StandardizedError `json,omitempty:"errors"`
-	Warnings []*StandardizedError `json,omitempty:"warnings"`
+	Status   *Status              `json:"status,omitempty"`
+	Errors   []*StandardizedError `json:"errors,omitempty"`
+	Warnings []*StandardizedError `json:"warnings,omitempty"`
 }
 
 /*

@@ -3,10 +3,10 @@ package subscription
 import smapiv0 "github.com/mlctrez/lexstream/smapiv0"
 
 type ListSubscriptionsResponse struct {
-	Links     *smapiv0.Links `json,omitempty:"_links"`
-	NextToken string         `json,omitempty:"nextToken"`
+	Links     *smapiv0.Links `json:"_links,omitempty"`
+	NextToken string         `json:"nextToken,omitempty"`
 	// List of subscription summaries.
-	Subscriptions []*SubscriptionSummary `json,omitempty:"subscriptions"`
+	Subscriptions []*SubscriptionSummary `json:"subscriptions,omitempty"`
 }
 
 /*

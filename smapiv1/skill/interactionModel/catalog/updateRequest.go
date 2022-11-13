@@ -5,9 +5,9 @@ UpdateRequest Catalog update request object.
 */
 type UpdateRequest struct {
 	// The catalog name.
-	Name string `json,omitempty:"name"`
+	Name string `json:"name,omitempty"`
 	// The catalog description with a 255 character maximum.
-	Description string `json,omitempty:"description"`
+	Description string `json:"description,omitempty"`
 }
 
 /*

@@ -1,10 +1,10 @@
 package evaluations
 
 type TestCase struct {
-	Status   *ResultsStatus `json,omitempty:"status"`
-	Inputs   *Inputs        `json,omitempty:"inputs"`
-	Actual   *Actual        `json,omitempty:"actual"`
-	Expected []*Expected    `json,omitempty:"expected"`
+	Status   *ResultsStatus `json:"status,omitempty"`
+	Inputs   *Inputs        `json:"inputs,omitempty"`
+	Actual   *Actual        `json:"actual,omitempty"`
+	Expected []*Expected    `json:"expected,omitempty"`
 }
 
 /*

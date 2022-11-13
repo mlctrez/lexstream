@@ -5,9 +5,9 @@ CatalogEntity Definition for catalog entity.
 */
 type CatalogEntity struct {
 	// Name of the catalog.
-	Name string `json,omitempty:"name"`
+	Name string `json:"name,omitempty"`
 	// Description string about the catalog.
-	Description string `json,omitempty:"description"`
+	Description string `json:"description,omitempty"`
 }
 
 /*

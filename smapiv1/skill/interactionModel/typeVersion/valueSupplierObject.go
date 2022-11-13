@@ -6,7 +6,7 @@ import interactionmodel "github.com/mlctrez/lexstream/smapiv1/skill/interactionM
 ValueSupplierObject Value supplier object for slot definition.
 */
 type ValueSupplierObject struct {
-	ValueSupplier *interactionmodel.ValueSupplier `json,omitempty:"valueSupplier"`
+	ValueSupplier *interactionmodel.ValueSupplier `json:"valueSupplier,omitempty"`
 }
 
 /*

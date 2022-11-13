@@ -7,12 +7,12 @@ CatalogItem Definition for catalog entity.
 */
 type CatalogItem struct {
 	// Name of the catalog.
-	Name string `json,omitempty:"name"`
+	Name string `json:"name,omitempty"`
 	// Description string about the catalog.
-	Description string `json,omitempty:"description"`
+	Description string `json:"description,omitempty"`
 	// Identifier of the catalog, optional in get response as the request already has catalogId.
-	CatalogId string         `json,omitempty:"catalogId"`
-	Links     *smapiv1.Links `json,omitempty:"_links"`
+	CatalogId string         `json:"catalogId,omitempty"`
+	Links     *smapiv1.Links `json:"_links,omitempty"`
 }
 
 /*

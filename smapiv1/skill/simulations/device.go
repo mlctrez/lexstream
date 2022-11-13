@@ -7,7 +7,7 @@ type Device struct {
 	/*
 	   A valid locale (e.g "en-US") for the virtual device used in simulation.
 	*/
-	Locale string `json,omitempty:"locale"`
+	Locale string `json:"locale,omitempty"`
 }
 
 /*

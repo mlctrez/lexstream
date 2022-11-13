@@ -4,11 +4,11 @@ type ProfileNluResponse struct {
 	/*
 	   Represents when an utterance results in the skill exiting. It would be true when NLU selects 1P ExitAppIntent or GoHomeIntent, and false otherwise.
 	*/
-	SessionEnded   bool                      `json,omitempty:"sessionEnded"`
-	SelectedIntent *ProfileNluSelectedIntent `json,omitempty:"selectedIntent"`
+	SessionEnded   bool                      `json:"sessionEnded,omitempty"`
+	SelectedIntent *ProfileNluSelectedIntent `json:"selectedIntent,omitempty"`
 	// All intents that Alexa considered for the utterance in the request, but did not select.
-	ConsideredIntents []*Intent  `json,omitempty:"consideredIntents"`
-	MultiTurn         *MultiTurn `json,omitempty:"multiTurn"`
+	ConsideredIntents []*Intent  `json:"consideredIntents,omitempty"`
+	MultiTurn         *MultiTurn `json:"multiTurn,omitempty"`
 }
 
 /*

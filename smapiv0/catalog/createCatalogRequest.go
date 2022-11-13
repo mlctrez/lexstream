@@ -2,11 +2,11 @@ package catalog
 
 type CreateCatalogRequest struct {
 	// Title of the catalog.
-	Title string        `json,omitempty:"title"`
-	Type_ *CatalogType  `json,omitempty:"type"`
-	Usage *CatalogUsage `json,omitempty:"usage"`
+	Title string        `json:"title,omitempty"`
+	Type_ *CatalogType  `json:"type,omitempty"`
+	Usage *CatalogUsage `json:"usage,omitempty"`
 	// ID of the vendor owning the catalog.
-	VendorId string `json,omitempty:"vendorId"`
+	VendorId string `json:"vendorId,omitempty"`
 }
 
 /*

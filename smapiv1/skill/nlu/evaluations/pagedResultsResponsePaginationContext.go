@@ -2,9 +2,9 @@ package evaluations
 
 type PagedResultsResponsePaginationContext struct {
 	// opaque token returned if there are more results for the given inputs than `maxResults` from the request.
-	NextToken string `json,omitempty:"nextToken"`
+	NextToken string `json:"nextToken,omitempty"`
 	// Total available results for the given query.
-	TotalCount string `json,omitempty:"totalCount"`
+	TotalCount string `json:"totalCount,omitempty"`
 }
 
 /*

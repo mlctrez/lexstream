@@ -5,8 +5,8 @@ ImageSize On disk storage size of image.
 */
 type ImageSize struct {
 	// Value measuring the size of the image.
-	Value int            `json,omitempty:"value"`
-	Unit  *ImageSizeUnit `json,omitempty:"unit"`
+	Value int            `json:"value,omitempty"`
+	Unit  *ImageSizeUnit `json:"unit,omitempty"`
 }
 
 /*

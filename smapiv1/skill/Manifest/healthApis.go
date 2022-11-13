@@ -5,10 +5,10 @@ HealthApis Defines the structure of health api in the skill manifest.
 */
 type HealthApis struct {
 	// Contains an array of the supported <region> Objects.
-	Regions         map[string]Region      `json,omitempty:"regions"`
-	Endpoint        *SkillManifestEndpoint `json,omitempty:"endpoint"`
-	ProtocolVersion *HealthProtocolVersion `json,omitempty:"protocolVersion"`
-	Interfaces      *HealthInterface       `json,omitempty:"interfaces"`
+	Regions         map[string]Region      `json:"regions,omitempty"`
+	Endpoint        *SkillManifestEndpoint `json:"endpoint,omitempty"`
+	ProtocolVersion *HealthProtocolVersion `json:"protocolVersion,omitempty"`
+	Interfaces      *HealthInterface       `json:"interfaces,omitempty"`
 }
 
 /*

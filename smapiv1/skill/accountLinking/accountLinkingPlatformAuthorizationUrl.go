@@ -4,9 +4,9 @@ package accountlinking
 AccountLinkingPlatformAuthorizationUrl A key-value pair object that contains the OAuth2 authorization url to initiate the skill account linking process.
 */
 type AccountLinkingPlatformAuthorizationUrl struct {
-	PlatformType *PlatformType `json,omitempty:"platformType"`
+	PlatformType *PlatformType `json:"platformType,omitempty"`
 	// Defines the OAuth2 Authorization URL that will be used in this platform to authenticate the customer / person.
-	PlatformAuthorizationUrl string `json,omitempty:"platformAuthorizationUrl"`
+	PlatformAuthorizationUrl string `json:"platformAuthorizationUrl,omitempty"`
 }
 
 /*

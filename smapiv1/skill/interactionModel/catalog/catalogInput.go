@@ -5,9 +5,9 @@ CatalogInput Definition for catalog input.
 */
 type CatalogInput struct {
 	// Name of the catalog.
-	Name string `json,omitempty:"name"`
+	Name string `json:"name,omitempty"`
 	// Description string about the catalog.
-	Description string `json,omitempty:"description"`
+	Description string `json:"description,omitempty"`
 }
 
 /*

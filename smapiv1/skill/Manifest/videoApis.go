@@ -5,12 +5,12 @@ VideoApis Defines the structure for video api of the skill.
 */
 type VideoApis struct {
 	// Defines the structure for region information.
-	Regions map[string]VideoRegion `json,omitempty:"regions"`
+	Regions map[string]VideoRegion `json:"regions,omitempty"`
 	// Defines the structure for the locale specific video api information.
-	Locales  map[string]VideoApisLocale `json,omitempty:"locales"`
-	Endpoint *LambdaEndpoint            `json,omitempty:"endpoint"`
+	Locales  map[string]VideoApisLocale `json:"locales,omitempty"`
+	Endpoint *LambdaEndpoint            `json:"endpoint,omitempty"`
 	// Object that contains <country> Objects for each supported country.
-	Countries map[string]VideoCountryInfo `json,omitempty:"countries"`
+	Countries map[string]VideoCountryInfo `json:"countries,omitempty"`
 }
 
 /*

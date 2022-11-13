@@ -1,9 +1,9 @@
 package interactionmodel
 
 type InteractionModelData struct {
-	Version          string                  `json,omitempty:"version"`
-	Description      string                  `json,omitempty:"description"`
-	InteractionModel *InteractionModelSchema `json,omitempty:"interactionModel"`
+	Version          string                  `json:"version,omitempty"`
+	Description      string                  `json:"description,omitempty"`
+	InteractionModel *InteractionModelSchema `json:"interactionModel,omitempty"`
 }
 
 /*

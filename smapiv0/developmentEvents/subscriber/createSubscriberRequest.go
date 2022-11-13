@@ -2,10 +2,10 @@ package subscriber
 
 type CreateSubscriberRequest struct {
 	// Name of the subscriber.
-	Name string `json,omitempty:"name"`
+	Name string `json:"name,omitempty"`
 	// The Vendor ID.
-	VendorId string    `json,omitempty:"vendorId"`
-	Endpoint *Endpoint `json,omitempty:"endpoint"`
+	VendorId string    `json:"vendorId,omitempty"`
+	Endpoint *Endpoint `json:"endpoint,omitempty"`
 }
 
 /*

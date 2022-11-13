@@ -4,9 +4,9 @@ import "time"
 
 type ContentUploadFileSummary struct {
 	// If the file is available for download, downloadUrl can be used to download the file.
-	DownloadUrl string            `json,omitempty:"downloadUrl"`
-	ExpiresAt   time.Time         `json,omitempty:"expiresAt"`
-	Status      *FileUploadStatus `json,omitempty:"status"`
+	DownloadUrl string            `json:"downloadUrl,omitempty"`
+	ExpiresAt   time.Time         `json:"expiresAt,omitempty"`
+	Status      *FileUploadStatus `json:"status,omitempty"`
 }
 
 /*

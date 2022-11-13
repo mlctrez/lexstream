@@ -1,9 +1,9 @@
 package testers
 
 type ListTestersResponse struct {
-	Testers     []*TesterWithDetails `json,omitempty:"testers"`
-	IsTruncated bool                 `json,omitempty:"isTruncated"`
-	NextToken   string               `json,omitempty:"nextToken"`
+	Testers     []*TesterWithDetails `json:"testers,omitempty"`
+	IsTruncated bool                 `json:"isTruncated,omitempty"`
+	NextToken   string               `json:"nextToken,omitempty"`
 }
 
 /*

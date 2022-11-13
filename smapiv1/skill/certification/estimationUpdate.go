@@ -7,11 +7,11 @@ EstimationUpdate Structure for any updates to estimation completion time for cer
 */
 type EstimationUpdate struct {
 	// Timestamp for originally estimated completion of certification review for the skill.
-	OriginalEstimatedCompletionTimestamp time.Time `json,omitempty:"originalEstimatedCompletionTimestamp"`
+	OriginalEstimatedCompletionTimestamp time.Time `json:"originalEstimatedCompletionTimestamp,omitempty"`
 	// Timestamp for originally estimated completion of certification review for the skill.
-	RevisedEstimatedCompletionTimestamp time.Time `json,omitempty:"revisedEstimatedCompletionTimestamp"`
+	RevisedEstimatedCompletionTimestamp time.Time `json:"revisedEstimatedCompletionTimestamp,omitempty"`
 	// Reason for updates to estimates for certification review
-	Reason string `json,omitempty:"reason"`
+	Reason string `json:"reason,omitempty"`
 }
 
 /*

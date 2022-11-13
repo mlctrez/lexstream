@@ -5,8 +5,8 @@ GetAsrEvaluationsResultsResponse response for GetAsrEvaluationsResults
 */
 type GetAsrEvaluationsResultsResponse struct {
 	// array containing all evaluation results.
-	Results           []*EvaluationResult `json,omitempty:"results"`
-	PaginationContext *PaginationContext  `json,omitempty:"paginationContext"`
+	Results           []*EvaluationResult `json:"results,omitempty"`
+	PaginationContext *PaginationContext  `json:"paginationContext,omitempty"`
 }
 
 /*

@@ -4,9 +4,9 @@ package version
 VersionData Catalog version specific data.
 */
 type VersionData struct {
-	Source *InputSource `json,omitempty:"source"`
+	Source *InputSource `json:"source,omitempty"`
 	// Description string for specific catalog version.
-	Description string `json,omitempty:"description"`
+	Description string `json:"description,omitempty"`
 }
 
 /*

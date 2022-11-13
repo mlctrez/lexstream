@@ -5,9 +5,9 @@ VideoApisLocale Defines the structure for localized video api information.
 */
 type VideoApisLocale struct {
 	// Defines the video provider's targeting name.
-	VideoProviderTargetingNames []string            `json,omitempty:"videoProviderTargetingNames"`
-	VideoProviderLogoUri        string              `json,omitempty:"videoProviderLogoUri"`
-	CatalogInformation          []*VideoCatalogInfo `json,omitempty:"catalogInformation"`
+	VideoProviderTargetingNames []string            `json:"videoProviderTargetingNames,omitempty"`
+	VideoProviderLogoUri        string              `json:"videoProviderLogoUri,omitempty"`
+	CatalogInformation          []*VideoCatalogInfo `json:"catalogInformation,omitempty"`
 }
 
 /*

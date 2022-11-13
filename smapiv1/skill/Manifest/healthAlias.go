@@ -2,7 +2,7 @@ package manifest
 
 type HealthAlias struct {
 	// Name of alias to use when invoking a health skill.
-	Name string `json,omitempty:"name"`
+	Name string `json:"name,omitempty"`
 }
 
 /*

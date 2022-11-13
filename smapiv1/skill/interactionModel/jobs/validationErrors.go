@@ -5,7 +5,7 @@ ValidationErrors The list of errors.
 */
 type ValidationErrors struct {
 	// The list of errors.
-	Errors []*DynamicUpdateError `json,omitempty:"errors"`
+	Errors []*DynamicUpdateError `json:"errors,omitempty"`
 }
 
 /*

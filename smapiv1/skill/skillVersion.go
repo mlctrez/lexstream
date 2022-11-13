@@ -6,16 +6,16 @@ import "time"
 SkillVersion Information about the skill version
 */
 type SkillVersion struct {
-	Version string `json,omitempty:"version"`
+	Version string `json:"version,omitempty"`
 	/*
 	   Description of the version (limited to 300 characters).
 	*/
-	Message      string    `json,omitempty:"message"`
-	CreationTime time.Time `json,omitempty:"creationTime"`
+	Message      string    `json:"message,omitempty"`
+	CreationTime time.Time `json:"creationTime,omitempty"`
 	/*
 	   List of submissions for the skill version
 	*/
-	Submissions []*VersionSubmission `json,omitempty:"submissions"`
+	Submissions []*VersionSubmission `json:"submissions,omitempty"`
 }
 
 /*

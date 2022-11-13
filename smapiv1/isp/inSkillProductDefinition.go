@@ -5,17 +5,17 @@ InSkillProductDefinition Defines the structure for an in-skill product.
 */
 type InSkillProductDefinition struct {
 	// Version of in-skill product definition.
-	Version string       `json,omitempty:"version"`
-	Type_   *ProductType `json,omitempty:"type"`
+	Version string       `json:"version,omitempty"`
+	Type_   *ProductType `json:"type,omitempty"`
 	// Developer selected in-skill product name. This is for developer reference only, it can be used to filter query results to identify a matching in-skill product.
-	ReferenceName           string                   `json,omitempty:"referenceName"`
-	PurchasableState        *PurchasableState        `json,omitempty:"purchasableState"`
-	PromotableState         *PromotableState         `json,omitempty:"promotableState"`
-	SubscriptionInformation *SubscriptionInformation `json,omitempty:"subscriptionInformation"`
-	PublishingInformation   *PublishingInformation   `json,omitempty:"publishingInformation"`
-	PrivacyAndCompliance    *PrivacyAndCompliance    `json,omitempty:"privacyAndCompliance"`
+	ReferenceName           string                   `json:"referenceName,omitempty"`
+	PurchasableState        *PurchasableState        `json:"purchasableState,omitempty"`
+	PromotableState         *PromotableState         `json:"promotableState,omitempty"`
+	SubscriptionInformation *SubscriptionInformation `json:"subscriptionInformation,omitempty"`
+	PublishingInformation   *PublishingInformation   `json:"publishingInformation,omitempty"`
+	PrivacyAndCompliance    *PrivacyAndCompliance    `json:"privacyAndCompliance,omitempty"`
 	// Special instructions provided by the developer to test the in-skill product.
-	TestingInstructions string `json,omitempty:"testingInstructions"`
+	TestingInstructions string `json:"testingInstructions,omitempty"`
 }
 
 /*

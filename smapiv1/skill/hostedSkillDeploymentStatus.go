@@ -4,7 +4,7 @@ package skill
 HostedSkillDeploymentStatus Defines the most recent deployment status for the Alexa hosted skill.
 */
 type HostedSkillDeploymentStatus struct {
-	LastUpdateRequest *HostedSkillDeploymentStatusLastUpdateRequest `json,omitempty:"lastUpdateRequest"`
+	LastUpdateRequest *HostedSkillDeploymentStatusLastUpdateRequest `json:"lastUpdateRequest,omitempty"`
 }
 
 /*

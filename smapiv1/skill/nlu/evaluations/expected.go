@@ -1,8 +1,8 @@
 package evaluations
 
 type Expected struct {
-	Domain string          `json,omitempty:"domain"`
-	Intent *ExpectedIntent `json,omitempty:"intent"`
+	Domain string          `json:"domain,omitempty"`
+	Intent *ExpectedIntent `json:"intent,omitempty"`
 }
 
 /*

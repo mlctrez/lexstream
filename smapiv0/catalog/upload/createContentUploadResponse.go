@@ -5,9 +5,9 @@ CreateContentUploadResponse Request body for self-hosted catalog uploads.
 */
 type CreateContentUploadResponse struct {
 	ContentUploadSummary
-	IngestionSteps []*UploadIngestionStep `json,omitempty:"ingestionSteps"`
+	IngestionSteps []*UploadIngestionStep `json:"ingestionSteps,omitempty"`
 	// Ordered list of presigned upload parts to perform a partitioned (multipart) file upload.
-	PresignedUploadParts []*PresignedUploadPart `json,omitempty:"presignedUploadParts"`
+	PresignedUploadParts []*PresignedUploadPart `json:"presignedUploadParts,omitempty"`
 }
 
 /*

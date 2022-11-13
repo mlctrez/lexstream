@@ -4,8 +4,8 @@ package auditlogs
 ResourceFilter Resource that the developer operated on. Both do not need to be provided.
 */
 type ResourceFilter struct {
-	Id    string            `json,omitempty:"id"`
-	Type_ *ResourceTypeEnum `json,omitempty:"type"`
+	Id    string            `json:"id,omitempty"`
+	Type_ *ResourceTypeEnum `json:"type,omitempty"`
 }
 
 /*

@@ -4,8 +4,8 @@ package skill
 ImageAttributes Set of properties of the image provided by the customer.
 */
 type ImageAttributes struct {
-	Dimension *ImageDimension `json,omitempty:"dimension"`
-	Size      *ImageSize      `json,omitempty:"size"`
+	Dimension *ImageDimension `json:"dimension,omitempty"`
+	Size      *ImageSize      `json:"size,omitempty"`
 }
 
 /*

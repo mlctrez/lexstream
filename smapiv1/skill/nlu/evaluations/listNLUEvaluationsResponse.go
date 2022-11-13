@@ -5,7 +5,7 @@ ListNLUEvaluationsResponse response body for a list evaluation API
 */
 type ListNLUEvaluationsResponse struct {
 	PagedResponse
-	Evaluations []*Evaluation `json,omitempty:"evaluations"`
+	Evaluations []*Evaluation `json:"evaluations,omitempty"`
 }
 
 /*

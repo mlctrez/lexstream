@@ -5,8 +5,8 @@ ListAsrEvaluationsResponse response body for a list evaluation API
 */
 type ListAsrEvaluationsResponse struct {
 	// an array containing all evaluations that have ever run by developers based on the filter criteria defined in the request
-	Evaluations       []*EvaluationItems `json,omitempty:"evaluations"`
-	PaginationContext *PaginationContext `json,omitempty:"paginationContext"`
+	Evaluations       []*EvaluationItems `json:"evaluations,omitempty"`
+	PaginationContext *PaginationContext `json:"paginationContext,omitempty"`
 }
 
 /*

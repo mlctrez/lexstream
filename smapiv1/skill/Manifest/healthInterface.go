@@ -2,12 +2,12 @@ package manifest
 
 type HealthInterface struct {
 	// Name of the interface.
-	Namespace string   `json,omitempty:"namespace"`
-	Version   *Version `json,omitempty:"version"`
+	Namespace string   `json:"namespace,omitempty"`
+	Version   *Version `json:"version,omitempty"`
 	// Defines the details of requests that a health skill is capable of handling.
-	Requests []*HealthRequest `json,omitempty:"requests"`
+	Requests []*HealthRequest `json:"requests,omitempty"`
 	// Defines the list for health skill locale specific publishing information in the skill manifest.
-	Locales map[string]LocalizedHealthInfo `json,omitempty:"locales"`
+	Locales map[string]LocalizedHealthInfo `json:"locales,omitempty"`
 }
 
 /*

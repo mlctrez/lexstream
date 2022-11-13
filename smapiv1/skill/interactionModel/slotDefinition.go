@@ -5,13 +5,13 @@ SlotDefinition Slot definition.
 */
 type SlotDefinition struct {
 	// The name of the slot.
-	Name string `json,omitempty:"name"`
+	Name string `json:"name,omitempty"`
 	// The type of the slot. It can be a built-in or custom type.
-	Type_ string `json,omitempty:"type"`
+	Type_ string `json:"type,omitempty"`
 	// Configuration object for multiple values capturing behavior for this slot.
-	MultipleValues *MultipleValuesConfig `json,omitempty:"multipleValues"`
+	MultipleValues *MultipleValuesConfig `json:"multipleValues,omitempty"`
 	// Phrases the user can speak e.g. to trigger an intent or provide value for a slot elicitation.
-	Samples []string `json,omitempty:"samples"`
+	Samples []string `json:"samples,omitempty"`
 }
 
 /*

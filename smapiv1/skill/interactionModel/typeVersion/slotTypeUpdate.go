@@ -4,7 +4,7 @@ package typeversion
 SlotTypeUpdate Slot Type update description wrapper.
 */
 type SlotTypeUpdate struct {
-	SlotType *SlotTypeUpdateObject `json,omitempty:"slotType"`
+	SlotType *SlotTypeUpdateObject `json:"slotType,omitempty"`
 }
 
 /*

@@ -5,9 +5,9 @@ LocalizedFlashBriefingInfo Defines the localized flash briefing api information.
 */
 type LocalizedFlashBriefingInfo struct {
 	// Defines the structure for a feed information in the skill manifest.
-	Feeds []*LocalizedFlashBriefingInfoItems `json,omitempty:"feeds"`
+	Feeds []*LocalizedFlashBriefingInfoItems `json:"feeds,omitempty"`
 	// Alexa says this to the customer if the skill fails to render the content.
-	CustomErrorMessage string `json,omitempty:"customErrorMessage"`
+	CustomErrorMessage string `json:"customErrorMessage,omitempty"`
 }
 
 /*

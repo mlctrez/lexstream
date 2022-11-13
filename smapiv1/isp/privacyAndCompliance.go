@@ -5,7 +5,7 @@ PrivacyAndCompliance Defines the structure for privacy and compliance.
 */
 type PrivacyAndCompliance struct {
 	// Defines the structure for locale specific privacy and compliance.
-	Locales map[string]LocalizedPrivacyAndCompliance `json,omitempty:"locales"`
+	Locales map[string]LocalizedPrivacyAndCompliance `json:"locales,omitempty"`
 }
 
 /*

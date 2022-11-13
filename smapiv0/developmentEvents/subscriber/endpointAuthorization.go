@@ -4,7 +4,7 @@ package subscriber
 EndpointAuthorization Authorization information to be able to publish notification to specified endpoint.
 */
 type EndpointAuthorization struct {
-	Type_ string `json,omitempty:"type"`
+	Type_ string `json:"type,omitempty"`
 }
 
 /*

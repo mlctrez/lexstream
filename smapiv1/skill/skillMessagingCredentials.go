@@ -5,9 +5,9 @@ SkillMessagingCredentials Defines the structure for skill messaging credentials.
 */
 type SkillMessagingCredentials struct {
 	// The client id for the security profile.
-	ClientId string `json,omitempty:"clientId"`
+	ClientId string `json:"clientId,omitempty"`
 	// The client secret for the security profile.
-	ClientSecret string `json,omitempty:"clientSecret"`
+	ClientSecret string `json:"clientSecret,omitempty"`
 }
 
 /*

@@ -5,8 +5,8 @@ CreateJobDefinitionRequest Request to create job definitions.
 */
 type CreateJobDefinitionRequest struct {
 	// ID of the vendor owning the skill.
-	VendorId      string         `json,omitempty:"vendorId"`
-	JobDefinition *JobDefinition `json,omitempty:"jobDefinition"`
+	VendorId      string         `json:"vendorId,omitempty"`
+	JobDefinition *JobDefinition `json:"jobDefinition,omitempty"`
 }
 
 /*

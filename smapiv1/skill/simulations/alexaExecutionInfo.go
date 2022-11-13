@@ -1,7 +1,7 @@
 package simulations
 
 type AlexaExecutionInfo struct {
-	AlexaResponses []*AlexaResponse `json,omitempty:"alexaResponses"`
+	AlexaResponses []*AlexaResponse `json:"alexaResponses,omitempty"`
 }
 
 /*

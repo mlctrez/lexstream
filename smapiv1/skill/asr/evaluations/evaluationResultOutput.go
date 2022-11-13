@@ -2,7 +2,7 @@ package evaluations
 
 type EvaluationResultOutput struct {
 	// actual transcription returned from ASR for the audio
-	Transcription string `json,omitempty:"transcription"`
+	Transcription string `json:"transcription,omitempty"`
 }
 
 /*

@@ -2,7 +2,7 @@ package evaluations
 
 type Metrics struct {
 	// overall error rate for the ASR evaluation run
-	OverallErrorRate int `json,omitempty:"overallErrorRate"`
+	OverallErrorRate int `json:"overallErrorRate,omitempty"`
 }
 
 /*

@@ -4,7 +4,7 @@ package simulations
 Session Session settings for running current simulation.
 */
 type Session struct {
-	Mode *SessionMode `json,omitempty:"mode"`
+	Mode *SessionMode `json:"mode,omitempty"`
 }
 
 /*

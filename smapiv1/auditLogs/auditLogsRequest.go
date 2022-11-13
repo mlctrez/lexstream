@@ -2,11 +2,11 @@ package auditlogs
 
 type AuditLogsRequest struct {
 	// Vendor Id. See developer.amazon.com/mycid.html.
-	VendorId          string                    `json,omitempty:"vendorId"`
-	RequestFilters    *RequestFilters           `json,omitempty:"requestFilters"`
-	SortDirection     *SortDirection            `json,omitempty:"sortDirection"`
-	SortField         *SortField                `json,omitempty:"sortField"`
-	PaginationContext *RequestPaginationContext `json,omitempty:"paginationContext"`
+	VendorId          string                    `json:"vendorId,omitempty"`
+	RequestFilters    *RequestFilters           `json:"requestFilters,omitempty"`
+	SortDirection     *SortDirection            `json:"sortDirection,omitempty"`
+	SortField         *SortField                `json:"sortField,omitempty"`
+	PaginationContext *RequestPaginationContext `json:"paginationContext,omitempty"`
 }
 
 /*

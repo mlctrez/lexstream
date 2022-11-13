@@ -7,12 +7,12 @@ RollbackRequestStatus Rollback request for a skill
 */
 type RollbackRequestStatus struct {
 	// rollback request id
-	Id string `json,omitempty:"id"`
+	Id string `json:"id,omitempty"`
 	// The target skill version to rollback to.
-	TargetVersion  string                      `json,omitempty:"targetVersion"`
-	SubmissionTime time.Time                   `json,omitempty:"submissionTime"`
-	Status         *RollbackRequestStatusTypes `json,omitempty:"status"`
-	Errors         []*StandardizedError        `json,omitempty:"errors"`
+	TargetVersion  string                      `json:"targetVersion,omitempty"`
+	SubmissionTime time.Time                   `json:"submissionTime,omitempty"`
+	Status         *RollbackRequestStatusTypes `json:"status,omitempty"`
+	Errors         []*StandardizedError        `json:"errors,omitempty"`
 }
 
 /*

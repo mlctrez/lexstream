@@ -5,11 +5,11 @@ CloneLocaleRequest Defines the request body for the cloneLocale API.
 */
 type CloneLocaleRequest struct {
 	// Locale with the assets that will be cloned.
-	SourceLocale string `json,omitempty:"sourceLocale"`
+	SourceLocale string `json:"sourceLocale,omitempty"`
 	// A list of locale(s) where the assets will be copied to.
-	TargetLocales []string `json,omitempty:"targetLocales"`
+	TargetLocales []string `json:"targetLocales,omitempty"`
 	// Can locale of skill be overwritten. Default value is DO_NOT_OVERWRITE.
-	OverwriteMode *OverwriteMode `json,omitempty:"overwriteMode"`
+	OverwriteMode *OverwriteMode `json:"overwriteMode,omitempty"`
 }
 
 /*

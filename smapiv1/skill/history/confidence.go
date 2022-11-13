@@ -4,7 +4,7 @@ package history
 Confidence The hypothesized confidence for this interaction.
 */
 type Confidence struct {
-	Bin *ConfidenceBin `json,omitempty:"bin"`
+	Bin *ConfidenceBin `json:"bin,omitempty"`
 }
 
 /*

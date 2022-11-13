@@ -2,11 +2,11 @@ package manifest
 
 type MusicInterfaces struct {
 	// Name of the interface.
-	Namespace string `json,omitempty:"namespace"`
+	Namespace string `json:"namespace,omitempty"`
 	// Version of the interface.
-	Version string `json,omitempty:"version"`
+	Version string `json:"version,omitempty"`
 	// Contains a list of requests/messages that skill can handle.
-	Requests []*MusicRequest `json,omitempty:"requests"`
+	Requests []*MusicRequest `json:"requests,omitempty"`
 }
 
 /*

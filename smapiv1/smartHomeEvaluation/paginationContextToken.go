@@ -1,7 +1,7 @@
 package smarthomeevaluation
 
 type PaginationContextToken struct {
-	NextToken string `json,omitempty:"nextToken"`
+	NextToken string `json:"nextToken,omitempty"`
 }
 
 /*

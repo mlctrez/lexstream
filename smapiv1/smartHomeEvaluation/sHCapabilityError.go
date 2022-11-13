@@ -1,8 +1,8 @@
 package smarthomeevaluation
 
 type SHCapabilityError struct {
-	Code    *SHCapabilityErrorCode `json,omitempty:"code"`
-	Message string                 `json,omitempty:"message"`
+	Code    *SHCapabilityErrorCode `json:"code,omitempty"`
+	Message string                 `json:"message,omitempty"`
 }
 
 /*

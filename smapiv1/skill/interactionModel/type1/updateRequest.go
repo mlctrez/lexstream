@@ -4,7 +4,7 @@ package type1
 UpdateRequest Slot type update request object.
 */
 type UpdateRequest struct {
-	SlotType *SlotTypeUpdateDefinition `json,omitempty:"slotType"`
+	SlotType *SlotTypeUpdateDefinition `json:"slotType,omitempty"`
 }
 
 /*

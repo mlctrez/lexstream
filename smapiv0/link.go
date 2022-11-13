@@ -1,7 +1,7 @@
 package smapiv0
 
 type Link struct {
-	Href string `json,omitempty:"href"`
+	Href string `json:"href,omitempty"`
 }
 
 /*

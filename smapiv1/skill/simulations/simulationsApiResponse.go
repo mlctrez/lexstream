@@ -2,9 +2,9 @@ package simulations
 
 type SimulationsApiResponse struct {
 	// Id of the simulation resource.
-	Id     string                        `json,omitempty:"id"`
-	Status *SimulationsApiResponseStatus `json,omitempty:"status"`
-	Result *SimulationResult             `json,omitempty:"result"`
+	Id     string                        `json:"id,omitempty"`
+	Status *SimulationsApiResponseStatus `json:"status,omitempty"`
+	Result *SimulationResult             `json:"result,omitempty"`
 }
 
 /*

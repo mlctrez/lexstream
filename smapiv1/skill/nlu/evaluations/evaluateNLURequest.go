@@ -1,9 +1,9 @@
 package evaluations
 
 type EvaluateNLURequest struct {
-	Stage  map[string]any `json,omitempty:"stage"`
-	Locale string         `json,omitempty:"locale"`
-	Source *Source        `json,omitempty:"source"`
+	Stage  map[string]any `json:"stage,omitempty"`
+	Locale string         `json:"locale,omitempty"`
+	Source *Source        `json:"source,omitempty"`
 }
 
 /*

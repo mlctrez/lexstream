@@ -4,7 +4,7 @@ package isp
 TaxInformation Defines the structure for in-skill product tax information.
 */
 type TaxInformation struct {
-	Category *TaxInformationCategory `json,omitempty:"category"`
+	Category *TaxInformationCategory `json:"category,omitempty"`
 }
 
 /*

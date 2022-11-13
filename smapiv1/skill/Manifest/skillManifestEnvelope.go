@@ -1,7 +1,7 @@
 package manifest
 
 type SkillManifestEnvelope struct {
-	Manifest *SkillManifest `json,omitempty:"manifest"`
+	Manifest *SkillManifest `json:"manifest,omitempty"`
 }
 
 /*

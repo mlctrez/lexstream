@@ -2,9 +2,9 @@ package subscription
 
 type UpdateSubscriptionRequest struct {
 	// Name of the subscription.
-	Name string `json,omitempty:"name"`
+	Name string `json:"name,omitempty"`
 	// The list of events that the subscriber should be notified for.
-	Events []*Event `json,omitempty:"events"`
+	Events []*Event `json:"events,omitempty"`
 }
 
 /*

@@ -4,10 +4,10 @@ package skill
 HostedSkillDeploymentStatusLastUpdateRequest Contains attributes related to last modification request of a hosted skill deployment resource.
 */
 type HostedSkillDeploymentStatusLastUpdateRequest struct {
-	Status            *Status                       `json,omitempty:"status"`
-	Errors            []*StandardizedError          `json,omitempty:"errors"`
-	Warnings          []*StandardizedError          `json,omitempty:"warnings"`
-	DeploymentDetails *HostedSkillDeploymentDetails `json,omitempty:"deploymentDetails"`
+	Status            *Status                       `json:"status,omitempty"`
+	Errors            []*StandardizedError          `json:"errors,omitempty"`
+	Warnings          []*StandardizedError          `json:"warnings,omitempty"`
+	DeploymentDetails *HostedSkillDeploymentDetails `json:"deploymentDetails,omitempty"`
 }
 
 /*

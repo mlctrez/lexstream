@@ -5,9 +5,9 @@ LocalizedHealthInfo Defines the structure for health skill locale specific publi
 */
 type LocalizedHealthInfo struct {
 	// SSML supported name to use when Alexa renders the health skill name in a prompt to the user.
-	PromptName string `json,omitempty:"promptName"`
+	PromptName string `json:"promptName,omitempty"`
 	// Defines the names to use when a user tries to invoke the health skill.
-	Aliases []*HealthAlias `json,omitempty:"aliases"`
+	Aliases []*HealthAlias `json:"aliases,omitempty"`
 }
 
 /*

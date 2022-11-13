@@ -4,7 +4,7 @@ type Metrics struct {
 	/*
 	   How long, in milliseconds, it took the skill's Lambda or HTTPS endpoint to process the request.
 	*/
-	SkillExecutionTimeInMilliseconds int `json,omitempty:"skillExecutionTimeInMilliseconds"`
+	SkillExecutionTimeInMilliseconds int `json:"skillExecutionTimeInMilliseconds,omitempty"`
 }
 
 /*

@@ -2,7 +2,7 @@ package manifest
 
 type EventPublications struct {
 	// Name of the event to publish.
-	EventName string `json,omitempty:"eventName"`
+	EventName string `json:"eventName,omitempty"`
 }
 
 /*

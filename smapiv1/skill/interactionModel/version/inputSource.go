@@ -5,9 +5,9 @@ InputSource Definition for catalog version input data.
 */
 type InputSource struct {
 	// Type of catalog.
-	Type_ string `json,omitempty:"type"`
+	Type_ string `json:"type,omitempty"`
 	// Url to the catalog reference.
-	Url string `json,omitempty:"url"`
+	Url string `json:"url,omitempty"`
 }
 
 /*

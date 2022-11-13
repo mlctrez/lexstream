@@ -3,7 +3,7 @@ package evaluations
 type EvaluationItems struct {
 	EvaluationMetadata
 	// evaluation id
-	Id string `json,omitempty:"id"`
+	Id string `json:"id,omitempty"`
 }
 
 /*

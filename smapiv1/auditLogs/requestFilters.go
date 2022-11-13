@@ -7,18 +7,18 @@ RequestFilters Request Filters for filtering audit logs.
 */
 type RequestFilters struct {
 	// List of Client IDs for filtering.
-	Clients []*ClientFilter `json,omitempty:"clients"`
+	Clients []*ClientFilter `json:"clients,omitempty"`
 	// Filters for a list of operation names and versions.
-	Operations []*OperationFilter `json,omitempty:"operations"`
+	Operations []*OperationFilter `json:"operations,omitempty"`
 	// Filters for a list of resources and/or their types. See documentation for allowed types.
-	Resources  []*ResourceFilter  `json,omitempty:"resources"`
-	Requesters []*RequesterFilter `json,omitempty:"requesters"`
+	Resources  []*ResourceFilter  `json:"resources,omitempty"`
+	Requesters []*RequesterFilter `json:"requesters,omitempty"`
 	// Sets the start time for this search. Any audit logs with timestamps after this time (inclusive) will be included in the response.
-	StartTime time.Time `json,omitempty:"startTime"`
+	StartTime time.Time `json:"startTime,omitempty"`
 	// Sets the end time for this search. Any audit logs with timestamps before this time (exclusive) will be included in the result.
-	EndTime time.Time `json,omitempty:"endTime"`
+	EndTime time.Time `json:"endTime,omitempty"`
 	// Filters for HTTP response codes. For example, '200' or '503'
-	HttpResponseCodes []string `json,omitempty:"httpResponseCodes"`
+	HttpResponseCodes []string `json:"httpResponseCodes,omitempty"`
 }
 
 /*
