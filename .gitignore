@@ -1,4 +1,5 @@
 # default ignore created by https://github.com/mlctrez/tigwen
 .idea/
+.ask/
 catalog_staging/
 *.json
