@@ -14,8 +14,8 @@ Completed models have links
 
 ### Enable playback directives
 
-* Initiate directive [Initiate](playback.go)
-    * response [InitiateResponse](playback.go)
+* Initiate directive [Initiate](playback.go#L5)
+    * response [InitiateResponse](playback.go#L46)
 * ReInitiate directive
 
 ## Media.PlayQueue
@@ -35,5 +35,5 @@ Completed models have links
 
 ### Directives
 
-* GetPlayableContent directive [GetPlayableContent](search.go)
-  * [GetPlayableContentResponse](search.go)
+* GetPlayableContent directive [GetPlayableContent](search.go#L5)
+  * [GetPlayableContentResponse](search.go#L72)
