@@ -14,13 +14,13 @@ Various documentation links that have been useful when building out this project
 
 * [Go](https://go.dev/doc/install)
 * [Node.js](https://nodejs.org/en/download/)
-  * Alexa Skills Kit requires `node --version` v8.3 or higher.
+    * Alexa Skills Kit requires `node --version` v8.3 or higher.
 * AWS Account
-  * [Configuration and credential file settings](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html)
-  * These credentials need to have permissions to change S3, IAM, DynamoDB, and Lambda resources
+    * [Configuration and credential file settings](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html)
+    * These credentials need to have permissions to change S3, IAM, DynamoDB, and Lambda resources
 * [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
 * [Alexa Developer Console](https://developer.amazon.com/alexa/console/ask)
-  * Validate that you can sign in
+    * Validate that you can sign in
 
 ### Initialize Go Modules
 
@@ -29,38 +29,57 @@ Various documentation links that have been useful when building out this project
 ### Run preflight check
 
 * `go run cmd/preflight.go` will:
-  * Check that the minimum version of node is installed.
-  * Configure and test ask-cli in the .ask directory.
-    * This will prompt to run `ask configure` if no credentials are found 
-  * Check that AWS credentials and configuration files are set up correctly.
-    * This performs read only api calls for S3, IAM, DynamoDB, and Lambda 
-  * Check that the aws cli command is installed
+    * Check that the minimum version of node is installed.
+    * Configure and test ask-cli in the .ask directory.
+        * This will prompt to run `ask configure` if no credentials are found
+    * Check that AWS credentials and configuration files are set up correctly.
+        * This performs read only api calls for S3, IAM, DynamoDB, and Lambda
+    * Check that the aws cli command is installed
 
-> **Warning** commands after this point start modifying AWS resources, read closely to warnings
+> **Warning** commands after this point start modifying things, so read warnings closely
+
+### Generate Login with Amazon Keys
+
+* Create a new security profile for your Amazon Developer account by following the instructions
+  provided [here](https://developer.amazon.com/en-US/docs/alexa/smapi/get-access-token-smapi.html#configure-lwa-security-profile)
+* This will generate `Client ID` and `Client Secret` keys.
+* Save these keys in the file `secret.json` in this format
+  ```json
+  {
+    "client_id": "amzn1.application-oa2-client.xxxxx",
+    "client_secret": "xxxxxx"
+  }
+  ```
+* Run `go run smapi/lwa.go` - this automates a call to `ask util generate-lwa-tokens`
+    * This must be run on a computer with a browser to handle the LWA oauth flow
+* The resulting token will be saved to token.json and updated by the token source using the LWA credentials when it
+  expires every hour.
 
 ### Deploy Skill
 
-TODO
+TODO - smapi api client has been generated, automation work needed
 
 ### Deploy Lambda
 
-* WARNING the bucket permissions will be re-set to no public access!!
 * Copy settings.json.example to settings.json and update with the appropriate content
+> ***WARNING*** 
+> if the provided bucket already exists the permissions will be re-set to no public access
 * Run the following command to create the required Bucket, IAM Role, and Lambda
     ```shell
   $ go run infra/sync.go
     ```
+
 ### Update Endpoint and Re-Validate
 
 TODO: this should be able to be automated
 * Back in the Alexa skills console, update the skill endpoint with the output of the previous command
 
-### Upload Design Notes
+### Design Notes
 
 * Use [MusicBrainz_API](https://musicbrainz.org/doc/MusicBrainz_API) for identifiers wherever possible.
-  * Completed
-  * Artist,Album, and Track are all directly supported and would be unique
-  * Prefix each since the MB Api uses GUIDs that are opaque
+    * Completed
+    * Artist,Album, and Track are all directly supported and would be unique
+    * Prefix each since the MB Api uses GUIDs that are opaque
 
 ### TODOs and other ramblings
 
