@@ -1,10 +1,10 @@
 package evaluations
 
 type SlotsProps struct {
-	Name               string              `json:"name"`
-	Value              string              `json:"value"`
-	ConfirmationStatus *ConfirmationStatus `json:"confirmationStatus"`
-	Resolutions        *Resolutions        `json:"resolutions"`
+	Name               string              `json,omitempty:"name"`
+	Value              string              `json,omitempty:"value"`
+	ConfirmationStatus *ConfirmationStatus `json,omitempty:"confirmationStatus"`
+	Resolutions        *Resolutions        `json,omitempty:"resolutions"`
 }
 
 /*

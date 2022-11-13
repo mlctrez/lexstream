@@ -6,10 +6,10 @@ import "time"
 CatalogEntityVersion Version metadata about the catalog entity version.
 */
 type CatalogEntityVersion struct {
-	Version      string    `json:"version"`
-	CreationTime time.Time `json:"creationTime"`
-	Description  string    `json:"description"`
-	Links        *Links    `json:"_links"`
+	Version      string    `json,omitempty:"version"`
+	CreationTime time.Time `json,omitempty:"creationTime"`
+	Description  string    `json,omitempty:"description"`
+	Links        *Links    `json,omitempty:"_links"`
 }
 
 /*

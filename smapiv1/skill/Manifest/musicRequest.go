@@ -2,7 +2,7 @@ package manifest
 
 type MusicRequest struct {
 	// Name of the request.
-	Name string `json:"name"`
+	Name string `json,omitempty:"name"`
 }
 
 /*

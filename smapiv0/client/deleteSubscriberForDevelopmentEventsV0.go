@@ -1,6 +1,9 @@
 package client
 
-import swaggerlt "github.com/mlctrez/swaggerlt"
+import (
+	smapiv0 "github.com/mlctrez/lexstream/smapiv0"
+	swaggerlt "github.com/mlctrez/swaggerlt"
+)
 
 /*
 DeleteSubscriberForDevelopmentEventsV0 Deletes a specified subscriber.
@@ -10,6 +13,13 @@ DeleteSubscriberForDevelopmentEventsV0 Deletes a specified subscriber.
 func (s *Client) DeleteSubscriberForDevelopmentEventsV0(subscriberId string) (err error) {
 	h := swaggerlt.NewRequestHelper("delete", s.Endpoint, "/v0/developmentEvents/subscribers/{subscriberId}")
 	h.Path("subscriberId", subscriberId)
+	h.ResponseType(400, &smapiv0.BadRequestError{})
+	h.ResponseType(401, &smapiv0.Error{})
+	h.ResponseType(403, &smapiv0.BadRequestError{})
+	h.ResponseType(404, &smapiv0.Error{})
+	h.ResponseType(429, &smapiv0.Error{})
+	h.ResponseType(500, &smapiv0.Error{})
+	h.ResponseType(503, &smapiv0.Error{})
 	err = h.Execute(s.Client)
 	return
 }

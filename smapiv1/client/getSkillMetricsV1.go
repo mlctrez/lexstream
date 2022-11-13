@@ -1,6 +1,8 @@
 package client
 
 import (
+	smapiv1 "github.com/mlctrez/lexstream/smapiv1"
+	skill "github.com/mlctrez/lexstream/smapiv1/skill"
 	metrics_ "github.com/mlctrez/lexstream/smapiv1/skill/metrics"
 	swaggerlt "github.com/mlctrez/swaggerlt"
 )
@@ -35,6 +37,13 @@ func (s *Client) GetSkillMetricsV1(skillId string, startTime string, endTime str
 	h.Param("nextToken", nextToken)
 	response = &metrics_.GetMetricDataResponse{}
 	h.Response = response
+	h.ResponseType(400, &smapiv1.BadRequestError{})
+	h.ResponseType(401, &skill.StandardizedError{})
+	h.ResponseType(403, &skill.StandardizedError{})
+	h.ResponseType(404, &skill.StandardizedError{})
+	h.ResponseType(429, &skill.StandardizedError{})
+	h.ResponseType(500, &skill.StandardizedError{})
+	h.ResponseType(503, &skill.StandardizedError{})
 	err = h.Execute(s.Client)
 	return
 }

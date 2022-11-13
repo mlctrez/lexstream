@@ -1,8 +1,8 @@
 package conflictdetection
 
 type ConflictIntentSlot struct {
-	Value string `json:"value"`
-	Type_ string `json:"type"`
+	Value string `json,omitempty:"value"`
+	Type_ string `json,omitempty:"type"`
 }
 
 /*

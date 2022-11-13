@@ -4,14 +4,14 @@ package manifest
 SkillManifestApis Defines the structure for implemented apis information in the skill manifest.
 */
 type SkillManifestApis struct {
-	FlashBriefing    *FlashBriefingApis    `json:"flashBriefing"`
-	Custom           *CustomApis           `json:"custom"`
-	SmartHome        *SmartHomeApis        `json:"smartHome"`
-	Video            *VideoApis            `json:"video"`
-	AlexaForBusiness *AlexaForBusinessApis `json:"alexaForBusiness"`
-	Health           *HealthApis           `json:"health"`
-	HouseholdList    *HouseHoldList        `json:"householdList"`
-	Music            *MusicApis            `json:"music"`
+	FlashBriefing    *FlashBriefingApis    `json,omitempty:"flashBriefing"`
+	Custom           *CustomApis           `json,omitempty:"custom"`
+	SmartHome        *SmartHomeApis        `json,omitempty:"smartHome"`
+	Video            *VideoApis            `json,omitempty:"video"`
+	AlexaForBusiness *AlexaForBusinessApis `json,omitempty:"alexaForBusiness"`
+	Health           *HealthApis           `json,omitempty:"health"`
+	HouseholdList    *HouseHoldList        `json,omitempty:"householdList"`
+	Music            *MusicApis            `json,omitempty:"music"`
 }
 
 /*

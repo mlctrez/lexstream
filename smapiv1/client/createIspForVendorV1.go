@@ -1,6 +1,7 @@
 package client
 
 import (
+	smapiv1 "github.com/mlctrez/lexstream/smapiv1"
 	isp_ "github.com/mlctrez/lexstream/smapiv1/isp"
 	swaggerlt "github.com/mlctrez/swaggerlt"
 )
@@ -15,6 +16,10 @@ func (s *Client) CreateIspForVendorV1(createInSkillProductRequest *isp_.CreateIn
 	h.Body = createInSkillProductRequest
 	response = &isp_.ProductResponse{}
 	h.Response = response
+	h.ResponseType(400, &smapiv1.BadRequestError{})
+	h.ResponseType(401, &smapiv1.Error{})
+	h.ResponseType(429, &smapiv1.Error{})
+	h.ResponseType(500, &smapiv1.Error{})
 	err = h.Execute(s.Client)
 	return
 }

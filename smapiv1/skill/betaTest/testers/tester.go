@@ -2,7 +2,7 @@ package testers
 
 type Tester struct {
 	// Email address of the tester.
-	EmailId string `json:"emailId"`
+	EmailId string `json,omitempty:"emailId"`
 }
 
 /*

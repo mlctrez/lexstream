@@ -4,9 +4,9 @@ package auditlogs
 AuditLogsResponse Response to the Query Audit Logs API. It contains the collection of audit logs for the vendor, nextToken and other metadata related to the search query.
 */
 type AuditLogsResponse struct {
-	PaginationContext *ResponsePaginationContext `json:"paginationContext"`
+	PaginationContext *ResponsePaginationContext `json,omitempty:"paginationContext"`
 	// List of audit logs for the vendor.
-	AuditLogs []*AuditLog `json:"auditLogs"`
+	AuditLogs []*AuditLog `json,omitempty:"auditLogs"`
 }
 
 /*

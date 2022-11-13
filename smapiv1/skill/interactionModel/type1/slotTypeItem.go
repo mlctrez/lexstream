@@ -7,12 +7,12 @@ SlotTypeItem Definition for slot type entity.
 */
 type SlotTypeItem struct {
 	// Name of the slot type.
-	Name string `json:"name"`
+	Name string `json,omitempty:"name"`
 	// Description string about the slot type.
-	Description string `json:"description"`
+	Description string `json,omitempty:"description"`
 	// Identifier of the slot type, optional in get response as the request already has slotTypeId.
-	Id    string         `json:"id"`
-	Links *smapiv1.Links `json:"_links"`
+	Id    string         `json,omitempty:"id"`
+	Links *smapiv1.Links `json,omitempty:"_links"`
 }
 
 /*

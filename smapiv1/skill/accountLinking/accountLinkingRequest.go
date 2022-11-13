@@ -4,7 +4,7 @@ package accountlinking
 AccountLinkingRequest The request body of AccountLinkingRequest.
 */
 type AccountLinkingRequest struct {
-	AccountLinkingRequest *AccountLinkingRequestPayload `json:"accountLinkingRequest"`
+	AccountLinkingRequest *AccountLinkingRequestPayload `json,omitempty:"accountLinkingRequest"`
 }
 
 /*

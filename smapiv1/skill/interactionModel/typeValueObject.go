@@ -4,8 +4,8 @@ package interactionmodel
 TypeValueObject The object that contains individual type values.
 */
 type TypeValueObject struct {
-	Value    string   `json:"value"`
-	Synonyms []string `json:"synonyms"`
+	Value    string   `json,omitempty:"value"`
+	Synonyms []string `json,omitempty:"synonyms"`
 }
 
 /*

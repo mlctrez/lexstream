@@ -6,12 +6,12 @@ import smapiv1 "github.com/mlctrez/lexstream/smapiv1"
 UploadIngestionStep Represents a single step in the multi-step ingestion process of a new upload.
 */
 type UploadIngestionStep struct {
-	Name   *IngestionStepName `json:"name"`
-	Status *IngestionStatus   `json:"status"`
+	Name   *IngestionStepName `json,omitempty:"name"`
+	Status *IngestionStatus   `json,omitempty:"status"`
 	// Url for the file containing logs of ingestion step.
-	LogUrl string `json:"logUrl"`
+	LogUrl string `json,omitempty:"logUrl"`
 	// This array will contain the violations occurred during the execution of step. Will be empty, if execution succeeded.
-	Violations []*smapiv1.Error `json:"violations"`
+	Violations []*smapiv1.Error `json,omitempty:"violations"`
 }
 
 /*

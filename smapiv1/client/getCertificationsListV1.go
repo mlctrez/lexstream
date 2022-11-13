@@ -1,6 +1,7 @@
 package client
 
 import (
+	smapiv1 "github.com/mlctrez/lexstream/smapiv1"
 	certification_ "github.com/mlctrez/lexstream/smapiv1/skill/certification"
 	swaggerlt "github.com/mlctrez/swaggerlt"
 )
@@ -19,6 +20,11 @@ func (s *Client) GetCertificationsListV1(skillId string, nextToken string, maxRe
 	h.Param("maxResults", maxResults)
 	response = &certification_.ListCertificationsResponse{}
 	h.Response = response
+	h.ResponseType(400, &smapiv1.BadRequestError{})
+	h.ResponseType(401, &smapiv1.Error{})
+	h.ResponseType(404, &smapiv1.Error{})
+	h.ResponseType(429, &smapiv1.Error{})
+	h.ResponseType(500, &smapiv1.Error{})
 	err = h.Execute(s.Client)
 	return
 }

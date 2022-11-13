@@ -3,14 +3,14 @@ package history
 import smapiv1 "github.com/mlctrez/lexstream/smapiv1"
 
 type IntentRequest struct {
-	DialogAct         *DialogAct            `json:"dialogAct"`
-	Intent            *Intent               `json:"intent"`
-	InteractionType   *InteractionType      `json:"interactionType"`
-	Locale            *IntentRequestLocales `json:"locale"`
-	PublicationStatus *PublicationStatus    `json:"publicationStatus"`
-	Stage             *smapiv1.StageType    `json:"stage"`
+	DialogAct         *DialogAct            `json,omitempty:"dialogAct"`
+	Intent            *Intent               `json,omitempty:"intent"`
+	InteractionType   *InteractionType      `json,omitempty:"interactionType"`
+	Locale            *IntentRequestLocales `json,omitempty:"locale"`
+	PublicationStatus *PublicationStatus    `json,omitempty:"publicationStatus"`
+	Stage             *smapiv1.StageType    `json,omitempty:"stage"`
 	// The transcribed user speech.
-	UtteranceText string `json:"utteranceText"`
+	UtteranceText string `json,omitempty:"utteranceText"`
 }
 
 /*

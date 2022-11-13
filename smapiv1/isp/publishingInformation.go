@@ -5,12 +5,12 @@ PublishingInformation Defines the structure for in-skill product publishing info
 */
 type PublishingInformation struct {
 	// Defines the structure for locale specific publishing information for an in-skill product.
-	Locales map[string]LocalizedPublishingInformation `json:"locales"`
+	Locales map[string]LocalizedPublishingInformation `json,omitempty:"locales"`
 	// List of countries where the in-skill product is available.
-	DistributionCountries []*DistributionCountries `json:"distributionCountries"`
+	DistributionCountries []*DistributionCountries `json,omitempty:"distributionCountries"`
 	// Defines the structure for in-skill product pricing.
-	Pricing        map[string]MarketplacePricing `json:"pricing"`
-	TaxInformation *TaxInformation               `json:"taxInformation"`
+	Pricing        map[string]MarketplacePricing `json,omitempty:"pricing"`
+	TaxInformation *TaxInformation               `json,omitempty:"taxInformation"`
 }
 
 /*

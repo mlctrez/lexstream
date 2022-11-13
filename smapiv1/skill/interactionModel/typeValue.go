@@ -4,8 +4,8 @@ package interactionmodel
 TypeValue The value schema in type object of interaction model.
 */
 type TypeValue struct {
-	Id   string           `json:"id"`
-	Name *TypeValueObject `json:"name"`
+	Id   string           `json,omitempty:"id"`
+	Name *TypeValueObject `json,omitempty:"name"`
 }
 
 /*

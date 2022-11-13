@@ -6,13 +6,13 @@ import smapiv1 "github.com/mlctrez/lexstream/smapiv1"
 ListResponse List of interactionModel versions of a skill for the vendor
 */
 type ListResponse struct {
-	Links *smapiv1.Links `json:"_links"`
+	Links *smapiv1.Links `json,omitempty:"_links"`
 	/*
 	   List of interaction model versions.
 	*/
-	SkillModelVersions []*VersionItems `json:"skillModelVersions"`
-	IsTruncated        bool            `json:"isTruncated"`
-	NextToken          string          `json:"nextToken"`
+	SkillModelVersions []*VersionItems `json,omitempty:"skillModelVersions"`
+	IsTruncated        bool            `json,omitempty:"isTruncated"`
+	NextToken          string          `json,omitempty:"nextToken"`
 }
 
 /*

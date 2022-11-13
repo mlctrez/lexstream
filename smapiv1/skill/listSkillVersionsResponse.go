@@ -6,11 +6,11 @@ import smapiv1 "github.com/mlctrez/lexstream/smapiv1"
 ListSkillVersionsResponse List of all skill versions
 */
 type ListSkillVersionsResponse struct {
-	Links *smapiv1.Links `json:"_links"`
+	Links *smapiv1.Links `json,omitempty:"_links"`
 	// Skill version metadata
-	SkillVersions []*SkillVersion `json:"skillVersions"`
-	IsTruncated   bool            `json:"isTruncated"`
-	NextToken     string          `json:"nextToken"`
+	SkillVersions []*SkillVersion `json,omitempty:"skillVersions"`
+	IsTruncated   bool            `json,omitempty:"isTruncated"`
+	NextToken     string          `json,omitempty:"nextToken"`
 }
 
 /*

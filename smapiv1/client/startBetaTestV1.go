@@ -1,6 +1,9 @@
 package client
 
-import swaggerlt "github.com/mlctrez/swaggerlt"
+import (
+	smapiv1 "github.com/mlctrez/lexstream/smapiv1"
+	swaggerlt "github.com/mlctrez/swaggerlt"
+)
 
 /*
 StartBetaTestV1 Start a beta test for a given Alexa skill. System will send invitation emails to each tester in the test, and add entitlement on the acceptance.
@@ -10,6 +13,12 @@ StartBetaTestV1 Start a beta test for a given Alexa skill. System will send invi
 func (s *Client) StartBetaTestV1(skillId string) (err error) {
 	h := swaggerlt.NewRequestHelper("post", s.Endpoint, "/v1/skills/{skillId}/betaTest/start")
 	h.Path("skillId", skillId)
+	h.ResponseType(400, &smapiv1.BadRequestError{})
+	h.ResponseType(401, &smapiv1.Error{})
+	h.ResponseType(404, &smapiv1.Error{})
+	h.ResponseType(409, &smapiv1.Error{})
+	h.ResponseType(429, &smapiv1.Error{})
+	h.ResponseType(500, &smapiv1.Error{})
 	err = h.Execute(s.Client)
 	return
 }

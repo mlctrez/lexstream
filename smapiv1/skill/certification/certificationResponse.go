@@ -4,12 +4,12 @@ import "time"
 
 type CertificationResponse struct {
 	// Certification Id for the skill
-	Id     string               `json:"id"`
-	Status *CertificationStatus `json:"status"`
+	Id     string               `json,omitempty:"id"`
+	Status *CertificationStatus `json,omitempty:"status"`
 	// Timestamp for when the skill was submitted for certification.
-	SkillSubmissionTimestamp time.Time            `json:"skillSubmissionTimestamp"`
-	ReviewTrackingInfo       *ReviewTrackingInfo  `json:"reviewTrackingInfo"`
-	Result                   *CertificationResult `json:"result"`
+	SkillSubmissionTimestamp time.Time            `json,omitempty:"skillSubmissionTimestamp"`
+	ReviewTrackingInfo       *ReviewTrackingInfo  `json,omitempty:"reviewTrackingInfo"`
+	Result                   *CertificationResult `json,omitempty:"result"`
 }
 
 /*

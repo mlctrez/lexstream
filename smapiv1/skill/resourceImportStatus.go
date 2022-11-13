@@ -5,11 +5,11 @@ ResourceImportStatus Defines the structure for a resource deployment status.
 */
 type ResourceImportStatus struct {
 	// Resource name. eg. manifest, interactionModels.en_US and so on.
-	Name     string               `json:"name"`
-	Status   *ResponseStatus      `json:"status"`
-	Action   *Action              `json:"action"`
-	Errors   []*StandardizedError `json:"errors"`
-	Warnings []*StandardizedError `json:"warnings"`
+	Name     string               `json,omitempty:"name"`
+	Status   *ResponseStatus      `json,omitempty:"status"`
+	Action   *Action              `json,omitempty:"action"`
+	Errors   []*StandardizedError `json,omitempty:"errors"`
+	Warnings []*StandardizedError `json,omitempty:"warnings"`
 }
 
 /*

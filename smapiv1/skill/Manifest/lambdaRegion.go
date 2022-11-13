@@ -4,7 +4,7 @@ package manifest
 LambdaRegion Defines the structure of a regional information.
 */
 type LambdaRegion struct {
-	Endpoint *LambdaEndpoint `json:"endpoint"`
+	Endpoint *LambdaEndpoint `json,omitempty:"endpoint"`
 }
 
 /*

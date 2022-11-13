@@ -7,10 +7,10 @@ SlotTypeVersionItem Definition for slot type entity.
 */
 type SlotTypeVersionItem struct {
 	// Version number of slot type.
-	Version string `json:"version"`
+	Version string `json,omitempty:"version"`
 	// Description string about the slot type version.
-	Description string         `json:"description"`
-	Links       *smapiv1.Links `json:"_links"`
+	Description string         `json,omitempty:"description"`
+	Links       *smapiv1.Links `json,omitempty:"_links"`
 }
 
 /*

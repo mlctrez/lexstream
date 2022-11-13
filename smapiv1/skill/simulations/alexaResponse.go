@@ -2,11 +2,11 @@ package simulations
 
 type AlexaResponse struct {
 	// The type of Alexa response
-	Type_ string `json:"type"`
+	Type_ string `json,omitempty:"type"`
 	/*
 	   The detail information needs to exposed in this type of Alexa response.
 	*/
-	Content *AlexaResponseContent `json:"content"`
+	Content *AlexaResponseContent `json,omitempty:"content"`
 }
 
 /*

@@ -5,10 +5,10 @@ LocalizedMusicInfo Defines the structure of localized music information in the s
 */
 type LocalizedMusicInfo struct {
 	// Name to be used when Alexa renders the music skill name.
-	PromptName    string           `json:"promptName"`
-	Aliases       []*MusicAlias    `json:"aliases"`
-	Features      []*MusicFeature  `json:"features"`
-	WordmarkLogos []*MusicWordmark `json:"wordmarkLogos"`
+	PromptName    string           `json,omitempty:"promptName"`
+	Aliases       []*MusicAlias    `json,omitempty:"aliases"`
+	Features      []*MusicFeature  `json,omitempty:"features"`
+	WordmarkLogos []*MusicWordmark `json,omitempty:"wordmarkLogos"`
 }
 
 /*

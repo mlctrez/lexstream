@@ -1,7 +1,7 @@
 package smarthomeevaluation
 
 type Endpoint struct {
-	EndpointId string `json:"endpointId"`
+	EndpointId string `json,omitempty:"endpointId"`
 }
 
 /*

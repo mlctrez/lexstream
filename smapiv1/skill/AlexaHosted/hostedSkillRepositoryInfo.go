@@ -4,8 +4,8 @@ package alexahosted
 HostedSkillRepositoryInfo Alexa Hosted Skill's Repository Information
 */
 type HostedSkillRepositoryInfo struct {
-	Url   string                 `json:"url"`
-	Type_ *HostedSkillRepository `json:"type"`
+	Url   string                 `json,omitempty:"url"`
+	Type_ *HostedSkillRepository `json,omitempty:"type"`
 }
 
 /*

@@ -2,8 +2,8 @@ package subscriber
 
 type UpdateSubscriberRequest struct {
 	// Name of the subscriber.
-	Name     string    `json:"name"`
-	Endpoint *Endpoint `json:"endpoint"`
+	Name     string    `json,omitempty:"name"`
+	Endpoint *Endpoint `json,omitempty:"endpoint"`
 }
 
 /*

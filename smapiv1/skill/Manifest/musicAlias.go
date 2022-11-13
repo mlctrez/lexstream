@@ -2,7 +2,7 @@ package manifest
 
 type MusicAlias struct {
 	// Alias name to be associated with the music skill.
-	Name string `json:"name"`
+	Name string `json,omitempty:"name"`
 }
 
 /*

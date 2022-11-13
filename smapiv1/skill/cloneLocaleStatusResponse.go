@@ -4,12 +4,12 @@ package skill
 CloneLocaleStatusResponse A mapping of statuses per locale detailing progress of resource or error if encountered.
 */
 type CloneLocaleStatusResponse struct {
-	Status *CloneLocaleRequestStatus `json:"status"`
-	Errors []*StandardizedError      `json:"errors"`
+	Status *CloneLocaleRequestStatus `json,omitempty:"status"`
+	Errors []*StandardizedError      `json,omitempty:"errors"`
 	// Source locale which is cloned to target locales.
-	SourceLocale string `json:"sourceLocale"`
+	SourceLocale string `json,omitempty:"sourceLocale"`
 	// Mapping of statuses per locale.
-	TargetLocales map[string]CloneLocaleResourceStatus `json:"targetLocales"`
+	TargetLocales map[string]CloneLocaleResourceStatus `json,omitempty:"targetLocales"`
 }
 
 /*

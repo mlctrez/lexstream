@@ -1,6 +1,10 @@
 package client
 
-import swaggerlt "github.com/mlctrez/swaggerlt"
+import (
+	smapiv1 "github.com/mlctrez/lexstream/smapiv1"
+	skill "github.com/mlctrez/lexstream/smapiv1/skill"
+	swaggerlt "github.com/mlctrez/swaggerlt"
+)
 
 /*
 SetSkillEnablementV1 Creates/Updates the enablement for given skillId/stage and customerId (retrieved from Auth token)
@@ -12,6 +16,14 @@ func (s *Client) SetSkillEnablementV1(skillId string, stage string) (err error) 
 	h := swaggerlt.NewRequestHelper("put", s.Endpoint, "/v1/skills/{skillId}/stages/{stage}/enablement")
 	h.Path("skillId", skillId)
 	h.Path("stage", stage)
+	h.ResponseType(400, &smapiv1.BadRequestError{})
+	h.ResponseType(401, &skill.StandardizedError{})
+	h.ResponseType(403, &smapiv1.BadRequestError{})
+	h.ResponseType(404, &skill.StandardizedError{})
+	h.ResponseType(409, &skill.StandardizedError{})
+	h.ResponseType(429, &skill.StandardizedError{})
+	h.ResponseType(500, &skill.StandardizedError{})
+	h.ResponseType(503, &skill.StandardizedError{})
 	err = h.Execute(s.Client)
 	return
 }

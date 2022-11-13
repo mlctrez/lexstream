@@ -6,10 +6,10 @@ import smapiv1 "github.com/mlctrez/lexstream/smapiv1"
 ListPrivateDistributionAccountsResponse Response of ListPrivateDistributionAccounts.
 */
 type ListPrivateDistributionAccountsResponse struct {
-	Links *smapiv1.Links `json:"_links"`
+	Links *smapiv1.Links `json,omitempty:"_links"`
 	// List of PrivateDistributionAccounts.
-	PrivateDistributionAccounts []*PrivateDistributionAccount `json:"privateDistributionAccounts"`
-	NextToken                   string                        `json:"nextToken"`
+	PrivateDistributionAccounts []*PrivateDistributionAccount `json,omitempty:"privateDistributionAccounts"`
+	NextToken                   string                        `json,omitempty:"nextToken"`
 }
 
 /*

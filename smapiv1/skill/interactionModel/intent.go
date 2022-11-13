@@ -5,11 +5,11 @@ Intent The set of intents your service can accept and process.
 */
 type Intent struct {
 	// Name to identify the intent.
-	Name string `json:"name"`
+	Name string `json,omitempty:"name"`
 	// List of slots within the intent.
-	Slots []*SlotDefinition `json:"slots"`
+	Slots []*SlotDefinition `json,omitempty:"slots"`
 	// Phrases the user can speak e.g. to trigger an intent or provide value for a slot elicitation.
-	Samples []string `json:"samples"`
+	Samples []string `json,omitempty:"samples"`
 }
 
 /*

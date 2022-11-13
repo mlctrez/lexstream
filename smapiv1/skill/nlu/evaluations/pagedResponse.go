@@ -1,8 +1,8 @@
 package evaluations
 
 type PagedResponse struct {
-	PaginationContext *PaginationContext `json:"paginationContext"`
-	Links             *Links             `json:"_links"`
+	PaginationContext *PaginationContext `json,omitempty:"paginationContext"`
+	Links             *Links             `json,omitempty:"_links"`
 }
 
 /*

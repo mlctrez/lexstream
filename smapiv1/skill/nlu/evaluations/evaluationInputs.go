@@ -1,9 +1,9 @@
 package evaluations
 
 type EvaluationInputs struct {
-	Locale string         `json:"locale"`
-	Stage  map[string]any `json:"stage"`
-	Source *Source        `json:"source"`
+	Locale string         `json,omitempty:"locale"`
+	Stage  map[string]any `json,omitempty:"stage"`
+	Source *Source        `json,omitempty:"source"`
 }
 
 /*

@@ -4,8 +4,8 @@ package auditlogs
 Client Contains information about the Client that this request was performed by.
 */
 type Client struct {
-	Id   string `json:"id"`
-	Name string `json:"name"`
+	Id   string `json,omitempty:"id"`
+	Name string `json,omitempty:"name"`
 }
 
 /*

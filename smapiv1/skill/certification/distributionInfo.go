@@ -5,8 +5,8 @@ DistributionInfo The distribution information for skill where Amazon distributed
 */
 type DistributionInfo struct {
 	// All countries where the skill was published in by Amazon.
-	PublishedCountries  []string              `json:"publishedCountries"`
-	PublicationFailures []*PublicationFailure `json:"publicationFailures"`
+	PublishedCountries  []string              `json,omitempty:"publishedCountries"`
+	PublicationFailures []*PublicationFailure `json,omitempty:"publicationFailures"`
 }
 
 /*

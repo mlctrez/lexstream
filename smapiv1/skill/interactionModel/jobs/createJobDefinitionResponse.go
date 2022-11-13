@@ -5,7 +5,7 @@ CreateJobDefinitionResponse The response of create job definition.
 */
 type CreateJobDefinitionResponse struct {
 	// Idenitifier of the job definition.
-	JobId string `json:"jobId"`
+	JobId string `json,omitempty:"jobId"`
 }
 
 /*

@@ -1,7 +1,7 @@
 package evaluations
 
 type GetNLUEvaluationResponseLinks struct {
-	Results *Results `json:"results"`
+	Results *Results `json,omitempty:"results"`
 }
 
 /*

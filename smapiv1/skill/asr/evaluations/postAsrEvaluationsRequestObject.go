@@ -1,9 +1,9 @@
 package evaluations
 
 type PostAsrEvaluationsRequestObject struct {
-	Skill *Skill `json:"skill"`
+	Skill *Skill `json,omitempty:"skill"`
 	// ID for annotation set
-	AnnotationSetId string `json:"annotationSetId"`
+	AnnotationSetId string `json,omitempty:"annotationSetId"`
 }
 
 /*

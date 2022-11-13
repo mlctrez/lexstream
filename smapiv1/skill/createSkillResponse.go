@@ -5,7 +5,7 @@ CreateSkillResponse SkillId information.
 */
 type CreateSkillResponse struct {
 	// ID of the skill created.
-	SkillId string `json:"skillId"`
+	SkillId string `json,omitempty:"skillId"`
 }
 
 /*

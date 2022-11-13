@@ -9,23 +9,23 @@ import (
 SkillSummary Information about the skills.
 */
 type SkillSummary struct {
-	SkillId string               `json:"skillId"`
-	Stage   *smapiv1.StageV2Type `json:"stage"`
+	SkillId string               `json,omitempty:"skillId"`
+	Stage   *smapiv1.StageV2Type `json,omitempty:"stage"`
 	// List of APIs currently implemented by the skill.
-	Apis              []*SkillSummaryApis `json:"apis"`
-	PublicationStatus *PublicationStatus  `json:"publicationStatus"`
-	LastUpdated       time.Time           `json:"lastUpdated"`
+	Apis              []*SkillSummaryApis `json,omitempty:"apis"`
+	PublicationStatus *PublicationStatus  `json,omitempty:"publicationStatus"`
+	LastUpdated       time.Time           `json,omitempty:"lastUpdated"`
 	/*
 	   Name of the skill in skill locales (keys are locale names (e.g. 'en-US') whereas values are name of the
 	   skill in that locale.
 	*/
-	NameByLocale map[string]string `json:"nameByLocale"`
+	NameByLocale map[string]string `json,omitempty:"nameByLocale"`
 	/*
 	   Amazon Standard Identification Number (ASIN) is unique blocks of 10 letters and/or numbers that identify items. More info about ASIN can be found here: https://www.amazon.com/gp/seller/asin-upc-isbn-info.html
 	   ASIN is available for those skills only, that have been published, at least once.
 	*/
-	Asin  string         `json:"asin"`
-	Links *smapiv1.Links `json:"_links"`
+	Asin  string         `json,omitempty:"asin"`
+	Links *smapiv1.Links `json,omitempty:"_links"`
 }
 
 /*

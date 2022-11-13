@@ -1,6 +1,7 @@
 package client
 
 import (
+	smapiv1 "github.com/mlctrez/lexstream/smapiv1"
 	skill_ "github.com/mlctrez/lexstream/smapiv1/skill"
 	swaggerlt "github.com/mlctrez/swaggerlt"
 )
@@ -17,6 +18,14 @@ func (s *Client) ImportSkillPackageV1(updateSkillWithPackageRequest *skill_.Upda
 	h.Body = updateSkillWithPackageRequest
 	h.Path("skillId", skillId)
 	h.Header("If-Match", if_Match)
+	h.ResponseType(400, &smapiv1.BadRequestError{})
+	h.ResponseType(401, &skill_.StandardizedError{})
+	h.ResponseType(404, &skill_.StandardizedError{})
+	h.ResponseType(409, &skill_.StandardizedError{})
+	h.ResponseType(413, &skill_.StandardizedError{})
+	h.ResponseType(429, &skill_.StandardizedError{})
+	h.ResponseType(500, &skill_.StandardizedError{})
+	h.ResponseType(503, &skill_.StandardizedError{})
 	err = h.Execute(s.Client)
 	return
 }

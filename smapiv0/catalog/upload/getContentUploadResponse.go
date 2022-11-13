@@ -5,8 +5,8 @@ GetContentUploadResponse Response object for get content upload request.
 */
 type GetContentUploadResponse struct {
 	ContentUploadSummary
-	File           *ContentUploadFileSummary `json:"file"`
-	IngestionSteps []*UploadIngestionStep    `json:"ingestionSteps"`
+	File           *ContentUploadFileSummary `json,omitempty:"file"`
+	IngestionSteps []*UploadIngestionStep    `json,omitempty:"ingestionSteps"`
 }
 
 /*

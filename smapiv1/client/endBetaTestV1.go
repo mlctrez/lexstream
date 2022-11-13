@@ -1,6 +1,9 @@
 package client
 
-import swaggerlt "github.com/mlctrez/swaggerlt"
+import (
+	smapiv1 "github.com/mlctrez/lexstream/smapiv1"
+	swaggerlt "github.com/mlctrez/swaggerlt"
+)
 
 /*
 EndBetaTestV1 End a beta test for a given Alexa skill. System will revoke the entitlement of each tester and send access-end notification email to them.
@@ -10,6 +13,12 @@ EndBetaTestV1 End a beta test for a given Alexa skill. System will revoke the en
 func (s *Client) EndBetaTestV1(skillId string) (err error) {
 	h := swaggerlt.NewRequestHelper("post", s.Endpoint, "/v1/skills/{skillId}/betaTest/end")
 	h.Path("skillId", skillId)
+	h.ResponseType(400, &smapiv1.BadRequestError{})
+	h.ResponseType(401, &smapiv1.Error{})
+	h.ResponseType(404, &smapiv1.Error{})
+	h.ResponseType(409, &smapiv1.Error{})
+	h.ResponseType(429, &smapiv1.Error{})
+	h.ResponseType(500, &smapiv1.Error{})
 	err = h.Execute(s.Client)
 	return
 }

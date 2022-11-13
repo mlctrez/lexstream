@@ -1,6 +1,8 @@
 package client
 
 import (
+	smapiv1 "github.com/mlctrez/lexstream/smapiv1"
+	skill "github.com/mlctrez/lexstream/smapiv1/skill"
 	version_ "github.com/mlctrez/lexstream/smapiv1/skill/interactionModel/version"
 	swaggerlt "github.com/mlctrez/swaggerlt"
 )
@@ -23,6 +25,13 @@ func (s *Client) ListInteractionModelCatalogVersionsV1(catalogId string, maxResu
 	h.Param("sortField", sortField)
 	response = &version_.ListCatalogEntityVersionsResponse{}
 	h.Response = response
+	h.ResponseType(400, &smapiv1.BadRequestError{})
+	h.ResponseType(401, &skill.StandardizedError{})
+	h.ResponseType(403, &smapiv1.BadRequestError{})
+	h.ResponseType(404, &skill.StandardizedError{})
+	h.ResponseType(429, &skill.StandardizedError{})
+	h.ResponseType(500, &skill.StandardizedError{})
+	h.ResponseType(503, &skill.StandardizedError{})
 	err = h.Execute(s.Client)
 	return
 }

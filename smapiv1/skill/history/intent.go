@@ -5,10 +5,10 @@ Intent Provides the intent name, slots and confidence of the intent used in this
 */
 type Intent struct {
 	// The hypothesized intent for this utterance.
-	Name       string      `json:"name"`
-	Confidence *Confidence `json:"confidence"`
+	Name       string      `json,omitempty:"name"`
+	Confidence *Confidence `json,omitempty:"confidence"`
 	// The hypothesized slot(s) for this interaction.
-	Slots map[string]Slot `json:"slots"`
+	Slots map[string]Slot `json,omitempty:"slots"`
 }
 
 /*

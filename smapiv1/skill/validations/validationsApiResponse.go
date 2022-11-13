@@ -2,9 +2,9 @@ package validations
 
 type ValidationsApiResponse struct {
 	// Id of the validation resource.
-	Id     string                        `json:"id"`
-	Status *ValidationsApiResponseStatus `json:"status"`
-	Result *ValidationsApiResponseResult `json:"result"`
+	Id     string                        `json,omitempty:"id"`
+	Status *ValidationsApiResponseStatus `json,omitempty:"status"`
+	Result *ValidationsApiResponseResult `json,omitempty:"result"`
 }
 
 /*

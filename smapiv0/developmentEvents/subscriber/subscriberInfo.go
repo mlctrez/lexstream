@@ -5,10 +5,10 @@ SubscriberInfo Information about the subscriber.
 */
 type SubscriberInfo struct {
 	// Unique identifier of the subscriber resource.
-	SubscriberId string `json:"subscriberId"`
+	SubscriberId string `json,omitempty:"subscriberId"`
 	// Name of the subscriber.
-	Name     string    `json:"name"`
-	Endpoint *Endpoint `json:"endpoint"`
+	Name     string    `json,omitempty:"name"`
+	Endpoint *Endpoint `json,omitempty:"endpoint"`
 }
 
 /*

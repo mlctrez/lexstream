@@ -1,6 +1,8 @@
 package client
 
 import (
+	smapiv1 "github.com/mlctrez/lexstream/smapiv1"
+	skill "github.com/mlctrez/lexstream/smapiv1/skill"
 	jobs_ "github.com/mlctrez/lexstream/smapiv1/skill/interactionModel/jobs"
 	swaggerlt "github.com/mlctrez/swaggerlt"
 )
@@ -15,6 +17,12 @@ func (s *Client) CreateJobDefinitionForInteractionModelV1(createJobDefinitionReq
 	h.Body = createJobDefinitionRequest
 	response = &jobs_.CreateJobDefinitionResponse{}
 	h.Response = response
+	h.ResponseType(400, &jobs_.ValidationErrors{})
+	h.ResponseType(401, &skill.StandardizedError{})
+	h.ResponseType(403, &smapiv1.BadRequestError{})
+	h.ResponseType(429, &skill.StandardizedError{})
+	h.ResponseType(500, &skill.StandardizedError{})
+	h.ResponseType(503, &skill.StandardizedError{})
 	err = h.Execute(s.Client)
 	return
 }

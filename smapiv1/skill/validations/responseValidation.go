@@ -4,21 +4,21 @@ type ResponseValidation struct {
 	/*
 	   Short, human readable title of the validation performed.
 	*/
-	Title string `json:"title"`
+	Title string `json,omitempty:"title"`
 	/*
 	   Human readable description of the validation performed. May include instructions to address validation failure.
 	*/
-	Description string `json:"description"`
+	Description string `json,omitempty:"description"`
 	/*
 	   Dot-delimited category.
 	*/
-	Category string `json:"category"`
+	Category string `json,omitempty:"category"`
 	/*
 	   Locale of the validation.
 	*/
-	Locale     string                        `json:"locale"`
-	Importance *ResponseValidationImportance `json:"importance"`
-	Status     *ResponseValidationStatus     `json:"status"`
+	Locale     string                        `json,omitempty:"locale"`
+	Importance *ResponseValidationImportance `json,omitempty:"importance"`
+	Status     *ResponseValidationStatus     `json,omitempty:"status"`
 }
 
 /*

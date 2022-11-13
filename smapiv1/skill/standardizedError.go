@@ -5,7 +5,7 @@ StandardizedError Standardized structure which wraps machine parsable and human 
 */
 type StandardizedError struct {
 	// Standardized, machine readable structure that wraps all the information about a specific occurrence of an error of the type specified by the code.
-	ValidationDetails *ValidationDetails `json:"validationDetails"`
+	ValidationDetails *ValidationDetails `json,omitempty:"validationDetails"`
 }
 
 /*

@@ -4,7 +4,7 @@ package jobs
 JobErrorDetails Optional details if the execution is depending on other executions.
 */
 type JobErrorDetails struct {
-	ExecutionMetadata []*ExecutionMetadata `json:"executionMetadata"`
+	ExecutionMetadata []*ExecutionMetadata `json,omitempty:"executionMetadata"`
 }
 
 /*

@@ -5,9 +5,9 @@ Error The error which would fail requests.
 */
 type Error struct {
 	// The error code.
-	Code string `json:"code"`
+	Code string `json,omitempty:"code"`
 	// The error message.
-	Message string `json:"message"`
+	Message string `json,omitempty:"message"`
 }
 
 /*

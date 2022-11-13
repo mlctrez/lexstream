@@ -4,11 +4,11 @@ package catalog
 CatalogDefinitionOutput Catalog request definitions.
 */
 type CatalogDefinitionOutput struct {
-	Catalog *CatalogEntity `json:"catalog"`
+	Catalog *CatalogEntity `json,omitempty:"catalog"`
 	// Time of the catalog definition creation.
-	CreationTime string `json:"creationTime"`
+	CreationTime string `json,omitempty:"creationTime"`
 	// Total number of versions.
-	TotalVersions string `json:"totalVersions"`
+	TotalVersions string `json,omitempty:"totalVersions"`
 }
 
 /*

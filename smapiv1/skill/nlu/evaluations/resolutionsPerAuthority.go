@@ -4,10 +4,10 @@ type ResolutionsPerAuthority struct {
 	/*
 	   The name of the authority for the slot values. For custom slot types, this authority label incorporates your skill ID and the slot type name.
 	*/
-	Authority string                         `json:"authority"`
-	Status    *ResolutionsPerAuthorityStatus `json:"status"`
+	Authority string                         `json,omitempty:"authority"`
+	Status    *ResolutionsPerAuthorityStatus `json,omitempty:"status"`
 	// An array of resolved values for the slot.
-	Values []*ResolutionsPerAuthorityValue `json:"values"`
+	Values []*ResolutionsPerAuthorityValue `json,omitempty:"values"`
 }
 
 /*

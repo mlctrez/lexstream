@@ -5,9 +5,9 @@ SkillManifestCustomTask Defines the name and version of the task that the skill 
 */
 type SkillManifestCustomTask struct {
 	// Name of the task.
-	Name string `json:"name"`
+	Name string `json,omitempty:"name"`
 	// Version of the task.
-	Version string `json:"version"`
+	Version string `json,omitempty:"version"`
 }
 
 /*

@@ -5,7 +5,7 @@ LambdaEndpoint Contains the uri field. This sets the global default endpoint.
 */
 type LambdaEndpoint struct {
 	// Amazon Resource Name (ARN) of the skill's Lambda function or HTTPS URL.
-	Uri string `json:"uri"`
+	Uri string `json,omitempty:"uri"`
 }
 
 /*

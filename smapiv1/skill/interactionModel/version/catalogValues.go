@@ -6,12 +6,12 @@ import smapiv1 "github.com/mlctrez/lexstream/smapiv1"
 CatalogValues List of catalog values.
 */
 type CatalogValues struct {
-	IsTruncated bool   `json:"isTruncated"`
-	NextToken   string `json:"nextToken"`
+	IsTruncated bool   `json,omitempty:"isTruncated"`
+	NextToken   string `json,omitempty:"nextToken"`
 	// Total number of catalog values.
-	TotalCount int            `json:"totalCount"`
-	Links      *smapiv1.Links `json:"_links"`
-	Values     []*ValueSchema `json:"values"`
+	TotalCount int            `json,omitempty:"totalCount"`
+	Links      *smapiv1.Links `json,omitempty:"_links"`
+	Values     []*ValueSchema `json,omitempty:"values"`
 }
 
 /*

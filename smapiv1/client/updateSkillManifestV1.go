@@ -1,6 +1,8 @@
 package client
 
 import (
+	smapiv1 "github.com/mlctrez/lexstream/smapiv1"
+	skill "github.com/mlctrez/lexstream/smapiv1/skill"
 	Manifest_ "github.com/mlctrez/lexstream/smapiv1/skill/Manifest"
 	swaggerlt "github.com/mlctrez/swaggerlt"
 )
@@ -24,6 +26,15 @@ func (s *Client) UpdateSkillManifestV1(if_Match string, skillId string, stageV2 
 	h.Path("skillId", skillId)
 	h.Path("stageV2", stageV2)
 	h.Body = updateSkillRequest
+	h.ResponseType(400, &smapiv1.BadRequestError{})
+	h.ResponseType(401, &skill.StandardizedError{})
+	h.ResponseType(403, &smapiv1.BadRequestError{})
+	h.ResponseType(404, &skill.StandardizedError{})
+	h.ResponseType(409, &skill.StandardizedError{})
+	h.ResponseType(412, &skill.StandardizedError{})
+	h.ResponseType(429, &skill.StandardizedError{})
+	h.ResponseType(500, &skill.StandardizedError{})
+	h.ResponseType(503, &skill.StandardizedError{})
 	err = h.Execute(s.Client)
 	return
 }

@@ -5,9 +5,9 @@ ConnectionsPayload Payload of the connection.
 */
 type ConnectionsPayload struct {
 	// Type of the payload.
-	Type_ string `json:"type"`
+	Type_ string `json,omitempty:"type"`
 	// Version of the payload.
-	Version string `json:"version"`
+	Version string `json,omitempty:"version"`
 }
 
 /*

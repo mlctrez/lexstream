@@ -5,8 +5,8 @@ PrivateDistributionAccount Contains information of the private distribution acco
 */
 type PrivateDistributionAccount struct {
 	// 12-digit numerical account ID for AWS account holders.
-	Principal    string        `json:"principal"`
-	AcceptStatus *AcceptStatus `json:"acceptStatus"`
+	Principal    string        `json,omitempty:"principal"`
+	AcceptStatus *AcceptStatus `json,omitempty:"acceptStatus"`
 }
 
 /*

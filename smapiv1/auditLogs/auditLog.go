@@ -4,16 +4,16 @@ import "time"
 
 type AuditLog struct {
 	// UUID that identifies a specific request.
-	XAmznRequestId string `json:"xAmznRequestId"`
+	XAmznRequestId string `json,omitempty:"xAmznRequestId"`
 	// Date-Time when the request was made.
-	Timestamp time.Time  `json:"timestamp"`
-	Client    *Client    `json:"client"`
-	Operation *Operation `json:"operation"`
+	Timestamp time.Time  `json,omitempty:"timestamp"`
+	Client    *Client    `json,omitempty:"client"`
+	Operation *Operation `json,omitempty:"operation"`
 	// Contains information about the resources affected in this request.
-	Resources []*Resource `json:"resources"`
-	Requester *Requester  `json:"requester"`
+	Resources []*Resource `json,omitempty:"resources"`
+	Requester *Requester  `json,omitempty:"requester"`
 	// HTTP Status Code returned by this request.
-	HttpResponseCode int `json:"httpResponseCode"`
+	HttpResponseCode int `json,omitempty:"httpResponseCode"`
 }
 
 /*

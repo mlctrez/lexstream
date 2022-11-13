@@ -1,6 +1,7 @@
 package client
 
 import (
+	smapiv1 "github.com/mlctrez/lexstream/smapiv1"
 	resourceSchema_ "github.com/mlctrez/lexstream/smapiv1/skill/resourceSchema"
 	swaggerlt "github.com/mlctrez/swaggerlt"
 )
@@ -19,6 +20,12 @@ func (s *Client) GetResourceSchemaV1(resource string, vendorId string, operation
 	h.Param("operation", operation)
 	response = &resourceSchema_.GetResourceSchemaResponse{}
 	h.Response = response
+	h.ResponseType(400, &smapiv1.BadRequestError{})
+	h.ResponseType(401, &smapiv1.Error{})
+	h.ResponseType(403, &smapiv1.Error{})
+	h.ResponseType(429, &smapiv1.Error{})
+	h.ResponseType(500, &smapiv1.Error{})
+	h.ResponseType(503, &smapiv1.Error{})
 	err = h.Execute(s.Client)
 	return
 }

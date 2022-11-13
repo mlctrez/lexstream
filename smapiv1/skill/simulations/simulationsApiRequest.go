@@ -1,9 +1,9 @@
 package simulations
 
 type SimulationsApiRequest struct {
-	Input   *Input   `json:"input"`
-	Device  *Device  `json:"device"`
-	Session *Session `json:"session"`
+	Input   *Input   `json,omitempty:"input"`
+	Device  *Device  `json,omitempty:"device"`
+	Session *Session `json,omitempty:"session"`
 }
 
 /*

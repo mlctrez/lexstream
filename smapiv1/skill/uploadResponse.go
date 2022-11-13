@@ -7,8 +7,8 @@ UploadResponse Defines the structure for skill upload response.
 */
 type UploadResponse struct {
 	// The upload URL to upload a skill package.
-	UploadUrl string    `json:"uploadUrl"`
-	ExpiresAt time.Time `json:"expiresAt"`
+	UploadUrl string    `json,omitempty:"uploadUrl"`
+	ExpiresAt time.Time `json,omitempty:"expiresAt"`
 }
 
 /*

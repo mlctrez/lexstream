@@ -1,7 +1,7 @@
 package smarthomeevaluation
 
 type CapabilityTestPlan struct {
-	Id string `json:"id"`
+	Id string `json,omitempty:"id"`
 }
 
 /*

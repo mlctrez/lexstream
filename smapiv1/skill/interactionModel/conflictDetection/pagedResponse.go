@@ -3,8 +3,8 @@ package conflictdetection
 import smapiv1 "github.com/mlctrez/lexstream/smapiv1"
 
 type PagedResponse struct {
-	PaginationContext *PaginationContext `json:"paginationContext"`
-	Links             *smapiv1.Links     `json:"_links"`
+	PaginationContext *PaginationContext `json,omitempty:"paginationContext"`
+	Links             *smapiv1.Links     `json,omitempty:"_links"`
 }
 
 /*

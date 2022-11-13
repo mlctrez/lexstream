@@ -1,6 +1,10 @@
 package client
 
-import swaggerlt "github.com/mlctrez/swaggerlt"
+import (
+	smapiv1 "github.com/mlctrez/lexstream/smapiv1"
+	skill "github.com/mlctrez/lexstream/smapiv1/skill"
+	swaggerlt "github.com/mlctrez/swaggerlt"
+)
 
 /*
 DeleteSkillV1 Delete the skill and model for given skillId.
@@ -10,6 +14,12 @@ DeleteSkillV1 Delete the skill and model for given skillId.
 func (s *Client) DeleteSkillV1(skillId string) (err error) {
 	h := swaggerlt.NewRequestHelper("delete", s.Endpoint, "/v1/skills/{skillId}")
 	h.Path("skillId", skillId)
+	h.ResponseType(401, &skill.StandardizedError{})
+	h.ResponseType(403, &smapiv1.BadRequestError{})
+	h.ResponseType(404, &skill.StandardizedError{})
+	h.ResponseType(429, &skill.StandardizedError{})
+	h.ResponseType(500, &skill.StandardizedError{})
+	h.ResponseType(503, &skill.StandardizedError{})
 	err = h.Execute(s.Client)
 	return
 }

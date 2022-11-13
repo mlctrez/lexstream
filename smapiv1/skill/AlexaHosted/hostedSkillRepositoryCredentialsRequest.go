@@ -1,7 +1,7 @@
 package alexahosted
 
 type HostedSkillRepositoryCredentialsRequest struct {
-	Repository *HostedSkillRepositoryInfo `json:"repository"`
+	Repository *HostedSkillRepositoryInfo `json,omitempty:"repository"`
 }
 
 /*

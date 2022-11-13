@@ -2,7 +2,7 @@ package history
 
 type Slot struct {
 	// Name of the slot that was used in this interaction.
-	Name string `json:"name"`
+	Name string `json,omitempty:"name"`
 }
 
 /*

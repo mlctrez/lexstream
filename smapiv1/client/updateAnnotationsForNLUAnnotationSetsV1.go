@@ -1,6 +1,7 @@
 package client
 
 import (
+	smapiv1 "github.com/mlctrez/lexstream/smapiv1"
 	annotationSets_ "github.com/mlctrez/lexstream/smapiv1/skill/nlu/annotationSets"
 	swaggerlt "github.com/mlctrez/swaggerlt"
 )
@@ -20,6 +21,12 @@ func (s *Client) UpdateAnnotationsForNLUAnnotationSetsV1(skillId string, annotat
 	h.Path("annotationId", annotationId)
 	h.Header("Content-Type", content_Type)
 	h.Body = updateNLUAnnotationSetAnnotationsRequest
+	h.ResponseType(400, &smapiv1.BadRequestError{})
+	h.ResponseType(401, &smapiv1.Error{})
+	h.ResponseType(403, &smapiv1.BadRequestError{})
+	h.ResponseType(404, &smapiv1.Error{})
+	h.ResponseType(429, &smapiv1.Error{})
+	h.ResponseType(500, &smapiv1.Error{})
 	err = h.Execute(s.Client)
 	return
 }

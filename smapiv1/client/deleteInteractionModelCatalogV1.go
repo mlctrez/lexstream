@@ -1,6 +1,10 @@
 package client
 
-import swaggerlt "github.com/mlctrez/swaggerlt"
+import (
+	smapiv1 "github.com/mlctrez/lexstream/smapiv1"
+	skill "github.com/mlctrez/lexstream/smapiv1/skill"
+	swaggerlt "github.com/mlctrez/swaggerlt"
+)
 
 /*
 DeleteInteractionModelCatalogV1 Delete the catalog.
@@ -10,6 +14,13 @@ DeleteInteractionModelCatalogV1 Delete the catalog.
 func (s *Client) DeleteInteractionModelCatalogV1(catalogId string) (err error) {
 	h := swaggerlt.NewRequestHelper("delete", s.Endpoint, "/v1/skills/api/custom/interactionModel/catalogs/{catalogId}")
 	h.Path("catalogId", catalogId)
+	h.ResponseType(400, &smapiv1.BadRequestError{})
+	h.ResponseType(401, &skill.StandardizedError{})
+	h.ResponseType(403, &smapiv1.BadRequestError{})
+	h.ResponseType(404, &skill.StandardizedError{})
+	h.ResponseType(429, &skill.StandardizedError{})
+	h.ResponseType(500, &skill.StandardizedError{})
+	h.ResponseType(503, &skill.StandardizedError{})
 	err = h.Execute(s.Client)
 	return
 }

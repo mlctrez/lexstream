@@ -3,13 +3,13 @@ package annotationsets
 import "time"
 
 type AnnotationSetEntity struct {
-	Locale string `json:"locale"`
+	Locale string `json,omitempty:"locale"`
 	// Name of the NLU annotation set
-	Name string `json:"name"`
+	Name string `json,omitempty:"name"`
 	// Number of entries which represents number of utterances in each NLU annotation set content
-	NumberOfEntries int `json:"numberOfEntries"`
+	NumberOfEntries int `json,omitempty:"numberOfEntries"`
 	// The lastest updated timestamp for the NLU annotation set
-	UpdatedTimestamp time.Time `json:"updatedTimestamp"`
+	UpdatedTimestamp time.Time `json,omitempty:"updatedTimestamp"`
 }
 
 /*

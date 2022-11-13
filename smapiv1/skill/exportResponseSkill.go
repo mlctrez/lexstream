@@ -4,10 +4,10 @@ package skill
 ExportResponseSkill Defines the structure of the GetExport response.
 */
 type ExportResponseSkill struct {
-	ETag     string `json:"eTag"`
-	Location string `json:"location"`
+	ETag     string `json,omitempty:"eTag"`
+	Location string `json,omitempty:"location"`
 	// ExpiresAt timestamp in milliseconds.
-	ExpiresAt string `json:"expiresAt"`
+	ExpiresAt string `json,omitempty:"expiresAt"`
 }
 
 /*

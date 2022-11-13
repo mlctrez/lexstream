@@ -4,9 +4,9 @@ import "time"
 
 type GetResourceSchemaResponse struct {
 	// S3 presigned URL to schema location.
-	SchemaLocationUrl string `json:"schemaLocationUrl"`
+	SchemaLocationUrl string `json,omitempty:"schemaLocationUrl"`
 	// Timestamp when the schema location url expires in ISO 8601 format.
-	ExpiryTime time.Time `json:"expiryTime"`
+	ExpiryTime time.Time `json,omitempty:"expiryTime"`
 }
 
 /*

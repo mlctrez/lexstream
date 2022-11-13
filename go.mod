@@ -10,7 +10,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/lambda v1.24.9
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.29.1
 	github.com/google/uuid v1.3.0
-	github.com/mlctrez/swaggerlt v1.0.3
+	github.com/mlctrez/swaggerlt v1.0.4
 	golang.org/x/mod v0.6.0
 	golang.org/x/oauth2 v0.1.0
 )

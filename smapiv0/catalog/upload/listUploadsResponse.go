@@ -3,11 +3,11 @@ package upload
 import smapiv0 "github.com/mlctrez/lexstream/smapiv0"
 
 type ListUploadsResponse struct {
-	Links       *smapiv0.Links `json:"_links"`
-	IsTruncated bool           `json:"isTruncated"`
-	NextToken   string         `json:"nextToken"`
+	Links       *smapiv0.Links `json,omitempty:"_links"`
+	IsTruncated bool           `json,omitempty:"isTruncated"`
+	NextToken   string         `json,omitempty:"nextToken"`
 	// List of upload summaries.
-	Uploads []*ContentUploadSummary `json:"uploads"`
+	Uploads []*ContentUploadSummary `json,omitempty:"uploads"`
 }
 
 /*

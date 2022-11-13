@@ -2,9 +2,9 @@ package manifest
 
 type UpChannelItems struct {
 	// Use \"SNS\" for this field.
-	Type_ string `json:"type"`
+	Type_ string `json,omitempty:"type"`
 	// SNS Amazon Resource Name (ARN) for video skill through which video partner can send events to Alexa.
-	Uri string `json:"uri"`
+	Uri string `json,omitempty:"uri"`
 }
 
 /*

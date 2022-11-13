@@ -4,7 +4,7 @@ package type1
 SlotTypeStatus Defines the structure for slot type status response.
 */
 type SlotTypeStatus struct {
-	UpdateRequest *LastUpdateRequest `json:"updateRequest"`
+	UpdateRequest *LastUpdateRequest `json,omitempty:"updateRequest"`
 }
 
 /*

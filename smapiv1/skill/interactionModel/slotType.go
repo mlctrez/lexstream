@@ -5,10 +5,10 @@ SlotType Custom slot type to define a list of possible values for a slot. Used f
 */
 type SlotType struct {
 	// The name of the custom slot type.
-	Name string `json:"name"`
+	Name string `json,omitempty:"name"`
 	// List of expected values. Values outside the list are still returned.
-	Values        []*TypeValue   `json:"values"`
-	ValueSupplier *ValueSupplier `json:"valueSupplier"`
+	Values        []*TypeValue   `json,omitempty:"values"`
+	ValueSupplier *ValueSupplier `json,omitempty:"valueSupplier"`
 }
 
 /*

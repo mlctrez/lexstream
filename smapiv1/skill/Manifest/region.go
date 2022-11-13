@@ -4,7 +4,7 @@ package manifest
 Region Defines the structure for regional information.
 */
 type Region struct {
-	Endpoint *SkillManifestEndpoint `json:"endpoint"`
+	Endpoint *SkillManifestEndpoint `json,omitempty:"endpoint"`
 }
 
 /*

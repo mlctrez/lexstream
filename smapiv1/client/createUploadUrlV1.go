@@ -12,6 +12,10 @@ func (s *Client) CreateUploadUrlV1() (response *skill_.UploadResponse, err error
 	h := swaggerlt.NewRequestHelper("post", s.Endpoint, "/v1/skills/uploads")
 	response = &skill_.UploadResponse{}
 	h.Response = response
+	h.ResponseType(401, &skill_.StandardizedError{})
+	h.ResponseType(429, &skill_.StandardizedError{})
+	h.ResponseType(500, &skill_.StandardizedError{})
+	h.ResponseType(503, &skill_.StandardizedError{})
 	err = h.Execute(s.Client)
 	return
 }

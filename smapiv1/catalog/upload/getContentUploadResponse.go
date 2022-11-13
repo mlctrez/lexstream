@@ -4,15 +4,15 @@ import "time"
 
 type GetContentUploadResponse struct {
 	// Unique identifier of the upload
-	Id string `json:"id"`
+	Id string `json,omitempty:"id"`
 	// Unique identifier of the added catalog object
-	CatalogId       string                    `json:"catalogId"`
-	Status          *UploadStatus             `json:"status"`
-	CreatedDate     time.Time                 `json:"createdDate"`
-	LastUpdatedDate time.Time                 `json:"lastUpdatedDate"`
-	File            *ContentUploadFileSummary `json:"file"`
+	CatalogId       string                    `json,omitempty:"catalogId"`
+	Status          *UploadStatus             `json,omitempty:"status"`
+	CreatedDate     time.Time                 `json,omitempty:"createdDate"`
+	LastUpdatedDate time.Time                 `json,omitempty:"lastUpdatedDate"`
+	File            *ContentUploadFileSummary `json,omitempty:"file"`
 	// List of different steps performed on the upload.
-	IngestionSteps []*UploadIngestionStep `json:"ingestionSteps"`
+	IngestionSteps []*UploadIngestionStep `json,omitempty:"ingestionSteps"`
 }
 
 /*

@@ -5,16 +5,16 @@ MusicApis Defines the structure of music api in the skill manifest.
 */
 type MusicApis struct {
 	// Contains an array of the supported <region> Objects.
-	Regions  map[string]LambdaRegion `json:"regions"`
-	Endpoint *LambdaEndpoint         `json:"endpoint"`
+	Regions  map[string]LambdaRegion `json,omitempty:"regions"`
+	Endpoint *LambdaEndpoint         `json,omitempty:"endpoint"`
 	// Defines the structure of music capabilities information in the skill manifest.
-	Capabilities []*MusicCapability `json:"capabilities"`
+	Capabilities []*MusicCapability `json,omitempty:"capabilities"`
 	// A list of music skill interfaces that your skill supports.
-	Interfaces []*MusicInterfaces `json:"interfaces"`
+	Interfaces []*MusicInterfaces `json,omitempty:"interfaces"`
 	// Defines the structure of locale specific music information in the skill manifest.
-	Locales map[string]LocalizedMusicInfo `json:"locales"`
+	Locales map[string]LocalizedMusicInfo `json,omitempty:"locales"`
 	// List of the type of content to be provided by the music skill.
-	ContentTypes []*MusicContentType `json:"contentTypes"`
+	ContentTypes []*MusicContentType `json,omitempty:"contentTypes"`
 }
 
 /*

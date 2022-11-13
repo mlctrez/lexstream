@@ -15,6 +15,11 @@ func (s *Client) GetStatusOfExportRequestV1(exportId string) (response *skill_.E
 	h.Path("exportId", exportId)
 	response = &skill_.ExportResponse{}
 	h.Response = response
+	h.ResponseType(401, &skill_.StandardizedError{})
+	h.ResponseType(404, &skill_.StandardizedError{})
+	h.ResponseType(429, &skill_.StandardizedError{})
+	h.ResponseType(500, &skill_.StandardizedError{})
+	h.ResponseType(503, &skill_.StandardizedError{})
 	err = h.Execute(s.Client)
 	return
 }

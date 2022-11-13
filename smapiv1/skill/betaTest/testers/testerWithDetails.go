@@ -7,12 +7,12 @@ TesterWithDetails Tester information.
 */
 type TesterWithDetails struct {
 	// Email address of the tester.
-	EmailId string `json:"emailId"`
+	EmailId string `json,omitempty:"emailId"`
 	// Date and time when the tester is added to the beta test.
-	AssociationDate time.Time `json:"associationDate"`
+	AssociationDate time.Time `json,omitempty:"associationDate"`
 	// Indicates whether the tester is allowed to be sent reminder.
-	IsReminderAllowed bool              `json:"isReminderAllowed"`
-	InvitationStatus  *InvitationStatus `json:"invitationStatus"`
+	IsReminderAllowed bool              `json,omitempty:"isReminderAllowed"`
+	InvitationStatus  *InvitationStatus `json,omitempty:"invitationStatus"`
 }
 
 /*

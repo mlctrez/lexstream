@@ -1,6 +1,7 @@
 package client
 
 import (
+	smapiv0 "github.com/mlctrez/lexstream/smapiv0"
 	catalog_ "github.com/mlctrez/lexstream/smapiv0/catalog"
 	swaggerlt "github.com/mlctrez/swaggerlt"
 )
@@ -15,6 +16,13 @@ func (s *Client) GetCatalogV0(catalogId string) (response *catalog_.CatalogDetai
 	h.Path("catalogId", catalogId)
 	response = &catalog_.CatalogDetails{}
 	h.Response = response
+	h.ResponseType(400, &smapiv0.BadRequestError{})
+	h.ResponseType(401, &smapiv0.Error{})
+	h.ResponseType(403, &smapiv0.BadRequestError{})
+	h.ResponseType(404, &smapiv0.Error{})
+	h.ResponseType(429, &smapiv0.Error{})
+	h.ResponseType(500, &smapiv0.Error{})
+	h.ResponseType(503, &smapiv0.Error{})
 	err = h.Execute(s.Client)
 	return
 }

@@ -1,6 +1,7 @@
 package client
 
 import (
+	smapiv0 "github.com/mlctrez/lexstream/smapiv0"
 	subscriber_ "github.com/mlctrez/lexstream/smapiv0/developmentEvents/subscriber"
 	swaggerlt "github.com/mlctrez/swaggerlt"
 )
@@ -15,6 +16,13 @@ func (s *Client) SetSubscriberForDevelopmentEventsV0(subscriberId string, update
 	h := swaggerlt.NewRequestHelper("put", s.Endpoint, "/v0/developmentEvents/subscribers/{subscriberId}")
 	h.Path("subscriberId", subscriberId)
 	h.Body = updateSubscriberRequest
+	h.ResponseType(400, &smapiv0.BadRequestError{})
+	h.ResponseType(401, &smapiv0.Error{})
+	h.ResponseType(403, &smapiv0.BadRequestError{})
+	h.ResponseType(404, &smapiv0.Error{})
+	h.ResponseType(429, &smapiv0.Error{})
+	h.ResponseType(500, &smapiv0.Error{})
+	h.ResponseType(503, &smapiv0.Error{})
 	err = h.Execute(s.Client)
 	return
 }

@@ -5,10 +5,10 @@ Instance Structure representing properties of an instance of data. Definition wi
 */
 type Instance struct {
 	// Path that uniquely identifies the instance in the resource.
-	PropertyPath string               `json:"propertyPath"`
-	DataType     *ValidationDataTypes `json:"dataType"`
+	PropertyPath string               `json,omitempty:"propertyPath"`
+	DataType     *ValidationDataTypes `json,omitempty:"dataType"`
 	// String value of the instance. Incase of null, object or array the value field would be null or not present. Incase of string, boolean or integer dataType it will be the corresponding String value.
-	Value string `json:"value"`
+	Value string `json,omitempty:"value"`
 }
 
 /*

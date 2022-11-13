@@ -5,10 +5,10 @@ AlexaForBusinessApis Defines the structure of alexaForBusiness api in the skill 
 */
 type AlexaForBusinessApis struct {
 	// Contains an array of the supported <region> Objects.
-	Regions  map[string]Region      `json:"regions"`
-	Endpoint *SkillManifestEndpoint `json:"endpoint"`
+	Regions  map[string]Region      `json,omitempty:"regions"`
+	Endpoint *SkillManifestEndpoint `json,omitempty:"endpoint"`
 	// Contains the list of supported interfaces.
-	Interfaces []*AlexaForBusinessInterface `json:"interfaces"`
+	Interfaces []*AlexaForBusinessInterface `json,omitempty:"interfaces"`
 }
 
 /*

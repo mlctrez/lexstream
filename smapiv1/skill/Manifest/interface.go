@@ -1,7 +1,7 @@
 package manifest
 
 type Interface struct {
-	Type_ string `json:"type"`
+	Type_ string `json,omitempty:"type"`
 }
 
 /*

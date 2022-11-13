@@ -5,12 +5,12 @@ SlotTypeVersionDataObject Slot Type version fields with metadata.
 */
 type SlotTypeVersionDataObject struct {
 	// Slot type id associated with the slot type version.
-	Id         string               `json:"id"`
-	Definition *ValueSupplierObject `json:"definition"`
+	Id         string               `json,omitempty:"id"`
+	Definition *ValueSupplierObject `json,omitempty:"definition"`
 	// Description string for specific slot type version.
-	Description string `json:"description"`
+	Description string `json,omitempty:"description"`
 	// Specific slot type version.
-	Version string `json:"version"`
+	Version string `json,omitempty:"version"`
 }
 
 /*

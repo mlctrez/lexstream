@@ -4,8 +4,8 @@ package upload
 PresignedUploadPart Single upload part to perform a partitioned (multipart) file upload.
 */
 type PresignedUploadPart struct {
-	Url        string `json:"url"`
-	PartNumber int    `json:"partNumber"`
+	Url        string `json,omitempty:"url"`
+	PartNumber int    `json,omitempty:"partNumber"`
 }
 
 /*

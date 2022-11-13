@@ -6,19 +6,19 @@ import smapiv1 "github.com/mlctrez/lexstream/smapiv1"
 IntentRequests Response to the GET Intent Request History API. It contains the collection of utterances for the skill, nextToken and other metadata related to the search query.
 */
 type IntentRequests struct {
-	Links *smapiv1.Links `json:"_links"`
+	Links *smapiv1.Links `json,omitempty:"_links"`
 	// This token can be used to load the next page of the result.
-	NextToken string `json:"nextToken"`
+	NextToken string `json,omitempty:"nextToken"`
 	// This property is true when all the results matching the search request haven't been returned, false otherwise.
-	IsTruncated bool `json:"isTruncated"`
+	IsTruncated bool `json,omitempty:"isTruncated"`
 	// Total number of records that matched the given search query.
-	TotalCount int `json:"totalCount"`
+	TotalCount int `json,omitempty:"totalCount"`
 	// Position of the current page in the result set.
-	StartIndex int `json:"startIndex"`
+	StartIndex int `json,omitempty:"startIndex"`
 	// The Skill Id.
-	SkillId string `json:"skillId"`
+	SkillId string `json,omitempty:"skillId"`
 	// List of intent requests for the skill
-	Items []*IntentRequest `json:"items"`
+	Items []*IntentRequest `json,omitempty:"items"`
 }
 
 /*

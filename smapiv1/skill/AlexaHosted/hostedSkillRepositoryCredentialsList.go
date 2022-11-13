@@ -4,7 +4,7 @@ package alexahosted
 HostedSkillRepositoryCredentialsList defines the structure for the hosted skill repository credentials response
 */
 type HostedSkillRepositoryCredentialsList struct {
-	RepositoryCredentials *HostedSkillRepositoryCredentials `json:"repositoryCredentials"`
+	RepositoryCredentials *HostedSkillRepositoryCredentials `json,omitempty:"repositoryCredentials"`
 }
 
 /*

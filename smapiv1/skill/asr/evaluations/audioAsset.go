@@ -5,9 +5,9 @@ AudioAsset Object containing information about downloading audio file
 */
 type AudioAsset struct {
 	// S3 presigned download url for downloading the audio file
-	DownloadUrl string `json:"downloadUrl"`
+	DownloadUrl string `json,omitempty:"downloadUrl"`
 	// timestamp when the audio download url expire in ISO 8601 format
-	ExpiryTime string `json:"expiryTime"`
+	ExpiryTime string `json,omitempty:"expiryTime"`
 }
 
 /*

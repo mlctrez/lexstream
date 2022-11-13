@@ -2,7 +2,7 @@ package simulations
 
 type AlexaResponseContent struct {
 	// The plain text get from Alexa speech response
-	Caption string `json:"caption"`
+	Caption string `json,omitempty:"caption"`
 }
 
 /*

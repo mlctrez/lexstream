@@ -1,6 +1,7 @@
 package client
 
 import (
+	smapiv1 "github.com/mlctrez/lexstream/smapiv1"
 	validations_ "github.com/mlctrez/lexstream/smapiv1/skill/validations"
 	swaggerlt "github.com/mlctrez/swaggerlt"
 )
@@ -22,6 +23,10 @@ func (s *Client) GetSkillValidationsV1(skillId string, validationId string, stag
 	h.Header("Accept-Language", accept_Language)
 	response = &validations_.ValidationsApiResponse{}
 	h.Response = response
+	h.ResponseType(403, &smapiv1.BadRequestError{})
+	h.ResponseType(404, &smapiv1.Error{})
+	h.ResponseType(409, &smapiv1.Error{})
+	h.ResponseType(429, &smapiv1.Error{})
 	err = h.Execute(s.Client)
 	return
 }

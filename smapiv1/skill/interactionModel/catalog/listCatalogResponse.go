@@ -6,14 +6,14 @@ import smapiv1 "github.com/mlctrez/lexstream/smapiv1"
 ListCatalogResponse List of catalog versions of a skill for the vendor.
 */
 type ListCatalogResponse struct {
-	Links *smapiv1.Links `json:"_links"`
+	Links *smapiv1.Links `json,omitempty:"_links"`
 	/*
 	   List of catalogs.
 	*/
-	Catalogs    []*CatalogItem `json:"catalogs"`
-	IsTruncated bool           `json:"isTruncated"`
-	NextToken   string         `json:"nextToken"`
-	TotalCount  int            `json:"totalCount"`
+	Catalogs    []*CatalogItem `json,omitempty:"catalogs"`
+	IsTruncated bool           `json,omitempty:"isTruncated"`
+	NextToken   string         `json,omitempty:"nextToken"`
+	TotalCount  int            `json,omitempty:"totalCount"`
 }
 
 /*

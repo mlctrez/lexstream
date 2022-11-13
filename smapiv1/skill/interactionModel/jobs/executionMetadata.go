@@ -5,11 +5,11 @@ ExecutionMetadata ExecutionMetadata for executions.
 */
 type ExecutionMetadata struct {
 	// Identifier of the job.
-	JobId string `json:"jobId"`
+	JobId string `json,omitempty:"jobId"`
 	// ErrorCode to explain what went wrong in case of FAILUREs.
-	ErrorCode string `json:"errorCode"`
+	ErrorCode string `json,omitempty:"errorCode"`
 	// Current status of the job execution.
-	Status string `json:"status"`
+	Status string `json,omitempty:"status"`
 }
 
 /*

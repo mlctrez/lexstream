@@ -5,9 +5,9 @@ SlotValidation Validation on a slot with support for prompt and confirmation.
 */
 type SlotValidation struct {
 	// The exact type of validation e.g. isLessThan,isGreaterThan etc.
-	Type_ string `json:"type"`
+	Type_ string `json,omitempty:"type"`
 	// The prompt id that should be used if validation fails.
-	Prompt string `json:"prompt"`
+	Prompt string `json,omitempty:"prompt"`
 }
 
 /*

@@ -5,7 +5,7 @@ RequesterFilter Filter for the requester of the operation.
 */
 type RequesterFilter struct {
 	// LoginWithAmazon User ID.
-	UserId string `json:"userId"`
+	UserId string `json,omitempty:"userId"`
 }
 
 /*

@@ -1,7 +1,7 @@
 package skill
 
 type RegionalSSLCertificate struct {
-	SslCertificate string `json:"sslCertificate"`
+	SslCertificate string `json,omitempty:"sslCertificate"`
 }
 
 /*

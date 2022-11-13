@@ -1,6 +1,7 @@
 package client
 
 import (
+	smapiv0 "github.com/mlctrez/lexstream/smapiv0"
 	subscriber_ "github.com/mlctrez/lexstream/smapiv0/developmentEvents/subscriber"
 	swaggerlt "github.com/mlctrez/swaggerlt"
 )
@@ -13,6 +14,11 @@ CreateSubscriberForDevelopmentEventsV0 Creates a new subscriber resource for a v
 func (s *Client) CreateSubscriberForDevelopmentEventsV0(createSubscriberRequest *subscriber_.CreateSubscriberRequest) (err error) {
 	h := swaggerlt.NewRequestHelper("post", s.Endpoint, "/v0/developmentEvents/subscribers")
 	h.Body = createSubscriberRequest
+	h.ResponseType(400, &smapiv0.BadRequestError{})
+	h.ResponseType(401, &smapiv0.Error{})
+	h.ResponseType(429, &smapiv0.Error{})
+	h.ResponseType(500, &smapiv0.Error{})
+	h.ResponseType(503, &smapiv0.Error{})
 	err = h.Execute(s.Client)
 	return
 }

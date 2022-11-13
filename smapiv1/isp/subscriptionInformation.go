@@ -4,9 +4,9 @@ package isp
 SubscriptionInformation Defines the structure for in-skill product subscription information.
 */
 type SubscriptionInformation struct {
-	SubscriptionPaymentFrequency *SubscriptionPaymentFrequency `json:"subscriptionPaymentFrequency"`
+	SubscriptionPaymentFrequency *SubscriptionPaymentFrequency `json,omitempty:"subscriptionPaymentFrequency"`
 	// Days of free trial period for subscription. Max allowed is 365 days.
-	SubscriptionTrialPeriodDays int `json:"subscriptionTrialPeriodDays"`
+	SubscriptionTrialPeriodDays int `json,omitempty:"subscriptionTrialPeriodDays"`
 }
 
 /*

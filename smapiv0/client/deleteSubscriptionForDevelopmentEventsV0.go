@@ -1,6 +1,9 @@
 package client
 
-import swaggerlt "github.com/mlctrez/swaggerlt"
+import (
+	smapiv0 "github.com/mlctrez/lexstream/smapiv0"
+	swaggerlt "github.com/mlctrez/swaggerlt"
+)
 
 /*
 DeleteSubscriptionForDevelopmentEventsV0 Deletes a particular subscription. Both, the vendor who created the subscriber and the vendor who publishes the event can delete this resource with appropriate authorization.
@@ -10,6 +13,13 @@ DeleteSubscriptionForDevelopmentEventsV0 Deletes a particular subscription. Both
 func (s *Client) DeleteSubscriptionForDevelopmentEventsV0(subscriptionId string) (err error) {
 	h := swaggerlt.NewRequestHelper("delete", s.Endpoint, "/v0/developmentEvents/subscriptions/{subscriptionId}")
 	h.Path("subscriptionId", subscriptionId)
+	h.ResponseType(400, &smapiv0.BadRequestError{})
+	h.ResponseType(401, &smapiv0.Error{})
+	h.ResponseType(403, &smapiv0.BadRequestError{})
+	h.ResponseType(404, &smapiv0.Error{})
+	h.ResponseType(429, &smapiv0.Error{})
+	h.ResponseType(500, &smapiv0.Error{})
+	h.ResponseType(503, &smapiv0.Error{})
 	err = h.Execute(s.Client)
 	return
 }

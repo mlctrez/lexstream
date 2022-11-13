@@ -2,7 +2,7 @@ package smarthomeevaluation
 
 type ListSHCapabilityTestPlansResponse struct {
 	PagedResponse
-	TestPlans []*ListSHTestPlanItem `json:"testPlans"`
+	TestPlans []*ListSHTestPlanItem `json,omitempty:"testPlans"`
 }
 
 /*

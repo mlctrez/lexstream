@@ -1,6 +1,7 @@
 package client
 
 import (
+	smapiv0 "github.com/mlctrez/lexstream/smapiv0"
 	subscription_ "github.com/mlctrez/lexstream/smapiv0/developmentEvents/subscription"
 	swaggerlt "github.com/mlctrez/swaggerlt"
 )
@@ -21,6 +22,13 @@ func (s *Client) ListSubscriptionsForDevelopmentEventsV0(vendorId string, nextTo
 	h.Param("subscriberId", subscriberId)
 	response = &subscription_.ListSubscriptionsResponse{}
 	h.Response = response
+	h.ResponseType(400, &smapiv0.BadRequestError{})
+	h.ResponseType(401, &smapiv0.Error{})
+	h.ResponseType(403, &smapiv0.BadRequestError{})
+	h.ResponseType(404, &smapiv0.Error{})
+	h.ResponseType(429, &smapiv0.Error{})
+	h.ResponseType(500, &smapiv0.Error{})
+	h.ResponseType(503, &smapiv0.Error{})
 	err = h.Execute(s.Client)
 	return
 }

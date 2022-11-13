@@ -5,9 +5,9 @@ SlotTypeInput Definition for slot type input.
 */
 type SlotTypeInput struct {
 	// Name of the slot type.
-	Name string `json:"name"`
+	Name string `json,omitempty:"name"`
 	// Description string about the slot type.
-	Description string `json:"description"`
+	Description string `json,omitempty:"description"`
 }
 
 /*

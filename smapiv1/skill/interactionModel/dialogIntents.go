@@ -2,14 +2,14 @@ package interactionmodel
 
 type DialogIntents struct {
 	// Name of the intent that has a dialog specification.
-	Name string `json:"name"`
+	Name string `json,omitempty:"name"`
 	// Defines an intent-specific delegation strategy for this dialog intent. Overrides dialog-level setting.
-	DelegationStrategy *DelegationStrategyType `json:"delegationStrategy"`
+	DelegationStrategy *DelegationStrategyType `json,omitempty:"delegationStrategy"`
 	// List of slots that have dialog rules.
-	Slots []*DialogSlotItems `json:"slots"`
+	Slots []*DialogSlotItems `json,omitempty:"slots"`
 	// Describes whether confirmation of the intent is required.
-	ConfirmationRequired bool                  `json:"confirmationRequired"`
-	Prompts              *DialogIntentsPrompts `json:"prompts"`
+	ConfirmationRequired bool                  `json,omitempty:"confirmationRequired"`
+	Prompts              *DialogIntentsPrompts `json,omitempty:"prompts"`
 }
 
 /*

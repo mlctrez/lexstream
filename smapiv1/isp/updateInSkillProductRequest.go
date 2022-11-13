@@ -1,7 +1,7 @@
 package isp
 
 type UpdateInSkillProductRequest struct {
-	InSkillProductDefinition *InSkillProductDefinition `json:"inSkillProductDefinition"`
+	InSkillProductDefinition *InSkillProductDefinition `json,omitempty:"inSkillProductDefinition"`
 }
 
 /*

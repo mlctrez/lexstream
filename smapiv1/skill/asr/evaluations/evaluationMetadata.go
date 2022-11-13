@@ -6,16 +6,16 @@ import "time"
 EvaluationMetadata response body for GetAsrEvaluationsStatus API
 */
 type EvaluationMetadata struct {
-	Status *EvaluationStatus `json:"status"`
+	Status *EvaluationStatus `json,omitempty:"status"`
 	// indicate the total number of evaluations that are supposed to be run in the evaluation request
-	TotalEvaluationCount int `json:"totalEvaluationCount"`
+	TotalEvaluationCount int `json,omitempty:"totalEvaluationCount"`
 	// indicate the number of completed evaluations
-	CompletedEvaluationCount int `json:"completedEvaluationCount"`
+	CompletedEvaluationCount int `json,omitempty:"completedEvaluationCount"`
 	// indicate the start time stamp of the ASR evaluation job. ISO-8601 Format.
-	StartTimestamp time.Time                        `json:"startTimestamp"`
-	Request        *PostAsrEvaluationsRequestObject `json:"request"`
-	Error          *ErrorObject                     `json:"error"`
-	Result         *EvaluationMetadataResult        `json:"result"`
+	StartTimestamp time.Time                        `json,omitempty:"startTimestamp"`
+	Request        *PostAsrEvaluationsRequestObject `json,omitempty:"request"`
+	Error          *ErrorObject                     `json,omitempty:"error"`
+	Result         *EvaluationMetadataResult        `json,omitempty:"result"`
 }
 
 /*

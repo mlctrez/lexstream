@@ -1,6 +1,7 @@
 package client
 
 import (
+	smapiv0 "github.com/mlctrez/lexstream/smapiv0"
 	upload_ "github.com/mlctrez/lexstream/smapiv0/catalog/upload"
 	swaggerlt "github.com/mlctrez/swaggerlt"
 )
@@ -17,6 +18,13 @@ func (s *Client) GetContentUploadByIdV0(catalogId string, uploadId string) (resp
 	h.Path("uploadId", uploadId)
 	response = &upload_.GetContentUploadResponse{}
 	h.Response = response
+	h.ResponseType(400, &smapiv0.BadRequestError{})
+	h.ResponseType(401, &smapiv0.Error{})
+	h.ResponseType(403, &smapiv0.BadRequestError{})
+	h.ResponseType(404, &smapiv0.Error{})
+	h.ResponseType(429, &smapiv0.Error{})
+	h.ResponseType(500, &smapiv0.Error{})
+	h.ResponseType(503, &smapiv0.Error{})
 	err = h.Execute(s.Client)
 	return
 }

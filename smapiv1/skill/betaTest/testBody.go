@@ -5,7 +5,7 @@ TestBody Beta test meta-data.
 */
 type TestBody struct {
 	// Email address for providing feedback.
-	FeedbackEmail string `json:"feedbackEmail"`
+	FeedbackEmail string `json,omitempty:"feedbackEmail"`
 }
 
 /*

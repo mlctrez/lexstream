@@ -3,9 +3,9 @@ package catalog
 import "time"
 
 type PresignedUploadPartItems struct {
-	Url        string    `json:"url"`
-	PartNumber int       `json:"partNumber"`
-	ExpiresAt  time.Time `json:"expiresAt"`
+	Url        string    `json,omitempty:"url"`
+	PartNumber int       `json,omitempty:"partNumber"`
+	ExpiresAt  time.Time `json,omitempty:"expiresAt"`
 }
 
 /*

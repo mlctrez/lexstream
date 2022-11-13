@@ -5,13 +5,13 @@ CustomApis Defines the structure for custom api of the skill.
 */
 type CustomApis struct {
 	// Contains an array of the supported <region> Objects.
-	Regions  map[string]Region      `json:"regions"`
-	Endpoint *SkillManifestEndpoint `json:"endpoint"`
+	Regions  map[string]Region      `json,omitempty:"regions"`
+	Endpoint *SkillManifestEndpoint `json,omitempty:"endpoint"`
 	// Defines the structure for interfaces supported by the custom api of the skill.
-	Interfaces []*Interface `json:"interfaces"`
+	Interfaces []*Interface `json,omitempty:"interfaces"`
 	// List of provided tasks.
-	Tasks       []*SkillManifestCustomTask `json:"tasks"`
-	Connections *CustomConnections         `json:"connections"`
+	Tasks       []*SkillManifestCustomTask `json,omitempty:"tasks"`
+	Connections *CustomConnections         `json,omitempty:"connections"`
 }
 
 /*

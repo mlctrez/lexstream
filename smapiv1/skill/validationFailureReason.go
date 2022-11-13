@@ -5,7 +5,7 @@ ValidationFailureReason Object representing what is wrong in the request.
 */
 type ValidationFailureReason struct {
 	// Enum for type of validation failure in the request.
-	Type_ *ValidationFailureType `json:"type"`
+	Type_ *ValidationFailureType `json,omitempty:"type"`
 }
 
 /*

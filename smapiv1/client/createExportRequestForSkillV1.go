@@ -1,6 +1,9 @@
 package client
 
-import swaggerlt "github.com/mlctrez/swaggerlt"
+import (
+	skill "github.com/mlctrez/lexstream/smapiv1/skill"
+	swaggerlt "github.com/mlctrez/swaggerlt"
+)
 
 /*
 CreateExportRequestForSkillV1 Creates a new export for a skill with given skillId and stage.
@@ -12,6 +15,12 @@ func (s *Client) CreateExportRequestForSkillV1(skillId string, stage string) (er
 	h := swaggerlt.NewRequestHelper("post", s.Endpoint, "/v1/skills/{skillId}/stages/{stage}/exports")
 	h.Path("skillId", skillId)
 	h.Path("stage", stage)
+	h.ResponseType(401, &skill.StandardizedError{})
+	h.ResponseType(404, &skill.StandardizedError{})
+	h.ResponseType(409, &skill.StandardizedError{})
+	h.ResponseType(429, &skill.StandardizedError{})
+	h.ResponseType(500, &skill.StandardizedError{})
+	h.ResponseType(503, &skill.StandardizedError{})
 	err = h.Execute(s.Client)
 	return
 }

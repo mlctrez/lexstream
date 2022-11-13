@@ -4,7 +4,7 @@ package interactionmodel
 FallbackIntentSensitivity Denotes skill's sensitivity for out-of-domain utterances.
 */
 type FallbackIntentSensitivity struct {
-	Level *FallbackIntentSensitivityLevel `json:"level"`
+	Level *FallbackIntentSensitivityLevel `json,omitempty:"level"`
 }
 
 /*

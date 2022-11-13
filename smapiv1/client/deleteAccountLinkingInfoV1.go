@@ -1,6 +1,10 @@
 package client
 
-import swaggerlt "github.com/mlctrez/swaggerlt"
+import (
+	smapiv1 "github.com/mlctrez/lexstream/smapiv1"
+	skill "github.com/mlctrez/lexstream/smapiv1/skill"
+	swaggerlt "github.com/mlctrez/swaggerlt"
+)
 
 /*
 DeleteAccountLinkingInfoV1 Delete AccountLinking information of a skill for the given stage.
@@ -16,6 +20,12 @@ func (s *Client) DeleteAccountLinkingInfoV1(skillId string, stageV2 string) (err
 	h := swaggerlt.NewRequestHelper("delete", s.Endpoint, "/v1/skills/{skillId}/stages/{stageV2}/accountLinkingClient")
 	h.Path("skillId", skillId)
 	h.Path("stageV2", stageV2)
+	h.ResponseType(401, &skill.StandardizedError{})
+	h.ResponseType(403, &smapiv1.BadRequestError{})
+	h.ResponseType(404, &skill.StandardizedError{})
+	h.ResponseType(429, &skill.StandardizedError{})
+	h.ResponseType(500, &skill.StandardizedError{})
+	h.ResponseType(503, &skill.StandardizedError{})
 	err = h.Execute(s.Client)
 	return
 }

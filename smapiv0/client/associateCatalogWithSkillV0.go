@@ -1,6 +1,9 @@
 package client
 
-import swaggerlt "github.com/mlctrez/swaggerlt"
+import (
+	smapiv0 "github.com/mlctrez/lexstream/smapiv0"
+	swaggerlt "github.com/mlctrez/swaggerlt"
+)
 
 /*
 AssociateCatalogWithSkillV0 Associate skill with catalog.
@@ -12,6 +15,13 @@ func (s *Client) AssociateCatalogWithSkillV0(skillId string, catalogId string) (
 	h := swaggerlt.NewRequestHelper("put", s.Endpoint, "/v0/skills/{skillId}/catalogs/{catalogId}")
 	h.Path("skillId", skillId)
 	h.Path("catalogId", catalogId)
+	h.ResponseType(400, &smapiv0.BadRequestError{})
+	h.ResponseType(401, &smapiv0.Error{})
+	h.ResponseType(403, &smapiv0.BadRequestError{})
+	h.ResponseType(404, &smapiv0.Error{})
+	h.ResponseType(429, &smapiv0.Error{})
+	h.ResponseType(500, &smapiv0.Error{})
+	h.ResponseType(503, &smapiv0.Error{})
 	err = h.Execute(s.Client)
 	return
 }

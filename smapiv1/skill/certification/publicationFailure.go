@@ -5,9 +5,9 @@ PublicationFailure Information about why the skill was not published in certain 
 */
 type PublicationFailure struct {
 	// Reason why Amazon did not publish the skill in certain countries.
-	Reason string `json:"reason"`
+	Reason string `json,omitempty:"reason"`
 	// List of countries where Amazon did not publish the skill for a specific reason
-	Countries []string `json:"countries"`
+	Countries []string `json,omitempty:"countries"`
 }
 
 /*

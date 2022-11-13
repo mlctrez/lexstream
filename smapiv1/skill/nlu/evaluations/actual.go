@@ -1,8 +1,8 @@
 package evaluations
 
 type Actual struct {
-	Domain string  `json:"domain"`
-	Intent *Intent `json:"intent"`
+	Domain string  `json,omitempty:"domain"`
+	Intent *Intent `json,omitempty:"intent"`
 }
 
 /*

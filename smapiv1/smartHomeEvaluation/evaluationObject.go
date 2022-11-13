@@ -3,13 +3,13 @@ package smarthomeevaluation
 import "time"
 
 type EvaluationObject struct {
-	EndTimestamp      time.Time               `json:"endTimestamp"`
-	StartTimestamp    time.Time               `json:"startTimestamp"`
-	Status            *EvaluationEntityStatus `json:"status"`
-	EndpointId        string                  `json:"endpointId"`
-	Id                string                  `json:"id"`
-	SourceTestPlanIds []string                `json:"sourceTestPlanIds"`
-	TestPlanId        string                  `json:"testPlanId"`
+	EndTimestamp      time.Time               `json,omitempty:"endTimestamp"`
+	StartTimestamp    time.Time               `json,omitempty:"startTimestamp"`
+	Status            *EvaluationEntityStatus `json,omitempty:"status"`
+	EndpointId        string                  `json,omitempty:"endpointId"`
+	Id                string                  `json,omitempty:"id"`
+	SourceTestPlanIds []string                `json,omitempty:"sourceTestPlanIds"`
+	TestPlanId        string                  `json,omitempty:"testPlanId"`
 }
 
 /*

@@ -4,7 +4,7 @@ package manifest
 VideoCountryInfo Defines the structure of per-country video info in the skill manifest.
 */
 type VideoCountryInfo struct {
-	CatalogInformation []*VideoCatalogInfo `json:"catalogInformation"`
+	CatalogInformation []*VideoCatalogInfo `json,omitempty:"catalogInformation"`
 }
 
 /*

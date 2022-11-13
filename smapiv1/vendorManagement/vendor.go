@@ -5,11 +5,11 @@ Vendor Vendor Response Object.
 */
 type Vendor struct {
 	// Name of vendor.
-	Name string `json:"name"`
+	Name string `json,omitempty:"name"`
 	// Unique identifier of vendor associated with the API caller account.
-	Id string `json:"id"`
+	Id string `json,omitempty:"id"`
 	// Roles that user has for this vendor.
-	Roles []string `json:"roles"`
+	Roles []string `json,omitempty:"roles"`
 }
 
 /*

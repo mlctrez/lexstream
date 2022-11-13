@@ -1,9 +1,9 @@
 package conflictdetection
 
 type GetConflictDetectionJobStatusResponse struct {
-	Status *ConflictDetectionJobStatus `json:"status"`
+	Status *ConflictDetectionJobStatus `json,omitempty:"status"`
 	// The total number of conflicts within skill model.
-	TotalConflicts int `json:"totalConflicts"`
+	TotalConflicts int `json,omitempty:"totalConflicts"`
 }
 
 /*

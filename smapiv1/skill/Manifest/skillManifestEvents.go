@@ -5,11 +5,11 @@ SkillManifestEvents Defines the structure for subscribed events information in t
 */
 type SkillManifestEvents struct {
 	// Contains an array of eventName object each of which contains the name of a skill event.
-	Subscriptions []*EventName         `json:"subscriptions"`
-	Publications  []*EventPublications `json:"publications"`
+	Subscriptions []*EventName         `json,omitempty:"subscriptions"`
+	Publications  []*EventPublications `json,omitempty:"publications"`
 	// Contains an array of the supported <region> Objects.
-	Regions  map[string]Region      `json:"regions"`
-	Endpoint *SkillManifestEndpoint `json:"endpoint"`
+	Regions  map[string]Region      `json,omitempty:"regions"`
+	Endpoint *SkillManifestEndpoint `json,omitempty:"endpoint"`
 }
 
 /*

@@ -6,7 +6,7 @@ import smapiv1 "github.com/mlctrez/lexstream/smapiv1"
 ListSkillResponse List of skills for the vendor.
 */
 type ListSkillResponse struct {
-	Links *smapiv1.Links `json:"_links"`
+	Links *smapiv1.Links `json,omitempty:"_links"`
 	/*
 	   List of skill summaries. List might contain either one, two or three entries for a given skillId depending on the skill's publication history and the publication method.
 	   `Skill containing certified stage`
@@ -16,9 +16,9 @@ type ListSkillResponse struct {
 	   * If a skill was never published to live, this list will contain only one entry for the skill with stage as 'development'.
 	   * For any skill that has been published to 'live', this list will contain two entries `:` one with stage 'development' and another with stage 'live'. Both of these summaries will have same skillId.
 	*/
-	Skills      []*SkillSummary `json:"skills"`
-	IsTruncated bool            `json:"isTruncated"`
-	NextToken   string          `json:"nextToken"`
+	Skills      []*SkillSummary `json,omitempty:"skills"`
+	IsTruncated bool            `json,omitempty:"isTruncated"`
+	NextToken   string          `json,omitempty:"nextToken"`
 }
 
 /*

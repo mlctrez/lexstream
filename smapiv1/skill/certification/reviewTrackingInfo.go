@@ -7,13 +7,13 @@ ReviewTrackingInfo Structure for review tracking information of the skill.
 */
 type ReviewTrackingInfo struct {
 	// Timestamp for estimated completion of certification review for the skill.
-	EstimatedCompletionTimestamp time.Time `json:"estimatedCompletionTimestamp"`
+	EstimatedCompletionTimestamp time.Time `json,omitempty:"estimatedCompletionTimestamp"`
 	// Timestamp for actual completion of certification review for the skill.
-	ActualCompletionTimestamp time.Time `json:"actualCompletionTimestamp"`
+	ActualCompletionTimestamp time.Time `json,omitempty:"actualCompletionTimestamp"`
 	// Timestamp for when the last update was made to review tracking info.
-	LastUpdated time.Time `json:"lastUpdated"`
+	LastUpdated time.Time `json,omitempty:"lastUpdated"`
 	// List of updates to estimation completion time for certification review for the skill.
-	EstimationUpdates []*EstimationUpdate `json:"estimationUpdates"`
+	EstimationUpdates []*EstimationUpdate `json,omitempty:"estimationUpdates"`
 }
 
 /*

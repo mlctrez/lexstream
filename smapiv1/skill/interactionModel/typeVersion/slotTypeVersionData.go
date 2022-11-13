@@ -4,7 +4,7 @@ package typeversion
 SlotTypeVersionData Slot Type version data with metadata.
 */
 type SlotTypeVersionData struct {
-	SlotType *SlotTypeVersionDataObject `json:"slotType"`
+	SlotType *SlotTypeVersionDataObject `json,omitempty:"slotType"`
 }
 
 /*

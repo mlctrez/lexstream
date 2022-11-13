@@ -6,22 +6,22 @@ import "time"
 InSkillProductSummary Information about the in-skill product that is not editable.
 */
 type InSkillProductSummary struct {
-	Type_ *ProductType `json:"type"`
+	Type_ *ProductType `json,omitempty:"type"`
 	// primary identifier of in-skill product.
-	ProductId string `json:"productId"`
+	ProductId string `json,omitempty:"productId"`
 	// Developer selected in-skill product name. This is for developer reference only, it can be used to filter query results to identify a matching in-skill product.
-	ReferenceName string `json:"referenceName"`
+	ReferenceName string `json,omitempty:"referenceName"`
 	// Date of last update.
-	LastUpdated      time.Time         `json:"lastUpdated"`
-	NameByLocale     map[string]string `json:"nameByLocale"`
-	Status           *Status           `json:"status"`
-	Stage            *Stage            `json:"stage"`
-	EditableState    *EditableState    `json:"editableState"`
-	PurchasableState *PurchasableState `json:"purchasableState"`
-	PromotableState  *PromotableState  `json:"promotableState"`
-	Links            *IspSummaryLinks  `json:"_links"`
+	LastUpdated      time.Time         `json,omitempty:"lastUpdated"`
+	NameByLocale     map[string]string `json,omitempty:"nameByLocale"`
+	Status           *Status           `json,omitempty:"status"`
+	Stage            *Stage            `json,omitempty:"stage"`
+	EditableState    *EditableState    `json,omitempty:"editableState"`
+	PurchasableState *PurchasableState `json,omitempty:"purchasableState"`
+	PromotableState  *PromotableState  `json,omitempty:"promotableState"`
+	Links            *IspSummaryLinks  `json,omitempty:"_links"`
 	// In-skill product pricing information.
-	Pricing map[string]SummaryMarketplacePricing `json:"pricing"`
+	Pricing map[string]SummaryMarketplacePricing `json,omitempty:"pricing"`
 }
 
 /*

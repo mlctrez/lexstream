@@ -2,7 +2,7 @@ package catalog
 
 type CreateContentUploadUrlRequest struct {
 	// Provides the number of parts the file will be split into. An equal number of presigned upload urls are generated in response to facilitate each part's upload.
-	NumberOfUploadParts int `json:"numberOfUploadParts"`
+	NumberOfUploadParts int `json,omitempty:"numberOfUploadParts"`
 }
 
 /*

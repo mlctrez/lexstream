@@ -4,7 +4,7 @@ package jobs
 UpdateJobStatusRequest Update job status.
 */
 type UpdateJobStatusRequest struct {
-	Status *JobDefinitionStatus `json:"status"`
+	Status *JobDefinitionStatus `json,omitempty:"status"`
 }
 
 /*

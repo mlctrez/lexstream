@@ -2,10 +2,10 @@ package manifest
 
 type AlexaForBusinessInterface struct {
 	// Name of the interface.
-	Namespace string   `json:"namespace"`
-	Version   *Version `json:"version"`
+	Namespace string   `json,omitempty:"namespace"`
+	Version   *Version `json,omitempty:"version"`
 	// Contains a list of requests/messages that skill can handle.
-	Requests []*Request `json:"requests"`
+	Requests []*Request `json,omitempty:"requests"`
 }
 
 /*

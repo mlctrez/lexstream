@@ -2,16 +2,16 @@ package interactionmodel
 
 type DialogSlotItems struct {
 	// The name of the slot that has dialog rules associated with it.
-	Name string `json:"name"`
+	Name string `json,omitempty:"name"`
 	// Type of the slot in the dialog intent.
-	Type_ string `json:"type"`
+	Type_ string `json,omitempty:"type"`
 	// Describes whether elicitation of the slot is required.
-	ElicitationRequired bool `json:"elicitationRequired"`
+	ElicitationRequired bool `json,omitempty:"elicitationRequired"`
 	// Describes whether confirmation of the slot is required.
-	ConfirmationRequired bool           `json:"confirmationRequired"`
-	Prompts              *DialogPrompts `json:"prompts"`
+	ConfirmationRequired bool           `json,omitempty:"confirmationRequired"`
+	Prompts              *DialogPrompts `json,omitempty:"prompts"`
 	// List of validations for the slot. if validation fails, user will be prompted with the provided prompt.
-	Validations []*SlotValidation `json:"validations"`
+	Validations []*SlotValidation `json,omitempty:"validations"`
 }
 
 /*

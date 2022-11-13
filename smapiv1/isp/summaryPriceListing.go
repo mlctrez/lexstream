@@ -5,10 +5,10 @@ SummaryPriceListing Price listing information for in-skill product.
 */
 type SummaryPriceListing struct {
 	// The price of an in-skill product.
-	Price int `json:"price"`
+	Price int `json,omitempty:"price"`
 	// The prime price of an in-skill product.
-	PrimeMemberPrice int       `json:"primeMemberPrice"`
-	Currency         *Currency `json:"currency"`
+	PrimeMemberPrice int       `json,omitempty:"primeMemberPrice"`
+	Currency         *Currency `json,omitempty:"currency"`
 }
 
 /*

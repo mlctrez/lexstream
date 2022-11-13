@@ -1,6 +1,7 @@
 package client
 
 import (
+	smapiv1 "github.com/mlctrez/lexstream/smapiv1"
 	simulations_ "github.com/mlctrez/lexstream/smapiv1/skill/simulations"
 	swaggerlt "github.com/mlctrez/swaggerlt"
 )
@@ -17,6 +18,14 @@ func (s *Client) SimulateSkillV1(skillId string, simulationsApiRequest *simulati
 	h.Body = simulationsApiRequest
 	response = &simulations_.SimulationsApiResponse{}
 	h.Response = response
+	h.ResponseType(400, &smapiv1.BadRequestError{})
+	h.ResponseType(401, &smapiv1.Error{})
+	h.ResponseType(403, &smapiv1.BadRequestError{})
+	h.ResponseType(404, &smapiv1.Error{})
+	h.ResponseType(409, &smapiv1.Error{})
+	h.ResponseType(429, &smapiv1.Error{})
+	h.ResponseType(500, &smapiv1.Error{})
+	h.ResponseType(503, &smapiv1.Error{})
 	err = h.Execute(s.Client)
 	return
 }

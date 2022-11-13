@@ -1,6 +1,7 @@
 package client
 
 import (
+	smapiv1 "github.com/mlctrez/lexstream/smapiv1"
 	evaluations_ "github.com/mlctrez/lexstream/smapiv1/skill/asr/evaluations"
 	swaggerlt "github.com/mlctrez/swaggerlt"
 )
@@ -28,6 +29,12 @@ func (s *Client) ListASREvaluationsV1(skillId string, nextToken string, locale s
 	h.Param("maxResults", maxResults)
 	response = &evaluations_.ListAsrEvaluationsResponse{}
 	h.Response = response
+	h.ResponseType(400, &smapiv1.BadRequestError{})
+	h.ResponseType(401, &smapiv1.Error{})
+	h.ResponseType(403, &smapiv1.BadRequestError{})
+	h.ResponseType(404, &smapiv1.Error{})
+	h.ResponseType(429, &smapiv1.Error{})
+	h.ResponseType(503, &smapiv1.Error{})
 	err = h.Execute(s.Client)
 	return
 }

@@ -1,6 +1,11 @@
 package client
 
-import swaggerlt "github.com/mlctrez/swaggerlt"
+import (
+	smapiv1 "github.com/mlctrez/lexstream/smapiv1"
+	skill "github.com/mlctrez/lexstream/smapiv1/skill"
+	jobs "github.com/mlctrez/lexstream/smapiv1/skill/interactionModel/jobs"
+	swaggerlt "github.com/mlctrez/swaggerlt"
+)
 
 /*
 DeleteJobDefinitionForInteractionModelV1 Delete the job definition for a given jobId.
@@ -10,6 +15,13 @@ DeleteJobDefinitionForInteractionModelV1 Delete the job definition for a given j
 func (s *Client) DeleteJobDefinitionForInteractionModelV1(jobId string) (err error) {
 	h := swaggerlt.NewRequestHelper("delete", s.Endpoint, "/v1/skills/api/custom/interactionModel/jobs/{jobId}")
 	h.Path("jobId", jobId)
+	h.ResponseType(400, &jobs.ValidationErrors{})
+	h.ResponseType(401, &skill.StandardizedError{})
+	h.ResponseType(403, &smapiv1.BadRequestError{})
+	h.ResponseType(404, &skill.StandardizedError{})
+	h.ResponseType(429, &skill.StandardizedError{})
+	h.ResponseType(500, &skill.StandardizedError{})
+	h.ResponseType(503, &skill.StandardizedError{})
 	err = h.Execute(s.Client)
 	return
 }

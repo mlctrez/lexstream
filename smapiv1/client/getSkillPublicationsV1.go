@@ -1,6 +1,7 @@
 package client
 
 import (
+	skill "github.com/mlctrez/lexstream/smapiv1/skill"
 	publication_ "github.com/mlctrez/lexstream/smapiv1/skill/publication"
 	swaggerlt "github.com/mlctrez/swaggerlt"
 )
@@ -18,6 +19,11 @@ func (s *Client) GetSkillPublicationsV1(skillId string, accept_Language string) 
 	h.Header("Accept-Language", accept_Language)
 	response = &publication_.SkillPublicationResponse{}
 	h.Response = response
+	h.ResponseType(401, &skill.StandardizedError{})
+	h.ResponseType(404, &skill.StandardizedError{})
+	h.ResponseType(429, &skill.StandardizedError{})
+	h.ResponseType(500, &skill.StandardizedError{})
+	h.ResponseType(503, &skill.StandardizedError{})
 	err = h.Execute(s.Client)
 	return
 }

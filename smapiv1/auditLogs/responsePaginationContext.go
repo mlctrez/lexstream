@@ -5,7 +5,7 @@ ResponsePaginationContext This object contains the next token used to load the n
 */
 type ResponsePaginationContext struct {
 	// This token can be used to load the next page of the result.
-	NextToken string `json:"nextToken"`
+	NextToken string `json,omitempty:"nextToken"`
 }
 
 /*

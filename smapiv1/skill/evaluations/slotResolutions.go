@@ -7,7 +7,7 @@ type SlotResolutions struct {
 	/*
 	   An array of objects representing each possible authority for entity resolution. An authority represents the source for the data provided for the slot. For a custom slot type, the authority is the slot type you defined.
 	*/
-	ResolutionsPerAuthority []*ResolutionsPerAuthorityItems `json:"resolutionsPerAuthority"`
+	ResolutionsPerAuthority []*ResolutionsPerAuthorityItems `json,omitempty:"resolutionsPerAuthority"`
 }
 
 /*

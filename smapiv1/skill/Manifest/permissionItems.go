@@ -1,7 +1,7 @@
 package manifest
 
 type PermissionItems struct {
-	Name *PermissionName `json:"name"`
+	Name *PermissionName `json,omitempty:"name"`
 }
 
 /*

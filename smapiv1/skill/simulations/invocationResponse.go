@@ -4,7 +4,7 @@ type InvocationResponse struct {
 	/*
 	   Payload that was returned by the skill's Lambda or HTTPS endpoint.
 	*/
-	Body map[string]any `json:"body"`
+	Body map[string]any `json,omitempty:"body"`
 }
 
 /*

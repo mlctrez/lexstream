@@ -1,6 +1,7 @@
 package client
 
 import (
+	smapiv1 "github.com/mlctrez/lexstream/smapiv1"
 	skill_ "github.com/mlctrez/lexstream/smapiv1/skill"
 	swaggerlt "github.com/mlctrez/swaggerlt"
 )
@@ -13,6 +14,12 @@ CreateSkillPackageV1 Creates a new import for a skill.
 func (s *Client) CreateSkillPackageV1(createSkillWithPackageRequest *skill_.CreateSkillWithPackageRequest) (err error) {
 	h := swaggerlt.NewRequestHelper("post", s.Endpoint, "/v1/skills/imports")
 	h.Body = createSkillWithPackageRequest
+	h.ResponseType(400, &smapiv1.BadRequestError{})
+	h.ResponseType(401, &skill_.StandardizedError{})
+	h.ResponseType(413, &skill_.StandardizedError{})
+	h.ResponseType(429, &skill_.StandardizedError{})
+	h.ResponseType(500, &skill_.StandardizedError{})
+	h.ResponseType(503, &skill_.StandardizedError{})
 	err = h.Execute(s.Client)
 	return
 }

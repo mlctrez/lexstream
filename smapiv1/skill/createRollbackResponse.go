@@ -5,7 +5,7 @@ CreateRollbackResponse Defines the response body when a rollback request is crea
 */
 type CreateRollbackResponse struct {
 	// Defines the identifier for a rollback request.
-	RollbackRequestId string `json:"rollbackRequestId"`
+	RollbackRequestId string `json,omitempty:"rollbackRequestId"`
 }
 
 /*

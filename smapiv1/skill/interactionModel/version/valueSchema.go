@@ -4,8 +4,8 @@ package version
 ValueSchema The value schema in type object of interaction model.
 */
 type ValueSchema struct {
-	Id   string           `json:"id"`
-	Name *ValueSchemaName `json:"name"`
+	Id   string           `json,omitempty:"id"`
+	Name *ValueSchemaName `json,omitempty:"name"`
 }
 
 /*

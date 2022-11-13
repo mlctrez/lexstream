@@ -2,11 +2,11 @@ package simulations
 
 type InvocationRequest struct {
 	// Skill's Lambda or HTTPS endpoint.
-	Endpoint string `json:"endpoint"`
+	Endpoint string `json,omitempty:"endpoint"`
 	/*
 	   JSON payload that was sent to the skill's Lambda or HTTPS endpoint.
 	*/
-	Body map[string]any `json:"body"`
+	Body map[string]any `json,omitempty:"body"`
 }
 
 /*

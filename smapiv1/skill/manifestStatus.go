@@ -4,9 +4,9 @@ package skill
 ManifestStatus Defines the structure for a resource status.
 */
 type ManifestStatus struct {
-	LastUpdateRequest *ManifestLastUpdateRequest `json:"lastUpdateRequest"`
+	LastUpdateRequest *ManifestLastUpdateRequest `json,omitempty:"lastUpdateRequest"`
 	// An opaque identifier for last successfully updated resource.
-	ETag string `json:"eTag"`
+	ETag string `json,omitempty:"eTag"`
 }
 
 /*

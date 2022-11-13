@@ -1,6 +1,10 @@
 package client
 
-import swaggerlt "github.com/mlctrez/swaggerlt"
+import (
+	smapiv1 "github.com/mlctrez/lexstream/smapiv1"
+	skill "github.com/mlctrez/lexstream/smapiv1/skill"
+	swaggerlt "github.com/mlctrez/swaggerlt"
+)
 
 /*
 GetInteractionModelMetadataV1 Get the latest metadata for the interaction model resource for the given stage.
@@ -19,6 +23,13 @@ func (s *Client) GetInteractionModelMetadataV1(skillId string, stageV2 string, l
 	h.Path("skillId", skillId)
 	h.Path("stageV2", stageV2)
 	h.Path("locale", locale)
+	h.ResponseType(400, &smapiv1.BadRequestError{})
+	h.ResponseType(401, &skill.StandardizedError{})
+	h.ResponseType(403, &smapiv1.BadRequestError{})
+	h.ResponseType(404, &skill.StandardizedError{})
+	h.ResponseType(429, &skill.StandardizedError{})
+	h.ResponseType(500, &skill.StandardizedError{})
+	h.ResponseType(503, &skill.StandardizedError{})
 	err = h.Execute(s.Client)
 	return
 }

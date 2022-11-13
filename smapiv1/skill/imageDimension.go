@@ -5,9 +5,9 @@ ImageDimension Dimensions of an image.
 */
 type ImageDimension struct {
 	// Width of the image in pixels.
-	WidthInPixels int `json:"widthInPixels"`
+	WidthInPixels int `json,omitempty:"widthInPixels"`
 	// Height of the image in pixels.
-	HeightInPixels int `json:"heightInPixels"`
+	HeightInPixels int `json,omitempty:"heightInPixels"`
 }
 
 /*

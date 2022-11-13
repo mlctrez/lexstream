@@ -4,17 +4,17 @@ import "time"
 
 type CatalogDetails struct {
 	// Unique identifier of the added catalog object.
-	Id string `json:"id"`
+	Id string `json,omitempty:"id"`
 	// Title of the catalog.
-	Title string        `json:"title"`
-	Type_ *CatalogType  `json:"type"`
-	Usage *CatalogUsage `json:"usage"`
+	Title string        `json,omitempty:"title"`
+	Type_ *CatalogType  `json,omitempty:"type"`
+	Usage *CatalogUsage `json,omitempty:"usage"`
 	// The date time when the catalog was last updated.
-	LastUpdatedDate time.Time `json:"lastUpdatedDate"`
+	LastUpdatedDate time.Time `json,omitempty:"lastUpdatedDate"`
 	// The date time when the catalog was created.
-	CreatedDate time.Time `json:"createdDate"`
+	CreatedDate time.Time `json,omitempty:"createdDate"`
 	// The list of skill Ids associated with the catalog.
-	AssociatedSkillIds []string `json:"associatedSkillIds"`
+	AssociatedSkillIds []string `json,omitempty:"associatedSkillIds"`
 }
 
 /*

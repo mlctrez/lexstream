@@ -1,6 +1,7 @@
 package client
 
 import (
+	smapiv1 "github.com/mlctrez/lexstream/smapiv1"
 	isp_ "github.com/mlctrez/lexstream/smapiv1/isp"
 	swaggerlt "github.com/mlctrez/swaggerlt"
 )
@@ -21,6 +22,10 @@ func (s *Client) GetIspAssociatedSkillsV1(productId string, stage string, nextTo
 	h.Param("maxResults", maxResults)
 	response = &isp_.AssociatedSkillResponse{}
 	h.Response = response
+	h.ResponseType(401, &smapiv1.Error{})
+	h.ResponseType(404, &smapiv1.Error{})
+	h.ResponseType(429, &smapiv1.Error{})
+	h.ResponseType(500, &smapiv1.Error{})
 	err = h.Execute(s.Client)
 	return
 }

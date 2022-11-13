@@ -4,9 +4,9 @@ package type1
 SlotTypeDefinitionOutput Slot Type request definitions.
 */
 type SlotTypeDefinitionOutput struct {
-	SlotType *SlotTypeInput `json:"slotType"`
+	SlotType *SlotTypeInput `json,omitempty:"slotType"`
 	// Total number of versions.
-	TotalVersions string `json:"totalVersions"`
+	TotalVersions string `json,omitempty:"totalVersions"`
 }
 
 /*

@@ -4,9 +4,9 @@ package catalog
 DefinitionData Catalog request definitions.
 */
 type DefinitionData struct {
-	Catalog *CatalogInput `json:"catalog"`
+	Catalog *CatalogInput `json,omitempty:"catalog"`
 	// The vendorId that the catalog should belong to.
-	VendorId string `json:"vendorId"`
+	VendorId string `json,omitempty:"vendorId"`
 }
 
 /*

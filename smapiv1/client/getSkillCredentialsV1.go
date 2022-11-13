@@ -15,6 +15,11 @@ func (s *Client) GetSkillCredentialsV1(skillId string) (response *skill_.SkillCr
 	h.Path("skillId", skillId)
 	response = &skill_.SkillCredentials{}
 	h.Response = response
+	h.ResponseType(401, &skill_.StandardizedError{})
+	h.ResponseType(404, &skill_.StandardizedError{})
+	h.ResponseType(429, &skill_.StandardizedError{})
+	h.ResponseType(500, &skill_.StandardizedError{})
+	h.ResponseType(503, &skill_.StandardizedError{})
 	err = h.Execute(s.Client)
 	return
 }

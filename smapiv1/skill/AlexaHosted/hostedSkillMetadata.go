@@ -4,7 +4,7 @@ package alexahosted
 HostedSkillMetadata Alexa Hosted skill's metadata
 */
 type HostedSkillMetadata struct {
-	AlexaHosted *HostedSkillInfo `json:"alexaHosted"`
+	AlexaHosted *HostedSkillInfo `json,omitempty:"alexaHosted"`
 }
 
 /*

@@ -4,11 +4,11 @@ import "time"
 
 type HostedSkillRepositoryCredentials struct {
 	// AWS Access Key ID used to access hosted skill repository
-	Username string `json:"username"`
+	Username string `json,omitempty:"username"`
 	// signed AWS Credentials used to access hosted skill repository
-	Password string `json:"password"`
+	Password string `json,omitempty:"password"`
 	// expiration time for the credentials
-	ExpiresAt time.Time `json:"expiresAt"`
+	ExpiresAt time.Time `json,omitempty:"expiresAt"`
 }
 
 /*

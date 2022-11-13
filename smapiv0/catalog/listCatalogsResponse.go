@@ -6,13 +6,13 @@ import smapiv0 "github.com/mlctrez/lexstream/smapiv0"
 ListCatalogsResponse Information about catalogs.
 */
 type ListCatalogsResponse struct {
-	Links *smapiv0.Links `json:"_links"`
+	Links *smapiv0.Links `json,omitempty:"_links"`
 	/*
 	   List of catalog summaries.
 	*/
-	Catalogs    []*CatalogSummary `json:"catalogs"`
-	IsTruncated bool              `json:"isTruncated"`
-	NextToken   string            `json:"nextToken"`
+	Catalogs    []*CatalogSummary `json,omitempty:"catalogs"`
+	IsTruncated bool              `json,omitempty:"isTruncated"`
+	NextToken   string            `json,omitempty:"nextToken"`
 }
 
 /*

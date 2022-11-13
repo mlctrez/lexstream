@@ -4,13 +4,13 @@ import "time"
 
 type AnnotationSetMetadata struct {
 	// Name of the ASR annotation set
-	Name string `json:"name"`
+	Name string `json,omitempty:"name"`
 	// Number of annotations within an annotation set
-	AnnotationCount int `json:"annotationCount"`
+	AnnotationCount int `json,omitempty:"annotationCount"`
 	// The timestamp for the most recent update of ASR annotation set
-	LastUpdatedTimestamp time.Time `json:"lastUpdatedTimestamp"`
+	LastUpdatedTimestamp time.Time `json,omitempty:"lastUpdatedTimestamp"`
 	// Indicates if the annotation set is eligible for evaluation. A set is not eligible for evaluation if any annotation within the set has a missing uploadId, filePathInUpload, expectedTranscription, or evaluationWeight.
-	EligibleForEvaluation bool `json:"eligibleForEvaluation"`
+	EligibleForEvaluation bool `json,omitempty:"eligibleForEvaluation"`
 }
 
 /*

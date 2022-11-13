@@ -1,6 +1,7 @@
 package client
 
 import (
+	smapiv1 "github.com/mlctrez/lexstream/smapiv1"
 	betaTest_ "github.com/mlctrez/lexstream/smapiv1/skill/betaTest"
 	swaggerlt "github.com/mlctrez/swaggerlt"
 )
@@ -15,6 +16,11 @@ func (s *Client) GetBetaTestV1(skillId string) (response *betaTest_.BetaTest, er
 	h.Path("skillId", skillId)
 	response = &betaTest_.BetaTest{}
 	h.Response = response
+	h.ResponseType(400, &smapiv1.BadRequestError{})
+	h.ResponseType(401, &smapiv1.Error{})
+	h.ResponseType(404, &smapiv1.Error{})
+	h.ResponseType(429, &smapiv1.Error{})
+	h.ResponseType(500, &smapiv1.Error{})
 	err = h.Execute(s.Client)
 	return
 }

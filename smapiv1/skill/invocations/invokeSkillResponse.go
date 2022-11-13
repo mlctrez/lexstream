@@ -1,8 +1,8 @@
 package invocations
 
 type InvokeSkillResponse struct {
-	Status *InvocationResponseStatus `json:"status"`
-	Result *InvocationResponseResult `json:"result"`
+	Status *InvocationResponseStatus `json,omitempty:"status"`
+	Result *InvocationResponseResult `json,omitempty:"result"`
 }
 
 /*

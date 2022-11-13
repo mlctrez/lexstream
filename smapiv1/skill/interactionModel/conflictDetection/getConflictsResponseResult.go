@@ -2,8 +2,8 @@ package conflictdetection
 
 type GetConflictsResponseResult struct {
 	// Utterance resolved from sample utterance that causes conflicts among different intents.
-	ConflictingUtterance string            `json:"conflictingUtterance"`
-	Conflicts            []*ConflictResult `json:"conflicts"`
+	ConflictingUtterance string            `json,omitempty:"conflictingUtterance"`
+	Conflicts            []*ConflictResult `json,omitempty:"conflicts"`
 }
 
 /*

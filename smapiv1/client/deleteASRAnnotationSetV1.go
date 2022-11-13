@@ -1,6 +1,9 @@
 package client
 
-import swaggerlt "github.com/mlctrez/swaggerlt"
+import (
+	smapiv1 "github.com/mlctrez/lexstream/smapiv1"
+	swaggerlt "github.com/mlctrez/swaggerlt"
+)
 
 /*
 DeleteASRAnnotationSetV1 API which deletes the ASR annotation set. Developers cannot get/list the deleted annotation set.
@@ -12,6 +15,13 @@ func (s *Client) DeleteASRAnnotationSetV1(skillId string, annotationSetId string
 	h := swaggerlt.NewRequestHelper("delete", s.Endpoint, "/v1/skills/{skillId}/asrAnnotationSets/{annotationSetId}")
 	h.Path("skillId", skillId)
 	h.Path("annotationSetId", annotationSetId)
+	h.ResponseType(400, &smapiv1.BadRequestError{})
+	h.ResponseType(401, &smapiv1.Error{})
+	h.ResponseType(403, &smapiv1.BadRequestError{})
+	h.ResponseType(404, &smapiv1.Error{})
+	h.ResponseType(409, &smapiv1.Error{})
+	h.ResponseType(429, &smapiv1.Error{})
+	h.ResponseType(503, &smapiv1.Error{})
 	err = h.Execute(s.Client)
 	return
 }

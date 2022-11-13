@@ -61,6 +61,8 @@ github.com/jmespath/go-jmespath/internal/testify v1.5.1 h1:shLQSRRSCCPj3f2gpwzGw
 github.com/jmespath/go-jmespath/internal/testify v1.5.1/go.mod h1:L3OGu8Wl2/fWfCI6z80xFu9LTZmf1ZRjMHUOPmWr69U=
 github.com/mlctrez/swaggerlt v1.0.3 h1:brUjCi4P1EK1asB0Y+ND+DTt8djej9Gij4YclvqRu+U=
 github.com/mlctrez/swaggerlt v1.0.3/go.mod h1:QFHwgvltE/t6mYO+XGCzafwZfV3CGjD8000B+9ZDjyE=
+github.com/mlctrez/swaggerlt v1.0.4 h1:AHo9q4kdh8vvW7aoiKPc5KNoutHqOEBf5zhbx4USjag=
+github.com/mlctrez/swaggerlt v1.0.4/go.mod h1:QFHwgvltE/t6mYO+XGCzafwZfV3CGjD8000B+9ZDjyE=
 github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZbAQM=
 github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4=
 github.com/stretchr/objx v0.1.0/go.mod h1:HFkY916IF+rwdDfMAkV7OtwuqBVzrE8GR6GFx+wExME=

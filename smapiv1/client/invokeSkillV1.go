@@ -1,6 +1,8 @@
 package client
 
 import (
+	smapiv1 "github.com/mlctrez/lexstream/smapiv1"
+	skill "github.com/mlctrez/lexstream/smapiv1/skill"
 	invocations_ "github.com/mlctrez/lexstream/smapiv1/skill/invocations"
 	swaggerlt "github.com/mlctrez/swaggerlt"
 )
@@ -17,6 +19,12 @@ func (s *Client) InvokeSkillV1(skillId string, invokeSkillRequest *invocations_.
 	h.Body = invokeSkillRequest
 	response = &invocations_.InvokeSkillResponse{}
 	h.Response = response
+	h.ResponseType(400, &smapiv1.BadRequestError{})
+	h.ResponseType(401, &skill.StandardizedError{})
+	h.ResponseType(403, &smapiv1.BadRequestError{})
+	h.ResponseType(404, &skill.StandardizedError{})
+	h.ResponseType(429, &skill.StandardizedError{})
+	h.ResponseType(503, &skill.StandardizedError{})
 	err = h.Execute(s.Client)
 	return
 }

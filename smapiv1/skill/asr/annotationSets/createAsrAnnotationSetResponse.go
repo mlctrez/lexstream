@@ -2,7 +2,7 @@ package annotationsets
 
 type CreateAsrAnnotationSetResponse struct {
 	// ID used to retrieve the ASR annotation set.
-	Id string `json:"id"`
+	Id string `json,omitempty:"id"`
 }
 
 /*

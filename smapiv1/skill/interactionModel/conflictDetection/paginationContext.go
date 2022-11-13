@@ -2,9 +2,9 @@ package conflictdetection
 
 type PaginationContext struct {
 	// A token returned if there are more results for the given inputs than `maxResults` from the request. It should also be used in the next request to retrieve more results.
-	NextToken string `json:"nextToken"`
+	NextToken string `json,omitempty:"nextToken"`
 	// Total avaliable results for the given query.
-	TotalCount int `json:"totalCount"`
+	TotalCount int `json,omitempty:"totalCount"`
 }
 
 /*

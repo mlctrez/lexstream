@@ -7,9 +7,9 @@ import (
 
 type CreateSkillRequest struct {
 	// ID of the vendor owning the skill.
-	VendorId string                            `json:"vendorId"`
-	Manifest *manifest.SkillManifest           `json:"manifest"`
-	Hosting  *alexahosted.HostingConfiguration `json:"hosting"`
+	VendorId string                            `json,omitempty:"vendorId"`
+	Manifest *manifest.SkillManifest           `json,omitempty:"manifest"`
+	Hosting  *alexahosted.HostingConfiguration `json,omitempty:"hosting"`
 }
 
 /*

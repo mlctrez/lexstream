@@ -1,6 +1,7 @@
 package client
 
 import (
+	smapiv1 "github.com/mlctrez/lexstream/smapiv1"
 	vendorManagement_ "github.com/mlctrez/lexstream/smapiv1/vendorManagement"
 	swaggerlt "github.com/mlctrez/swaggerlt"
 )
@@ -12,6 +13,10 @@ func (s *Client) GetVendorListV1() (response *vendorManagement_.Vendors, err err
 	h := swaggerlt.NewRequestHelper("get", s.Endpoint, "/v1/vendors")
 	response = &vendorManagement_.Vendors{}
 	h.Response = response
+	h.ResponseType(401, &smapiv1.Error{})
+	h.ResponseType(429, &smapiv1.Error{})
+	h.ResponseType(500, &smapiv1.Error{})
+	h.ResponseType(503, &smapiv1.Error{})
 	err = h.Execute(s.Client)
 	return
 }

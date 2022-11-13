@@ -4,11 +4,11 @@ package type1
 LastUpdateRequest Contains attributes related to last modification request of a resource.
 */
 type LastUpdateRequest struct {
-	Status *SlotTypeStatusType `json:"status"`
+	Status *SlotTypeStatusType `json,omitempty:"status"`
 	// The version id of the entity returned.
-	Version  string     `json:"version"`
-	Errors   []*Error   `json:"errors"`
-	Warnings []*Warning `json:"warnings"`
+	Version  string     `json,omitempty:"version"`
+	Errors   []*Error   `json,omitempty:"errors"`
+	Warnings []*Warning `json,omitempty:"warnings"`
 }
 
 /*

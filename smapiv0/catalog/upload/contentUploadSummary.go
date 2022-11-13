@@ -4,12 +4,12 @@ import "time"
 
 type ContentUploadSummary struct {
 	// Unique identifier of the upload.
-	Id string `json:"id"`
+	Id string `json,omitempty:"id"`
 	// Provides a unique identifier of the catalog.
-	CatalogId       string        `json:"catalogId"`
-	Status          *UploadStatus `json:"status"`
-	CreatedDate     time.Time     `json:"createdDate"`
-	LastUpdatedDate time.Time     `json:"lastUpdatedDate"`
+	CatalogId       string        `json,omitempty:"catalogId"`
+	Status          *UploadStatus `json,omitempty:"status"`
+	CreatedDate     time.Time     `json,omitempty:"createdDate"`
+	LastUpdatedDate time.Time     `json,omitempty:"lastUpdatedDate"`
 }
 
 /*

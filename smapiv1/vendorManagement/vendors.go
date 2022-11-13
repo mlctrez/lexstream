@@ -4,7 +4,7 @@ package vendormanagement
 Vendors List of Vendors.
 */
 type Vendors struct {
-	Vendors []*Vendor `json:"vendors"`
+	Vendors []*Vendor `json,omitempty:"vendors"`
 }
 
 /*

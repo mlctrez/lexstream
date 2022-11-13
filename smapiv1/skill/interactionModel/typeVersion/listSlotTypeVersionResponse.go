@@ -6,12 +6,12 @@ import smapiv1 "github.com/mlctrez/lexstream/smapiv1"
 ListSlotTypeVersionResponse List of slot type versions of a skill for the vendor.
 */
 type ListSlotTypeVersionResponse struct {
-	Links *smapiv1.Links `json:"_links"`
+	Links *smapiv1.Links `json,omitempty:"_links"`
 	/*
 	   List of slot types.
 	*/
-	SlotTypeVersions []*SlotTypeVersionItem `json:"slotTypeVersions"`
-	NextToken        string                 `json:"nextToken"`
+	SlotTypeVersions []*SlotTypeVersionItem `json,omitempty:"slotTypeVersions"`
+	NextToken        string                 `json,omitempty:"nextToken"`
 }
 
 /*

@@ -4,9 +4,9 @@ package evaluations
 DialogAct A representation of question prompts to the user for multi-turn, which requires user to fill a slot value, or confirm a slot value, or confirm an intent.
 */
 type DialogAct struct {
-	Type_ *DialogActType `json:"type"`
+	Type_ *DialogActType `json,omitempty:"type"`
 	// The name of the target slot that needs to be filled or confirmed for a dialogAct
-	TargetSlot string `json:"targetSlot"`
+	TargetSlot string `json,omitempty:"targetSlot"`
 }
 
 /*

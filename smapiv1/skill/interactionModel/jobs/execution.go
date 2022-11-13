@@ -7,14 +7,14 @@ Execution Execution data.
 */
 type Execution struct {
 	// Identifier of the execution.
-	ExecutionId string `json:"executionId"`
+	ExecutionId string `json,omitempty:"executionId"`
 	// ISO date-time timestamp when the execution starts.
-	Timestamp time.Time `json:"timestamp"`
+	Timestamp time.Time `json,omitempty:"timestamp"`
 	// ErrorCode to explain what went wrong in case of FAILUREs.
-	ErrorCode string `json:"errorCode"`
+	ErrorCode string `json,omitempty:"errorCode"`
 	// Current status of the job execution.
-	Status       string           `json:"status"`
-	ErrorDetails *JobErrorDetails `json:"errorDetails"`
+	Status       string           `json,omitempty:"status"`
+	ErrorDetails *JobErrorDetails `json,omitempty:"errorDetails"`
 }
 
 /*

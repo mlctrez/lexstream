@@ -5,8 +5,8 @@ SkillManifestEndpoint Defines the structure for endpoint information in the skil
 */
 type SkillManifestEndpoint struct {
 	// Amazon Resource Name (ARN) of the skill's Lambda function or HTTPS URL.
-	Uri                string              `json:"uri"`
-	SslCertificateType *SSLCertificateType `json:"sslCertificateType"`
+	Uri                string              `json,omitempty:"uri"`
+	SslCertificateType *SSLCertificateType `json,omitempty:"sslCertificateType"`
 }
 
 /*

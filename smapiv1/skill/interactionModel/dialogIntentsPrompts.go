@@ -5,9 +5,9 @@ DialogIntentsPrompts Collection of prompts for this intent.
 */
 type DialogIntentsPrompts struct {
 	// Enum value in the dialog_slots map to reference the elicitation prompt id.
-	Elicitation string `json:"elicitation"`
+	Elicitation string `json,omitempty:"elicitation"`
 	// Enum value in the dialog_slots map to reference the confirmation prompt id.
-	Confirmation string `json:"confirmation"`
+	Confirmation string `json,omitempty:"confirmation"`
 }
 
 /*

@@ -1,6 +1,8 @@
 package client
 
 import (
+	smapiv1 "github.com/mlctrez/lexstream/smapiv1"
+	skill "github.com/mlctrez/lexstream/smapiv1/skill"
 	typeVersion_ "github.com/mlctrez/lexstream/smapiv1/skill/interactionModel/typeVersion"
 	swaggerlt "github.com/mlctrez/swaggerlt"
 )
@@ -17,6 +19,13 @@ func (s *Client) UpdateInteractionModelSlotTypeVersionV1(slotTypeId string, vers
 	h.Path("slotTypeId", slotTypeId)
 	h.Path("version", version)
 	h.Body = slotTypeUpdate
+	h.ResponseType(400, &smapiv1.BadRequestError{})
+	h.ResponseType(401, &skill.StandardizedError{})
+	h.ResponseType(403, &smapiv1.BadRequestError{})
+	h.ResponseType(404, &skill.StandardizedError{})
+	h.ResponseType(429, &skill.StandardizedError{})
+	h.ResponseType(500, &skill.StandardizedError{})
+	h.ResponseType(503, &skill.StandardizedError{})
 	err = h.Execute(s.Client)
 	return
 }

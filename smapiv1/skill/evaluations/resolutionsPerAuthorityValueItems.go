@@ -5,11 +5,11 @@ ResolutionsPerAuthorityValueItems An object representing the resolved value for 
 */
 type ResolutionsPerAuthorityValueItems struct {
 	// The string for the resolved slot value.
-	Name string `json:"name"`
+	Name string `json,omitempty:"name"`
 	/*
 	   The unique ID defined for the resolved slot value. This is based on the IDs defined in the slot type definition.
 	*/
-	Id string `json:"id"`
+	Id string `json,omitempty:"id"`
 }
 
 /*

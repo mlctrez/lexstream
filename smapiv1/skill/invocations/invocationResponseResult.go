@@ -3,8 +3,8 @@ package invocations
 import skill "github.com/mlctrez/lexstream/smapiv1/skill"
 
 type InvocationResponseResult struct {
-	SkillExecutionInfo *SkillExecutionInfo      `json:"skillExecutionInfo"`
-	Error              *skill.StandardizedError `json:"error"`
+	SkillExecutionInfo *SkillExecutionInfo      `json,omitempty:"skillExecutionInfo"`
+	Error              *skill.StandardizedError `json,omitempty:"error"`
 }
 
 /*

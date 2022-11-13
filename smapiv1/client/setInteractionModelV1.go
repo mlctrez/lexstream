@@ -1,6 +1,8 @@
 package client
 
 import (
+	smapiv1 "github.com/mlctrez/lexstream/smapiv1"
+	skill "github.com/mlctrez/lexstream/smapiv1/skill"
 	interactionModel_ "github.com/mlctrez/lexstream/smapiv1/skill/interactionModel"
 	swaggerlt "github.com/mlctrez/swaggerlt"
 )
@@ -26,6 +28,14 @@ func (s *Client) SetInteractionModelV1(skillId string, stageV2 string, locale st
 	h.Path("locale", locale)
 	h.Body = interactionModel
 	h.Header("If-Match", if_Match)
+	h.ResponseType(400, &smapiv1.BadRequestError{})
+	h.ResponseType(401, &skill.StandardizedError{})
+	h.ResponseType(403, &smapiv1.BadRequestError{})
+	h.ResponseType(404, &skill.StandardizedError{})
+	h.ResponseType(412, &skill.StandardizedError{})
+	h.ResponseType(429, &skill.StandardizedError{})
+	h.ResponseType(500, &skill.StandardizedError{})
+	h.ResponseType(503, &skill.StandardizedError{})
 	err = h.Execute(s.Client)
 	return
 }

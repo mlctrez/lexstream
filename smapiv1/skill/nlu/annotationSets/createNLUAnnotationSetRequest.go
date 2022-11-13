@@ -2,9 +2,9 @@ package annotationsets
 
 type CreateNLUAnnotationSetRequest struct {
 	// The locale of the NLU annotation set
-	Locale string `json:"locale"`
+	Locale string `json,omitempty:"locale"`
 	// The name of NLU annotation set provided by customer
-	Name string `json:"name"`
+	Name string `json,omitempty:"name"`
 }
 
 /*

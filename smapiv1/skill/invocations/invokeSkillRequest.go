@@ -1,8 +1,8 @@
 package invocations
 
 type InvokeSkillRequest struct {
-	EndpointRegion *EndPointRegions `json:"endpointRegion"`
-	SkillRequest   *SkillRequest    `json:"skillRequest"`
+	EndpointRegion *EndPointRegions `json,omitempty:"endpointRegion"`
+	SkillRequest   *SkillRequest    `json,omitempty:"skillRequest"`
 }
 
 /*

@@ -4,10 +4,10 @@ package skill
 InteractionModelLastUpdateRequest Contains attributes related to last modification (create/update) request of a resource.
 */
 type InteractionModelLastUpdateRequest struct {
-	Status       *Status              `json:"status"`
-	Errors       []*StandardizedError `json:"errors"`
-	Warnings     []*StandardizedError `json:"warnings"`
-	BuildDetails *BuildDetails        `json:"buildDetails"`
+	Status       *Status              `json,omitempty:"status"`
+	Errors       []*StandardizedError `json,omitempty:"errors"`
+	Warnings     []*StandardizedError `json,omitempty:"warnings"`
+	BuildDetails *BuildDetails        `json,omitempty:"buildDetails"`
 }
 
 /*

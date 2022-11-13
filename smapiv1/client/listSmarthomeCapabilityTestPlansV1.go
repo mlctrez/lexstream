@@ -1,6 +1,7 @@
 package client
 
 import (
+	smapiv1 "github.com/mlctrez/lexstream/smapiv1"
 	smartHomeEvaluation_ "github.com/mlctrez/lexstream/smapiv1/smartHomeEvaluation"
 	swaggerlt "github.com/mlctrez/swaggerlt"
 )
@@ -19,6 +20,11 @@ func (s *Client) ListSmarthomeCapabilityTestPlansV1(skillId string, maxResults i
 	h.Param("nextToken", nextToken)
 	response = &smartHomeEvaluation_.ListSHCapabilityTestPlansResponse{}
 	h.Response = response
+	h.ResponseType(400, &smapiv1.BadRequestError{})
+	h.ResponseType(401, &smapiv1.BadRequestError{})
+	h.ResponseType(403, &smapiv1.BadRequestError{})
+	h.ResponseType(404, &smapiv1.BadRequestError{})
+	h.ResponseType(429, &smapiv1.BadRequestError{})
 	err = h.Execute(s.Client)
 	return
 }

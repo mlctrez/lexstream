@@ -4,7 +4,7 @@ package catalog
 CatalogStatus Defines the structure for catalog status response.
 */
 type CatalogStatus struct {
-	LastUpdateRequest *LastUpdateRequest `json:"lastUpdateRequest"`
+	LastUpdateRequest *LastUpdateRequest `json,omitempty:"lastUpdateRequest"`
 }
 
 /*

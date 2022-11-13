@@ -1,9 +1,9 @@
 package skill
 
 type ImportResponseSkill struct {
-	SkillId   string                  `json:"skillId"`
-	ETag      string                  `json:"eTag"`
-	Resources []*ResourceImportStatus `json:"resources"`
+	SkillId   string                  `json,omitempty:"skillId"`
+	ETag      string                  `json,omitempty:"eTag"`
+	Resources []*ResourceImportStatus `json,omitempty:"resources"`
 }
 
 /*

@@ -5,7 +5,7 @@ SlotTypeResponseEntity SlotTypeId information.
 */
 type SlotTypeResponseEntity struct {
 	// ID of the slot type created.
-	Id string `json:"id"`
+	Id string `json,omitempty:"id"`
 }
 
 /*

@@ -4,7 +4,7 @@ package isp
 InSkillProductSummaryResponse In-skill product summary response.
 */
 type InSkillProductSummaryResponse struct {
-	InSkillProductSummary *InSkillProductSummary `json:"inSkillProductSummary"`
+	InSkillProductSummary *InSkillProductSummary `json,omitempty:"inSkillProductSummary"`
 }
 
 /*

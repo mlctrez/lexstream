@@ -4,11 +4,11 @@ package skill
 ManifestLastUpdateRequest Contains attributes related to last modification (create/update) request of a resource.
 */
 type ManifestLastUpdateRequest struct {
-	Status   *Status              `json:"status"`
-	Errors   []*StandardizedError `json:"errors"`
-	Warnings []*StandardizedError `json:"warnings"`
+	Status   *Status              `json,omitempty:"status"`
+	Errors   []*StandardizedError `json,omitempty:"errors"`
+	Warnings []*StandardizedError `json,omitempty:"warnings"`
 	// on success, this field indicates the created version.
-	Version string `json:"version"`
+	Version string `json,omitempty:"version"`
 }
 
 /*

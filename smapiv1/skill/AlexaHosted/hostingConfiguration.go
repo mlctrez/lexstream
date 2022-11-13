@@ -4,7 +4,7 @@ package alexahosted
 HostingConfiguration Configurations for creating new hosted skill
 */
 type HostingConfiguration struct {
-	AlexaHosted *AlexaHostedConfig `json:"alexaHosted"`
+	AlexaHosted *AlexaHostedConfig `json,omitempty:"alexaHosted"`
 }
 
 /*

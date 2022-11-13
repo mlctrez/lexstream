@@ -4,7 +4,7 @@ package manifest
 MusicContentType Defines the structure for content that can be provided by a music skill.
 */
 type MusicContentType struct {
-	Name *MusicContentName `json:"name"`
+	Name *MusicContentName `json,omitempty:"name"`
 }
 
 /*

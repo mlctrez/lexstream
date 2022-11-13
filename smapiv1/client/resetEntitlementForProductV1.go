@@ -1,6 +1,9 @@
 package client
 
-import swaggerlt "github.com/mlctrez/swaggerlt"
+import (
+	smapiv1 "github.com/mlctrez/lexstream/smapiv1"
+	swaggerlt "github.com/mlctrez/swaggerlt"
+)
 
 /*
 ResetEntitlementForProductV1 Resets the entitlement(s) of the Product for the current user.
@@ -12,6 +15,13 @@ func (s *Client) ResetEntitlementForProductV1(productId string, stage string) (e
 	h := swaggerlt.NewRequestHelper("delete", s.Endpoint, "/v1/inSkillProducts/{productId}/stages/{stage}/entitlement")
 	h.Path("productId", productId)
 	h.Path("stage", stage)
+	h.ResponseType(400, &smapiv1.BadRequestError{})
+	h.ResponseType(401, &smapiv1.Error{})
+	h.ResponseType(403, &smapiv1.BadRequestError{})
+	h.ResponseType(404, &smapiv1.Error{})
+	h.ResponseType(412, &smapiv1.Error{})
+	h.ResponseType(429, &smapiv1.Error{})
+	h.ResponseType(500, &smapiv1.Error{})
 	err = h.Execute(s.Client)
 	return
 }

@@ -1,6 +1,9 @@
 package client
 
-import swaggerlt "github.com/mlctrez/swaggerlt"
+import (
+	smapiv1 "github.com/mlctrez/lexstream/smapiv1"
+	swaggerlt "github.com/mlctrez/swaggerlt"
+)
 
 /*
 DeleteASREvaluationV1 API which enables the deletion of an evaluation.
@@ -12,6 +15,12 @@ func (s *Client) DeleteASREvaluationV1(skillId string, evaluationId string) (err
 	h := swaggerlt.NewRequestHelper("delete", s.Endpoint, "/v1/skills/{skillId}/asrEvaluations/{evaluationId}")
 	h.Path("skillId", skillId)
 	h.Path("evaluationId", evaluationId)
+	h.ResponseType(400, &smapiv1.BadRequestError{})
+	h.ResponseType(401, &smapiv1.Error{})
+	h.ResponseType(403, &smapiv1.BadRequestError{})
+	h.ResponseType(404, &smapiv1.Error{})
+	h.ResponseType(429, &smapiv1.Error{})
+	h.ResponseType(503, &smapiv1.Error{})
 	err = h.Execute(s.Client)
 	return
 }

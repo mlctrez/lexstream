@@ -4,33 +4,33 @@ package accountlinking
 AccountLinkingRequestPayload The payload for creating the account linking partner.
 */
 type AccountLinkingRequestPayload struct {
-	Type_ *AccountLinkingType `json:"type"`
+	Type_ *AccountLinkingType `json,omitempty:"type"`
 	// The url where customers will be redirected in the companion app to enter login credentials.
-	AuthorizationUrl string `json:"authorizationUrl"`
+	AuthorizationUrl string `json,omitempty:"authorizationUrl"`
 	// The list of domains that the authorization URL will fetch content from.
-	Domains []string `json:"domains"`
+	Domains []string `json,omitempty:"domains"`
 	// The unique public string used to identify the client requesting for authentication.
-	ClientId string `json:"clientId"`
+	ClientId string `json,omitempty:"clientId"`
 	// The list of permissions which will be requested from the skill user.
-	Scopes []string `json:"scopes"`
+	Scopes []string `json,omitempty:"scopes"`
 	// The url used for access token and token refresh requests.
-	AccessTokenUrl string `json:"accessTokenUrl"`
+	AccessTokenUrl string `json,omitempty:"accessTokenUrl"`
 	// The client secret provided by developer.
-	ClientSecret      string                 `json:"clientSecret"`
-	AccessTokenScheme *AccessTokenSchemeType `json:"accessTokenScheme"`
+	ClientSecret      string                 `json,omitempty:"clientSecret"`
+	AccessTokenScheme *AccessTokenSchemeType `json,omitempty:"accessTokenScheme"`
 	/*
 	   The time in seconds for which access token is valid.
 	   If OAuth client returns "expires_in", it will be overwrite this parameter.
 	*/
-	DefaultTokenExpirationInSeconds int `json:"defaultTokenExpirationInSeconds"`
+	DefaultTokenExpirationInSeconds int `json,omitempty:"defaultTokenExpirationInSeconds"`
 	// Optional, if your skill requires reciprocal authorization, provide this additional access token url to handle reciprocal (Alexa) authorization codes that can be exchanged for Alexa access tokens.
-	ReciprocalAccessTokenUrl string `json:"reciprocalAccessTokenUrl"`
+	ReciprocalAccessTokenUrl string `json,omitempty:"reciprocalAccessTokenUrl"`
 	// The list of valid urls to redirect back to, when the linking process is initiated from a third party system.
-	RedirectUrls []string `json:"redirectUrls"`
+	RedirectUrls []string `json,omitempty:"redirectUrls"`
 	// The list of valid authorization urls for allowed platforms to initiate account linking.
-	AuthorizationUrlsByPlatform []*AccountLinkingPlatformAuthorizationUrl `json:"authorizationUrlsByPlatform"`
+	AuthorizationUrlsByPlatform []*AccountLinkingPlatformAuthorizationUrl `json,omitempty:"authorizationUrlsByPlatform"`
 	// Set to true to let users enable the skill without starting the account linking flow. Set to false to require the normal account linking flow when users enable the skill.
-	SkipOnEnablement bool `json:"skipOnEnablement"`
+	SkipOnEnablement bool `json,omitempty:"skipOnEnablement"`
 }
 
 /*

@@ -15,6 +15,11 @@ func (s *Client) GetImportStatusV1(importId string) (response *skill_.ImportResp
 	h.Path("importId", importId)
 	response = &skill_.ImportResponse{}
 	h.Response = response
+	h.ResponseType(401, &skill_.StandardizedError{})
+	h.ResponseType(404, &skill_.StandardizedError{})
+	h.ResponseType(429, &skill_.StandardizedError{})
+	h.ResponseType(500, &skill_.StandardizedError{})
+	h.ResponseType(503, &skill_.StandardizedError{})
 	err = h.Execute(s.Client)
 	return
 }

@@ -2,7 +2,7 @@ package manifest
 
 type MusicWordmark struct {
 	// Wordmark logo to be used by devices with displays.
-	Uri string `json:"uri"`
+	Uri string `json,omitempty:"uri"`
 }
 
 /*

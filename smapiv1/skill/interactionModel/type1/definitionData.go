@@ -4,9 +4,9 @@ package type1
 DefinitionData Slot type request definitions.
 */
 type DefinitionData struct {
-	SlotType *SlotTypeInput `json:"slotType"`
+	SlotType *SlotTypeInput `json,omitempty:"slotType"`
 	// The vendorId that the slot type should belong to.
-	VendorId string `json:"vendorId"`
+	VendorId string `json,omitempty:"vendorId"`
 }
 
 /*

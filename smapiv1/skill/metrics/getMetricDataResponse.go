@@ -5,13 +5,13 @@ GetMetricDataResponse Response object for the API call which contains metrics da
 */
 type GetMetricDataResponse struct {
 	// The name of metric which customer requested.
-	Metric string `json:"metric"`
+	Metric string `json,omitempty:"metric"`
 	// The timestamps for the data points.
-	Timestamps []string `json:"timestamps"`
+	Timestamps []string `json,omitempty:"timestamps"`
 	// The data points for the metric corresponding to Timestamps.
-	Values []int `json:"values"`
+	Values []int `json,omitempty:"values"`
 	// A token that marks the next batch of returned results.
-	NextToken string `json:"nextToken"`
+	NextToken string `json,omitempty:"nextToken"`
 }
 
 /*

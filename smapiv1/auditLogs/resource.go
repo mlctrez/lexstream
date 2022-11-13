@@ -4,8 +4,8 @@ package auditlogs
 Resource Resource that the developer operated on. This includes both the type and ID of the resource.
 */
 type Resource struct {
-	Id    string `json:"id"`
-	Type_ string `json:"type"`
+	Id    string `json,omitempty:"id"`
+	Type_ string `json,omitempty:"type"`
 }
 
 /*

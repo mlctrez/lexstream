@@ -4,7 +4,7 @@ package isp
 InSkillProductDefinitionResponse Defines In-skill product response.
 */
 type InSkillProductDefinitionResponse struct {
-	InSkillProductDefinition *InSkillProductDefinition `json:"inSkillProductDefinition"`
+	InSkillProductDefinition *InSkillProductDefinition `json,omitempty:"inSkillProductDefinition"`
 }
 
 /*

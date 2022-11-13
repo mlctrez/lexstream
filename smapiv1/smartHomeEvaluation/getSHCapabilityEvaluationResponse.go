@@ -3,12 +3,12 @@ package smarthomeevaluation
 import "time"
 
 type GetSHCapabilityEvaluationResponse struct {
-	EndTimestamp   time.Time                            `json:"endTimestamp"`
-	StartTimestamp time.Time                            `json:"startTimestamp"`
-	Status         *EvaluationEntityStatus              `json:"status"`
-	Error          *SHCapabilityError                   `json:"error"`
-	Input          *EvaluateSHCapabilityRequest         `json:"input"`
-	Metrics        map[string]SHEvaluationResultsMetric `json:"metrics"`
+	EndTimestamp   time.Time                            `json,omitempty:"endTimestamp"`
+	StartTimestamp time.Time                            `json,omitempty:"startTimestamp"`
+	Status         *EvaluationEntityStatus              `json,omitempty:"status"`
+	Error          *SHCapabilityError                   `json,omitempty:"error"`
+	Input          *EvaluateSHCapabilityRequest         `json,omitempty:"input"`
+	Metrics        map[string]SHEvaluationResultsMetric `json,omitempty:"metrics"`
 }
 
 /*

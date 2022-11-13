@@ -2,7 +2,7 @@ package smarthomeevaluation
 
 type EvaluateSHCapabilityResponse struct {
 	EvaluateSHCapabilityRequest
-	Id string `json:"id"`
+	Id string `json,omitempty:"id"`
 }
 
 /*

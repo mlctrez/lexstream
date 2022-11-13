@@ -2,7 +2,7 @@ package evaluations
 
 type GetNLUEvaluationResponse struct {
 	EvaluationEntity
-	Links *GetNLUEvaluationResponseLinks `json:"_links"`
+	Links *GetNLUEvaluationResponseLinks `json,omitempty:"_links"`
 }
 
 /*

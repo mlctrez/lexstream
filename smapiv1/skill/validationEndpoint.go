@@ -5,11 +5,11 @@ ValidationEndpoint Structure representing an endpoint.
 */
 type ValidationEndpoint struct {
 	// Path to the endpoint URI in the resource.
-	PropertyPath string `json:"propertyPath"`
+	PropertyPath string `json,omitempty:"propertyPath"`
 	// Type of the endpoint (https, http, arn etc).
-	Type_ string `json:"type"`
+	Type_ string `json,omitempty:"type"`
 	// Full URI of the endpoint.
-	Value string `json:"value"`
+	Value string `json,omitempty:"value"`
 }
 
 /*

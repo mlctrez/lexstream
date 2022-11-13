@@ -1,9 +1,9 @@
 package annotationsets
 
 type ListNLUAnnotationSetsResponse struct {
-	AnnotationSets    []*AnnotationSet   `json:"annotationSets"`
-	PaginationContext *PaginationContext `json:"paginationContext"`
-	Links             *Links             `json:"_links"`
+	AnnotationSets    []*AnnotationSet   `json,omitempty:"annotationSets"`
+	PaginationContext *PaginationContext `json,omitempty:"paginationContext"`
+	Links             *Links             `json,omitempty:"_links"`
 }
 
 /*

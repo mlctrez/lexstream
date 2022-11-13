@@ -5,9 +5,9 @@ CustomConnections Supported connections.
 */
 type CustomConnections struct {
 	// List of required connections.
-	Requires []*Connections `json:"requires"`
+	Requires []*Connections `json,omitempty:"requires"`
 	// List of provided connections.
-	Provides []*Connections `json:"provides"`
+	Provides []*Connections `json,omitempty:"provides"`
 }
 
 /*
