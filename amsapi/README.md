@@ -6,9 +6,12 @@ Completed models have links
 
 ### Directives
 
-* GetNextItem directive
-* GetPreviousItem directive
-* JumpToItem directive
+* GetNextItem directive [GetNextItem](playqueue.go#L3)
+  * response [GetNextItemResponse](playqueue.go#L15)
+* GetPreviousItem directive [GetPreviousItem](playqueue.go#L28)
+  * response [GetPreviousItemResponse](playqueue.go#L37)
+* JumpToItem directive [JumpToItem](playqueue.go#L44)
+  * response [JumpToItemResponse](playqueue.go#L57)
 
 ## Media.Playback
 
