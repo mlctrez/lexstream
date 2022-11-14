@@ -83,14 +83,7 @@ func AlexaAudioPlayQueue(request *amsapi.Request) (interface{}, error) {
 	if err != nil {
 		return nil, err
 	}
-	m := &amsapi.Response{
-		Header: amsapi.Header{
-			Namespace:      request.Header.Namespace,
-			Name:           request.Header.Name + ".Response",
-			MessageId:      "resp-" + request.Header.MessageId,
-			PayloadVersion: "1.0",
-		},
-	}
+	m := &amsapi.Response{Header: responseHeader(request)}
 
 	item := &amsapi.Item{
 		Id:           "track.001",
@@ -136,14 +129,7 @@ func AlexaMediaPlayback(request *amsapi.Request) (interface{}, error) {
 		return nil, err
 	}
 
-	m := &amsapi.Response{
-		Header: amsapi.Header{
-			Namespace:      request.Header.Namespace,
-			Name:           request.Header.Name + ".Response",
-			MessageId:      "resp-" + request.Header.MessageId,
-			PayloadVersion: "1.0",
-		},
-	}
+	m := &amsapi.Response{Header: responseHeader(request)}
 
 	switch request.Header.Name {
 	case "Initiate":
@@ -183,64 +169,56 @@ func AlexaMediaPlayback(request *amsapi.Request) (interface{}, error) {
 	default:
 		return nil, fmt.Errorf("unhandled name %q", request.Header.Name)
 	}
+}
 
+func responseHeader(request *amsapi.Request) *amsapi.Header {
+	return &amsapi.Header{
+		Namespace:      request.Header.Namespace,
+		Name:           request.Header.Name + ".Response",
+		MessageId:      "resp-" + request.Header.MessageId,
+		PayloadVersion: "1.0",
+	}
 }
 
 func AlexaMediaSearch(request *amsapi.Request) (interface{}, error) {
+
+	var imageUrl string
+	var err error
+
+	imageUrl, err = signedUrlToItem("undertale_soundtrack_cover.jpg", 15*time.Minute)
+	if err != nil {
+		return nil, err
+	}
+
 	switch request.Header.Name {
 	case "GetPlayableContent":
-		gpc := &amsapi.GetPlayableContent{}
-		err := request.BindPayload(gpc)
-		if err != nil {
-			return nil, err
-		}
 		response := &amsapi.Response{
-			Header: amsapi.Header{
-				Namespace:      "Alexa.Media.Search",
-				Name:           "GetPlayableContent.Response",
-				MessageId:      "resp-" + request.Header.MessageId,
-				PayloadVersion: "1.0",
-			},
+			Header: responseHeader(request),
 			Payload: amsapi.GetPlayableContentResponse{
 				Content: amsapi.Content{
-					// todo: support more than just the one track
 					Id:      "track.001",
 					Actions: amsapi.ContentActions{Playable: true, Browsable: false},
 					Metadata: amsapi.MediaMetadata{
 						Type: "TRACK",
 						Name: amsapi.MetadataName{
-							Speech: amsapi.SpeechInfo{
-								Type: "PLAIN_TEXT",
-								Text: "home",
-							},
-							Display: "Home",
-						},
+							Speech: amsapi.SpeechInfo{Type: "PLAIN_TEXT", Text: "home"}, Display: "Home"},
 						Authors: []amsapi.EntityMetadata{
 							{Name: amsapi.MetadataNameProperty{
-								Speech: amsapi.SpeechInfo{
-									Type: "PLAIN_TEXT",
-									Text: "toby fox",
-								},
-								Display: "Toby Fox",
-							}},
+								Speech: amsapi.SpeechInfo{Type: "PLAIN_TEXT", Text: "toby fox"}, Display: "Toby Fox"},
+							},
 						},
 						Album: amsapi.EntityMetadata{Name: amsapi.MetadataNameProperty{
-							Speech: amsapi.SpeechInfo{
-								Type: "PLAIN_TEXT",
-								Text: "under tale soundtrack",
-							},
+							Speech:  amsapi.SpeechInfo{Type: "PLAIN_TEXT", Text: "under tale soundtrack"},
 							Display: "Undertale Soundtrack",
 						}},
-						Art: amsapi.Art{Sources: []amsapi.ArtSource{
-							{Url: "https://mlctrez-website.s3.amazonaws.com/undertale_soundtrack_cover.jpg"},
-						}},
+						Art: amsapi.Art{Sources: []amsapi.ArtSource{{Url: imageUrl}}},
 					},
 				},
 			},
 		}
 		response.LogPayload()
 		return response, nil
-
+	default:
+		return nil, fmt.Errorf("unhandled name %q", request.Header.Name)
 	}
-	return nil, fmt.Errorf("unhandled name %q", request.Header.Name)
 }

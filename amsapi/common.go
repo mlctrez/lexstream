@@ -38,7 +38,7 @@ func (m *Request) LogPayload() {
 }
 
 type Response struct {
-	Header  Header      `json:"header"`
+	Header  *Header     `json:"header"`
 	Payload interface{} `json:"payload"`
 }
 
