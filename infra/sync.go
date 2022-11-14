@@ -3,7 +3,6 @@ package main
 import (
 	"archive/zip"
 	"context"
-	"encoding/json"
 	"errors"
 	"fmt"
 	"github.com/aws/aws-sdk-go-v2/aws"
@@ -15,13 +14,13 @@ import (
 	"github.com/aws/aws-sdk-go-v2/service/s3"
 	_ "github.com/aws/aws-sdk-go-v2/service/s3/types"
 	s3Types "github.com/aws/aws-sdk-go-v2/service/s3/types"
-	"github.com/mlctrez/lexstream/smapi"
+	"github.com/mlctrez/bolt"
+	"github.com/mlctrez/lexstream/skill/settings"
 	"io"
 	"os"
 	"os/exec"
 	"reflect"
 	"runtime"
-	"strings"
 	"time"
 )
 
@@ -44,51 +43,24 @@ var RolePolicies = []string{"CloudWatchLogsFullAccess", "AmazonS3FullAccess"}
 
 const LambdaRole = "lexstream_role"
 
-var settings = &SettingsJson{}
-
-type SettingsJson struct {
-	Bucket    string `json:"bucket"`
-	SkillName string `json:"skill_name"`
-	SkillId   string `json:"-"`
+type Infra struct {
+	settings *settings.Settings
+	cfg      aws.Config
 }
 
-var cfg aws.Config
+func (i *Infra) Setup() (err error) {
 
-func Setup() (err error) {
-
-	if cfg, err = config.LoadDefaultConfig(context.TODO()); err != nil {
+	if i.cfg, err = config.LoadDefaultConfig(context.TODO()); err != nil {
 		return err
 	}
 
-	var open *os.File
-	if open, err = os.Open("settings.json"); err != nil {
-		return
-	}
-	defer open.Close()
-	err = json.NewDecoder(open).Decode(settings)
-	if err != nil {
-		return
-	}
-	if settings.Bucket == "" {
-		return fmt.Errorf("no bucket name in settings.json")
-	}
-
-	if settings.SkillId == "" {
-		id, getSkillIdErr := smapi.GetSkillIdForName(settings.SkillName)
-		if getSkillIdErr != nil {
-			return getSkillIdErr
-		}
-		settings.SkillId = id
-	}
-	if !strings.HasPrefix(settings.SkillId, "amzn1.ask.skill.") {
-		return fmt.Errorf("skill id does not appear to be valid in settings.json")
-	}
+	i.settings, err = settings.Load()
 
 	return
 }
 
-func SetupRole() (err error) {
-	iac := iam.NewFromConfig(cfg)
+func (i *Infra) SetupRole() (err error) {
+	iac := iam.NewFromConfig(i.cfg)
 	roleName := aws.String(LambdaRole)
 
 	ctx := context.TODO()
@@ -139,12 +111,12 @@ func SetupRole() (err error) {
 
 }
 
-func SetupLambda() (err error) {
+func (i *Infra) SetupLambda() (err error) {
 	ctx := context.TODO()
 
-	lc := lambda.NewFromConfig(cfg)
+	lc := lambda.NewFromConfig(i.cfg)
 	var role *iam.GetRoleOutput
-	role, err = iam.NewFromConfig(cfg).GetRole(ctx, &iam.GetRoleInput{RoleName: aws.String(LambdaRole)})
+	role, err = iam.NewFromConfig(i.cfg).GetRole(ctx, &iam.GetRoleInput{RoleName: aws.String(LambdaRole)})
 	if err != nil {
 		return err
 	}
@@ -153,18 +125,20 @@ func SetupLambda() (err error) {
 	var functionOutput *lambda.GetFunctionOutput
 	functionOutput, err = lc.GetFunction(ctx, &lambda.GetFunctionInput{FunctionName: functionName})
 	var nfe *lambdaTypes.ResourceNotFoundException
+	bucket := i.settings.Bucket
+
 	if errors.As(err, &nfe) {
 		err = nil
 		fmt.Println("creating lambda")
 
 		_, err = lc.CreateFunction(ctx, &lambda.CreateFunctionInput{
 			Code: &lambdaTypes.FunctionCode{
-				S3Bucket: aws.String(settings.Bucket),
+				S3Bucket: aws.String(bucket),
 				S3Key:    aws.String("lexstream.zip"),
 			},
 			Description: aws.String("LexStream handles alexa media skill requests"),
 			Environment: &lambdaTypes.Environment{Variables: map[string]string{
-				"LEXSTREAM_BUCKET_NAME": settings.Bucket,
+				"LEXSTREAM_BUCKET_NAME": bucket,
 			}},
 			FunctionName: functionName,
 			Handler:      aws.String("lexstream"),
@@ -180,12 +154,12 @@ func SetupLambda() (err error) {
 
 		environment := functionOutput.Configuration.Environment
 		if lb, ok := environment.Variables["LEXSTREAM_BUCKET_NAME"]; ok {
-			if lb != settings.Bucket {
+			if lb != bucket {
 				fmt.Println("updating function configuration")
 				_, err = lc.UpdateFunctionConfiguration(ctx, &lambda.UpdateFunctionConfigurationInput{
 					FunctionName: functionName,
 					Environment: &lambdaTypes.Environment{Variables: map[string]string{
-						"LEXSTREAM_BUCKET_NAME": settings.Bucket,
+						"LEXSTREAM_BUCKET_NAME": bucket,
 					}},
 				})
 				if err != nil {
@@ -196,10 +170,10 @@ func SetupLambda() (err error) {
 
 		fmt.Println("updating function code")
 		// this needs to re-try if above update occurred
-		for i := 0; i < 10; i++ {
+		for t := 0; t < 10; t++ {
 			_, err = lc.UpdateFunctionCode(ctx, &lambda.UpdateFunctionCodeInput{
 				FunctionName: functionName,
-				S3Bucket:     aws.String(settings.Bucket),
+				S3Bucket:     aws.String(bucket),
 				S3Key:        aws.String("lexstream.zip"),
 			})
 			var rce *lambdaTypes.ResourceConflictException
@@ -234,7 +208,7 @@ func SetupLambda() (err error) {
 
 	_, err = lc.AddPermission(ctx, &lambda.AddPermissionInput{
 		Action:           aws.String("lambda:InvokeFunction"),
-		EventSourceToken: aws.String(settings.SkillId),
+		EventSourceToken: aws.String(i.settings.SkillId),
 		FunctionName:     functionOutput.Configuration.FunctionName,
 		Principal:        aws.String("alexa-appkit.amazon.com"),
 		StatementId:      aws.String("alexa-skill-invoke-policy"),
@@ -248,10 +222,10 @@ func SetupLambda() (err error) {
 	return
 }
 
-func SetupBucket() (err error) {
-	s3c := s3.NewFromConfig(cfg)
+func (i *Infra) SetupBucket() (err error) {
+	s3c := s3.NewFromConfig(i.cfg)
 
-	bucket := aws.String(settings.Bucket)
+	bucket := aws.String(i.settings.Bucket)
 	_, err = s3c.CreateBucket(context.TODO(), &s3.CreateBucketInput{Bucket: bucket})
 	if err != nil {
 		return err
@@ -273,7 +247,13 @@ func SetupBucket() (err error) {
 
 }
 
-func BuildCode() (err error) {
+type Provider struct {
+}
+
+func (p *Provider) Key() bolt.Key          { return "keyOne" }
+func (p *Provider) Value() ([]byte, error) { return []byte("valueOne"), nil }
+
+func (i *Infra) BuildCode() (err error) {
 
 	cmd := exec.Command("go", "build", "-o", "temp/lexstream", "skill/bin/lambda.go")
 	cmd.Env = []string{"GOARCH=amd64", "GOOS=linux"}
@@ -286,6 +266,24 @@ func BuildCode() (err error) {
 		return
 	}
 
+	b, err := bolt.New("temp/bolt.db")
+	if err != nil {
+		return err
+	}
+	boltBucket := bolt.Key("sample")
+	err = b.CreateBuckets(bolt.Keys{boltBucket})
+	if err != nil {
+		return err
+	}
+	err = b.Put(boltBucket, &bolt.Value{K: "keyOne", V: []byte("valueOne")})
+	if err != nil {
+		return err
+	}
+	err = b.Close()
+	if err != nil {
+		return err
+	}
+
 	var archive *os.File
 	if archive, err = os.Create("temp/lexstream.zip"); err != nil {
 		return
@@ -294,20 +292,42 @@ func BuildCode() (err error) {
 	zipWriter := zip.NewWriter(archive)
 	defer zipWriter.Close()
 
-	var writer io.Writer
-	writer, err = zipWriter.Create("lexstream")
-	if err != nil {
+	if err = writeFile("lexstream", zipWriter); err != nil {
 		return
 	}
-	var reader *os.File
-	reader, err = os.Open("temp/lexstream")
-	defer reader.Close()
-	_, err = io.Copy(writer, reader)
+	if err = writeFile("bolt.db", zipWriter); err != nil {
+		return
+	}
 
 	return err
 }
 
-func UploadCode() (err error) {
+func writeFile(name string, zipWriter *zip.Writer) (err error) {
+
+	var stat os.FileInfo
+	stat, err = os.Stat(fmt.Sprintf("temp/%s", name))
+	if err != nil {
+		return err
+	}
+	var header *zip.FileHeader
+	header, err = zip.FileInfoHeader(stat)
+	if err != nil {
+		return err
+	}
+
+	var writer io.Writer
+	writer, err = zipWriter.CreateHeader(header)
+	if err != nil {
+		return
+	}
+	var reader *os.File
+	reader, err = os.Open(fmt.Sprintf("temp/%s", name))
+	defer func() { _ = reader.Close() }()
+	_, err = io.Copy(writer, reader)
+	return err
+}
+
+func (i *Infra) UploadCode() (err error) {
 
 	var archive *os.File
 	if archive, err = os.Open("temp/lexstream.zip"); err != nil {
@@ -315,16 +335,16 @@ func UploadCode() (err error) {
 	}
 	defer archive.Close()
 
-	s3c := s3.NewFromConfig(cfg)
+	s3c := s3.NewFromConfig(i.cfg)
 	_, err = s3c.PutObject(context.TODO(), &s3.PutObjectInput{
-		Bucket: aws.String(settings.Bucket),
+		Bucket: aws.String(i.settings.Bucket),
 		Key:    aws.String("lexstream.zip"),
 		Body:   archive,
 	})
 	return
 }
 
-func Cleanup() (err error) {
+func (i *Infra) Cleanup() (err error) {
 	return os.RemoveAll("temp")
 }
 
@@ -340,13 +360,15 @@ func execute(functions ...func() error) {
 
 func main() {
 
+	i := &Infra{}
+
 	execute(
-		Setup,
-		SetupBucket,
-		BuildCode,
-		UploadCode,
-		SetupRole,
-		SetupLambda,
-		Cleanup,
+		i.Setup,
+		i.SetupBucket,
+		i.BuildCode,
+		i.UploadCode,
+		i.SetupRole,
+		i.SetupLambda,
+		i.Cleanup,
 	)
 }
