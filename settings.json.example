@@ -1,7 +1,7 @@
 {
-  "bucket": "",
-  "dynamodb-table": "",
-  "skill-name": "Custom Skill"
+  "bucket": "<unique bucket name>",
+  "lambda_name": "lexstream_lambda",
+  "skill_name": "<skill name>"
 }
 
 

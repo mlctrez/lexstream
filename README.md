@@ -54,14 +54,23 @@ Various documentation links that have been useful when building out this project
     * This must be run on a computer with a browser to handle the LWA oauth flow
 * The resulting token will be saved to token.json and updated when it expires.
 
+### Create settings.json
+* Copy settings.json.example to settings.json and update with the appropriate content
+```json
+{
+  "bucket": "<unique bucket name>",
+  "lambda_name": "lexstream_lambda",
+  "skill_name": "<skill name>"
+}
+```
+
 ### Deploy Skill
 
 * Run `skill/cmd/create.go` to create the skill.
-* TODO: update catalog for the skill
+* TODO: instructions for creating catalog, uploading, and associating with skill
 
-### Deploy Lambda
+### Create S3 bucket and Deploy Lambda
 
-* Copy settings.json.example to settings.json and update with the appropriate content
 > ***WARNING*** 
 > if the provided bucket already exists the permissions will be re-set to no public access
 * Run the following command to create the required Bucket, IAM Role, and Lambda
