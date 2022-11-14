@@ -1,5 +1,7 @@
 package amsapi
 
+import "github.com/mlctrez/lexstream/amsapi/types"
+
 // MetadataName is used for voice prompt or display use cases of entity (artist, song, etc.) names.
 //
 // https://developer.amazon.com/en-US/docs/alexa/music-skills/api-components-reference.html#metadatanameproperty
@@ -21,7 +23,7 @@ type MetadataName struct {
 //
 // https://developer.amazon.com/en-US/docs/alexa/music-skills/api-components-reference.html#mediametadata
 type MediaMetadata struct {
-	Type    string           `json:"type"`
+	Type    types.EntityType `json:"type"`
 	Name    MetadataName     `json:"name"`
 	Art     Art              `json:"art"`
 	Authors []EntityMetadata `json:"authors"`

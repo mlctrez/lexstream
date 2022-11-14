@@ -178,7 +178,7 @@ type Item struct {
 	// Object that contains stream information for this item. See the Stream object for more information.
 	Stream Stream `json:"stream"`
 
-	Feedback Feedback `json:"feedback"`
+	Feedback *Feedback `json:"feedback,omitempty"`
 }
 
 // PlaybackInfo describes which business rules Alexa should run when playing an item.
@@ -214,6 +214,23 @@ type PlaybackInfo struct {
 //
 // https://developer.amazon.com/en-US/docs/alexa/music-skills/api-components-reference.html#itemcontrol
 type ItemControl struct {
+	// The type of the control. This can be one of the following:
+	//  ADJUST - for controls such as seeking
+	//  COMMAND - for controls such as skipping
+	Type string `json:"type"`
+	// The name of the control.
+	//
+	// For type ADJUST, the value for name can be one of the following:
+	//  SEEK_POSITION - enables user to seek forward and back within a currently playing track
+	//
+	// For type COMMAND, the value for name can be one of the following:
+	//  NEXT - for skipping to the next item
+	//  PREVIOUS - for skipping to the previous item
+	Name string `json:"name"`
+	// Informs Alexa whether the control is enabled.
+	// For some control types, this determines whether the button for the control should be clickable:
+	// set the value to true when the control should be clickable by the user in the Alexa app.
+	Enabled bool `json:"enabled"`
 }
 
 // ItemRules describes rules for what the user can do with an item.
