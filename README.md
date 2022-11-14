@@ -50,14 +50,14 @@ Various documentation links that have been useful when building out this project
     "client_secret": "xxxxxx"
   }
   ```
-* Run `go run smapi/lwa.go` - this automates a call to `ask util generate-lwa-tokens`
+* Run `go run smapi/lwa/main.go` - this automates a call to `ask util generate-lwa-tokens`
     * This must be run on a computer with a browser to handle the LWA oauth flow
-* The resulting token will be saved to token.json and updated by the token source using the LWA credentials when it
-  expires every hour.
+* The resulting token will be saved to token.json and updated when it expires.
 
 ### Deploy Skill
 
-TODO - smapi api client has been generated, automation work needed
+* Run `skill/cmd/create.go` to create the skill.
+* TODO: update catalog for the skill
 
 ### Deploy Lambda
 
