@@ -10,6 +10,25 @@ type MetadataName struct {
 	Display string     `json:"display"`
 }
 
+// BuildMetadataName is shorthand for:
+//
+//	return MetadataName{
+//		Speech: SpeechInfo{
+//			Type: SpeechInfoTypePlainText,
+//			Text: text,
+//		},
+//		Display: display,
+//	}
+func BuildMetadataName(text, display string) MetadataName {
+	return MetadataName{
+		Speech: SpeechInfo{
+			Type: SpeechInfoTypePlainText,
+			Text: text,
+		},
+		Display: display,
+	}
+}
+
 // MediaMetadata contains metadata (for example, album name, author name, title, "type", etc.) for a media
 // item (i.e., Content or Item). MediaMetadata extends BaseMetadata, and supports the following metadata types:
 //
@@ -38,6 +57,18 @@ type EntityMetadata struct {
 	Name MetadataNameProperty `json:"name"`
 }
 
+// BuildAuthors builds a slice of one author with the given text and display data.
+func BuildAuthors(text, display string) []EntityMetadata {
+	return []EntityMetadata{{
+		Name: MetadataNameProperty{
+			Speech: SpeechInfo{
+				Type: SpeechInfoTypePlainText,
+				Text: text},
+			Display: display,
+		},
+	}}
+}
+
 // MetadataNameProperty is used for voice prompt or display use cases of entity (artist, song, etc.) names.
 //
 // https://developer.amazon.com/en-US/docs/alexa/music-skills/api-components-reference.html#metadatanameproperty
@@ -50,6 +81,10 @@ type MetadataNameProperty struct {
 //
 // https://developer.amazon.com/en-US/docs/alexa/music-skills/api-components-reference.html#speechinfo
 type SpeechInfo struct {
-	Type string `json:"type"`
-	Text string `json:"text"`
+	Type SpeechInfoType `json:"type"`
+	Text string         `json:"text"`
 }
+
+type SpeechInfoType string
+
+const SpeechInfoTypePlainText SpeechInfoType = "PLAIN_TEXT"

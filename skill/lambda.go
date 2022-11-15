@@ -9,42 +9,274 @@ import (
 	"github.com/google/uuid"
 	"github.com/mlctrez/bolt"
 	"github.com/mlctrez/lexstream/amsapi"
+	"github.com/mlctrez/lexstream/amsapi/header"
+	errorResponse "github.com/mlctrez/lexstream/amsapi/response"
 	"github.com/mlctrez/lexstream/amsapi/types"
 	"go.etcd.io/bbolt"
 	"os"
 	"time"
 )
 
-func Handle(_ context.Context, request *amsapi.Request) (response interface{}, err error) {
+func Handle(_ context.Context, request *amsapi.Request) (res *amsapi.Response, err error) {
 
+	if request == nil || request.Header == nil || request.Header.Namespace == "" {
+		res = internalError(fmt.Errorf("missing request headers"))
+		return
+	}
+
+	defer func() {
+		if pe, ok := recover().(error); ok {
+			res = internalError(pe)
+			panic(pe)
+		}
+	}()
+
+	switch request.Header.Namespace {
+
+	case header.AlexaAudioPlayQueue:
+
+		switch request.Header.Name {
+		case header.GetNextItem:
+			res = GetNextItem(amsapi.Bind(request, &amsapi.GetNextItem{}))
+		case header.GetPreviousItem:
+			res = GetPreviousItem(amsapi.Bind(request, &amsapi.GetPreviousItem{}))
+		default:
+			res = invalidName(request.Header.Name)
+		}
+
+	case header.AlexaMediaPlayback:
+
+		switch request.Header.Name {
+		case header.Initiate:
+			res = Initiate(amsapi.Bind(request, &amsapi.Initiate{}))
+		case header.Reinitiate:
+			// TODO: Reinitiate directive handling
+			res = invalidName(request.Header.Name)
+		default:
+			res = invalidName(request.Header.Name)
+		}
+
+	case header.AlexaMediaPlayQueue:
+		// TODO: implement
+	case header.AlexaMediaSearch:
+		res = GetPlayableContent(amsapi.Bind(request, &amsapi.GetPlayableContent{}))
+	case header.AlexaUserPreference:
+		// TODO: implement
+	}
+
+	// no res created, return invalid directive error res
+	if res == nil {
+		res = invalidNamespace(request.Header.Namespace)
+	}
+
+	return
+}
+
+func invalidNamespace(name header.Namespace) *amsapi.Response {
+	message := fmt.Sprintf("unhandled header.namespace %q", name)
+	return errorResponse.AlexaError(types.ErrorInvalidDirective, uuid.NewString(), message)
+}
+func invalidName(name header.Name) *amsapi.Response {
+	message := fmt.Sprintf("unhandled header.name %q", name)
+	return errorResponse.AlexaError(types.ErrorInvalidDirective, uuid.NewString(), message)
+}
+
+func GetNextItem(payload *amsapi.GetNextItem) (response *amsapi.Response) {
+
+	_ = payload
+
+	mediaUrl, imageUrl, errResponse := media("")
+	if errResponse != nil {
+		return errResponse
+	}
+
+	trackID := "track.001"
+	streamValidUntil := time.Now().Add(10 * time.Minute).UTC()
+
+	item := &amsapi.Item{
+		Id:           trackID,
+		PlaybackInfo: amsapi.PlaybackInfo{Type: amsapi.PlaybackInfoTypeDefault},
+		Metadata: amsapi.MediaMetadata{
+			Type:    types.TRACK,
+			Name:    amsapi.BuildMetadataName("home", "Home"),
+			Art:     amsapi.Art{Sources: []amsapi.ArtSource{{Url: imageUrl}}},
+			Authors: amsapi.BuildAuthors("toby fox", "Toby Fox"),
+		},
+		Controls: []amsapi.ItemControl{
+			amsapi.BuildItemControlNext(true),
+			amsapi.BuildItemControlPrevious(true),
+		},
+		Rules:  amsapi.ItemRules{FeedbackEnabled: false},
+		Stream: amsapi.Stream{Id: trackID, Uri: mediaUrl, ValidUntil: streamValidUntil},
+	}
+
+	response = &amsapi.Response{
+		Header:  header.GetNextItemResponseHeader(),
+		Payload: &amsapi.GetNextItemResponse{IsQueueFinished: false, Item: item},
+	}
+
+	return
+}
+
+func GetPreviousItem(payload *amsapi.GetPreviousItem) (response *amsapi.Response) {
+
+	_ = payload
+
+	mediaUrl, imageUrl, errResponse := media("")
+	if errResponse != nil {
+		return errResponse
+	}
+
+	trackID := "track.001"
+	streamValidUntil := time.Now().Add(10 * time.Minute).UTC()
+	item := &amsapi.Item{
+		Id:           trackID,
+		PlaybackInfo: amsapi.PlaybackInfo{Type: "DEFAULT"},
+		Metadata: amsapi.MediaMetadata{
+			Type:    types.TRACK,
+			Name:    amsapi.BuildMetadataName("home", "Home"),
+			Art:     amsapi.Art{Sources: []amsapi.ArtSource{{Url: imageUrl}}},
+			Authors: amsapi.BuildAuthors("toby fox", "Toby Fox"),
+		},
+		Controls: []amsapi.ItemControl{
+			amsapi.BuildItemControlPrevious(true),
+			amsapi.BuildItemControlNext(true),
+		},
+		Rules:  amsapi.ItemRules{FeedbackEnabled: false},
+		Stream: amsapi.Stream{Id: trackID, Uri: mediaUrl, ValidUntil: streamValidUntil},
+	}
+
+	response = &amsapi.Response{
+		Header:  header.GetPreviousItemResponseHeader(),
+		Payload: &amsapi.GetPreviousItemResponse{Item: item},
+	}
+
+	return
+}
+
+func media(id string) (mediaUrl, imageUrl string, errResponse *amsapi.Response) {
+
+	_ = id
+
+	var err error
+
+	if mediaUrl, err = signedUrlToItem("Undertale_OST__012_-_Home.ogg", 15*time.Minute); err != nil {
+		errResponse = internalError(err)
+		return
+	}
+
+	if imageUrl, err = signedUrlToItem("undertale_soundtrack_cover.jpg", 15*time.Minute); err != nil {
+		errResponse = internalError(err)
+		return
+	}
+	return
+}
+
+func internalError(err error) *amsapi.Response {
+	return errorResponse.AlexaError(types.ErrorInternalError, uuid.NewString(), err.Error())
+}
+
+func Initiate(payload *amsapi.Initiate) (response *amsapi.Response) {
+	_ = payload
+
+	mediaUrl, imageUrl, errResponse := media("")
+	if errResponse != nil {
+		return errResponse
+	}
+
+	trackID := "track.001"
+
+	responsePayload := &amsapi.InitiateResponse{
+		PlaybackMethod: amsapi.PlaybackMethod{
+			Type: amsapi.PlaybackMethodType,
+			Id:   uuid.NewString(),
+			Controls: []amsapi.QueueControl{
+				{Type: "COMMAND", Name: "NEXT", Enabled: true},
+				{Type: "COMMAND", Name: "PREVIOUS", Enabled: true},
+			},
+			Rules: amsapi.QueueRules{Feedback: amsapi.QueueFeedbackRule{Type: "PREFERENCE", Enabled: false}},
+			FirstItem: amsapi.Item{
+				Id:           trackID,
+				PlaybackInfo: amsapi.PlaybackInfo{Type: amsapi.PlaybackInfoTypeDefault},
+				Metadata: amsapi.MediaMetadata{
+					Type: types.TRACK,
+
+					Name: amsapi.MetadataName{
+						Speech: amsapi.SpeechInfo{Type: "PLAIN_TEXT", Text: "home"}, Display: "Home"},
+					Art: amsapi.Art{Sources: []amsapi.ArtSource{{Url: imageUrl}}},
+					Authors: []amsapi.EntityMetadata{{Name: amsapi.MetadataNameProperty{
+						Speech: amsapi.SpeechInfo{Type: "PLAIN_TEXT", Text: "toby fox"}, Display: "Toby Fox",
+					}}},
+					Album: amsapi.EntityMetadata{},
+				},
+				Controls: []amsapi.ItemControl{
+					{Type: "COMMAND", Name: "NEXT", Enabled: true},
+					{Type: "COMMAND", Name: "PREVIOUS", Enabled: true},
+				},
+				Rules:  amsapi.ItemRules{FeedbackEnabled: false},
+				Stream: amsapi.Stream{Id: trackID, Uri: mediaUrl, ValidUntil: time.Now().Add(10 * time.Minute).UTC()},
+			},
+		},
+	}
+	response = &amsapi.Response{
+		Header:  header.InitiateResponseHeader(),
+		Payload: responsePayload,
+	}
+
+	return
+}
+
+func GetPlayableContent(payload *amsapi.GetPlayableContent) (response *amsapi.Response) {
+	_ = payload
+
+	_, imageUrl, errResponse := media("")
+	if errResponse != nil {
+		return errResponse
+	}
+
+	responsePayload := amsapi.GetPlayableContentResponse{
+		Content: amsapi.Content{
+			Id:      "track.001",
+			Actions: amsapi.ContentActions{Playable: true, Browsable: false},
+			Metadata: amsapi.MediaMetadata{
+				Type: "TRACK",
+				Name: amsapi.MetadataName{
+					Speech: amsapi.SpeechInfo{Type: "PLAIN_TEXT", Text: "home"}, Display: "Home"},
+				Authors: []amsapi.EntityMetadata{
+					{Name: amsapi.MetadataNameProperty{
+						Speech: amsapi.SpeechInfo{Type: "PLAIN_TEXT", Text: "toby fox"}, Display: "Toby Fox"},
+					},
+				},
+				Album: amsapi.EntityMetadata{Name: amsapi.MetadataNameProperty{
+					Speech:  amsapi.SpeechInfo{Type: "PLAIN_TEXT", Text: "under tale soundtrack"},
+					Display: "Undertale Soundtrack",
+				}},
+				Art: amsapi.Art{Sources: []amsapi.ArtSource{{Url: imageUrl}}},
+			},
+		},
+	}
+	response = &amsapi.Response{
+		Header:  header.GetPlayableContentResponseHeader(),
+		Payload: responsePayload,
+	}
+	return
+}
+
+func boltTest() (err error) {
 	// testing bolt db access from within lambda execution
+	options := &bbolt.Options{ReadOnly: true, Timeout: 50 * time.Millisecond}
+
 	var db *bolt.Bolt
-	db, err = bolt.NewWithOptions("bolt.db", &bbolt.Options{ReadOnly: true, Timeout: 50 * time.Millisecond})
-	if err != nil {
+	if db, err = bolt.NewWithOptions("bolt.db", options); err != nil {
 		return
 	}
 	defer func() { _ = db.Close() }()
 
 	v := &bolt.Value{K: "keyOne"}
-	err = db.Get("sample", v)
-	if err != nil {
-		return nil, err
+	if err = db.Get("sample", v); err != nil {
+		return
 	}
 	fmt.Println("value from db is: ", string(v.V))
-
-	request.LogPayload()
-
-	switch request.Header.Namespace {
-	case "Alexa.Media.Search":
-		response, err = AlexaMediaSearch(request)
-	case "Alexa.Media.Playback":
-		response, err = AlexaMediaPlayback(request)
-	case "Alexa.Audio.PlayQueue":
-		response, err = AlexaAudioPlayQueue(request)
-	default:
-		return nil, fmt.Errorf("unhandled namespace %q", request.Header.Namespace)
-	}
-
 	return
 }
 
@@ -66,159 +298,4 @@ func signedUrlToItem(item string, dur time.Duration) (url string, err error) {
 		return "", err
 	}
 	return req.URL, nil
-}
-
-func AlexaAudioPlayQueue(request *amsapi.Request) (interface{}, error) {
-
-	var mediaUrl string
-	var imageUrl string
-	var err error
-
-	mediaUrl, err = signedUrlToItem("Undertale_OST__012_-_Home.ogg", 15*time.Minute)
-	if err != nil {
-		return nil, err
-	}
-
-	imageUrl, err = signedUrlToItem("undertale_soundtrack_cover.jpg", 15*time.Minute)
-	if err != nil {
-		return nil, err
-	}
-	m := &amsapi.Response{Header: responseHeader(request)}
-
-	item := &amsapi.Item{
-		Id:           "track.001",
-		PlaybackInfo: amsapi.PlaybackInfo{Type: "DEFAULT"},
-		Metadata: amsapi.MediaMetadata{
-			Type: types.TRACK,
-			Name: amsapi.MetadataName{Speech: amsapi.SpeechInfo{Type: "PLAIN_TEXT", Text: "home"}, Display: "home"},
-			Art:  amsapi.Art{Sources: []amsapi.ArtSource{{Url: imageUrl}}},
-			Authors: []amsapi.EntityMetadata{{Name: amsapi.MetadataNameProperty{
-				Speech: amsapi.SpeechInfo{Type: "PLAIN_TEXT", Text: "toby fox"}, Display: "toby fox",
-			}}},
-		},
-		Controls: []amsapi.ItemControl{
-			{Type: "COMMAND", Name: "NEXT", Enabled: true},
-			{Type: "COMMAND", Name: "PREVIOUS", Enabled: true},
-		},
-		Rules:  amsapi.ItemRules{FeedbackEnabled: false},
-		Stream: amsapi.Stream{Id: "track.001", Uri: mediaUrl, ValidUntil: time.Now().Add(10 * time.Minute).UTC()},
-	}
-	switch request.Header.Name {
-	case "GetNextItem":
-		m.Payload = &amsapi.GetNextItemResponse{IsQueueFinished: false, Item: item}
-	case "GetPreviousItem":
-		m.Payload = &amsapi.GetPreviousItemResponse{Item: item}
-	default:
-		return nil, fmt.Errorf("unhandled name %q", request.Header.Name)
-	}
-	return m, nil
-}
-
-func AlexaMediaPlayback(request *amsapi.Request) (interface{}, error) {
-	var mediaUrl string
-	var imageUrl string
-	var err error
-
-	mediaUrl, err = signedUrlToItem("Undertale_OST__012_-_Home.ogg", 15*time.Minute)
-	if err != nil {
-		return nil, err
-	}
-
-	imageUrl, err = signedUrlToItem("undertale_soundtrack_cover.jpg", 15*time.Minute)
-	if err != nil {
-		return nil, err
-	}
-
-	m := &amsapi.Response{Header: responseHeader(request)}
-
-	switch request.Header.Name {
-	case "Initiate":
-		m.Payload = &amsapi.InitiateResponse{
-			PlaybackMethod: amsapi.PlaybackMethod{
-				Type: "ALEXA_AUDIO_PLAYER_QUEUE",
-				Id:   uuid.NewString(),
-				Controls: []amsapi.QueueControl{
-					{Type: "COMMAND", Name: "NEXT", Enabled: true},
-					{Type: "COMMAND", Name: "PREVIOUS", Enabled: true},
-				},
-				Rules: amsapi.QueueRules{Feedback: amsapi.QueueFeedbackRule{Type: "PREFERENCE", Enabled: false}},
-				FirstItem: amsapi.Item{
-					Id:           "track.001",
-					PlaybackInfo: amsapi.PlaybackInfo{Type: "DEFAULT"},
-					Metadata: amsapi.MediaMetadata{
-						Type: "TRACK",
-						Name: amsapi.MetadataName{
-							Speech: amsapi.SpeechInfo{Type: "PLAIN_TEXT", Text: "home"}, Display: "Home"},
-						Art: amsapi.Art{Sources: []amsapi.ArtSource{{Url: imageUrl}}},
-						Authors: []amsapi.EntityMetadata{{Name: amsapi.MetadataNameProperty{
-							Speech: amsapi.SpeechInfo{Type: "PLAIN_TEXT", Text: "toby fox"}, Display: "Toby Fox",
-						}}},
-						Album: amsapi.EntityMetadata{},
-					},
-					Controls: []amsapi.ItemControl{
-						{Type: "COMMAND", Name: "NEXT", Enabled: true},
-						{Type: "COMMAND", Name: "PREVIOUS", Enabled: true},
-					},
-					Rules:  amsapi.ItemRules{FeedbackEnabled: false},
-					Stream: amsapi.Stream{Id: "track.001", Uri: mediaUrl, ValidUntil: time.Now().Add(10 * time.Minute).UTC()},
-				},
-			},
-		}
-		m.LogPayload()
-		return m, nil
-	default:
-		return nil, fmt.Errorf("unhandled name %q", request.Header.Name)
-	}
-}
-
-func responseHeader(request *amsapi.Request) *amsapi.Header {
-	return &amsapi.Header{
-		Namespace:      request.Header.Namespace,
-		Name:           request.Header.Name + ".Response",
-		MessageId:      "resp-" + request.Header.MessageId,
-		PayloadVersion: "1.0",
-	}
-}
-
-func AlexaMediaSearch(request *amsapi.Request) (interface{}, error) {
-
-	var imageUrl string
-	var err error
-
-	imageUrl, err = signedUrlToItem("undertale_soundtrack_cover.jpg", 15*time.Minute)
-	if err != nil {
-		return nil, err
-	}
-
-	switch request.Header.Name {
-	case "GetPlayableContent":
-		response := &amsapi.Response{
-			Header: responseHeader(request),
-			Payload: amsapi.GetPlayableContentResponse{
-				Content: amsapi.Content{
-					Id:      "track.001",
-					Actions: amsapi.ContentActions{Playable: true, Browsable: false},
-					Metadata: amsapi.MediaMetadata{
-						Type: "TRACK",
-						Name: amsapi.MetadataName{
-							Speech: amsapi.SpeechInfo{Type: "PLAIN_TEXT", Text: "home"}, Display: "Home"},
-						Authors: []amsapi.EntityMetadata{
-							{Name: amsapi.MetadataNameProperty{
-								Speech: amsapi.SpeechInfo{Type: "PLAIN_TEXT", Text: "toby fox"}, Display: "Toby Fox"},
-							},
-						},
-						Album: amsapi.EntityMetadata{Name: amsapi.MetadataNameProperty{
-							Speech:  amsapi.SpeechInfo{Type: "PLAIN_TEXT", Text: "under tale soundtrack"},
-							Display: "Undertale Soundtrack",
-						}},
-						Art: amsapi.Art{Sources: []amsapi.ArtSource{{Url: imageUrl}}},
-					},
-				},
-			},
-		}
-		response.LogPayload()
-		return response, nil
-	default:
-		return nil, fmt.Errorf("unhandled name %q", request.Header.Name)
-	}
 }

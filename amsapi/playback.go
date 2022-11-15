@@ -83,6 +83,8 @@ type PlaybackMethod struct {
 	FirstItem Item `json:"firstItem"`
 }
 
+const PlaybackMethodType = "ALEXA_AUDIO_PLAYER_QUEUE"
+
 // QueueControl describes a control that the user could apply to a queue or the items in the queue.
 //
 // Examples are shuffle and loop. Note that some queue controls can be overridden at the item level.
@@ -201,8 +203,14 @@ type PlaybackInfo struct {
 	//  SAMPLE - describes an item whose stream is a shorter version of a full track
 	//  AD - describes an item whose stream is an advertisement
 	//  (Note: Ads aren't supported for podcasts.)
-	Type string `json:"type"`
+	Type PlaybackInfoType `json:"type"`
 }
+
+type PlaybackInfoType string
+
+const PlaybackInfoTypeDefault PlaybackInfoType = "DEFAULT"
+const PlaybackInfoTypeSample PlaybackInfoType = "SAMPLE"
+const PlaybackInfoTypeAd PlaybackInfoType = "AD"
 
 // ItemControl describes a control that the user can take on an item.
 //
@@ -217,7 +225,7 @@ type ItemControl struct {
 	// The type of the control. This can be one of the following:
 	//  ADJUST - for controls such as seeking
 	//  COMMAND - for controls such as skipping
-	Type string `json:"type"`
+	Type ItemControlType `json:"type"`
 	// The name of the control.
 	//
 	// For type ADJUST, the value for name can be one of the following:
@@ -226,11 +234,32 @@ type ItemControl struct {
 	// For type COMMAND, the value for name can be one of the following:
 	//  NEXT - for skipping to the next item
 	//  PREVIOUS - for skipping to the previous item
-	Name string `json:"name"`
+	Name ItemControlName `json:"name"`
 	// Informs Alexa whether the control is enabled.
 	// For some control types, this determines whether the button for the control should be clickable:
 	// set the value to true when the control should be clickable by the user in the Alexa app.
 	Enabled bool `json:"enabled"`
+}
+
+type ItemControlType string
+
+const ItemControlTypeAdjust ItemControlType = "ADJUST"
+const ItemControlTypeCommand ItemControlType = "COMMAND"
+
+type ItemControlName string
+
+const ItemControlNameNext ItemControlName = "NEXT"
+const ItemControlNamePrevious ItemControlName = "PREVIOUS"
+const ItemControlNameSeekPosition ItemControlName = "SEEK_POSITION"
+
+// BuildItemControlNext builds a command next control with the provided state.
+func BuildItemControlNext(enabled bool) ItemControl {
+	return ItemControl{Type: ItemControlTypeCommand, Name: ItemControlNameNext, Enabled: enabled}
+}
+
+// BuildItemControlPrevious builds a command previous control with the provided state.
+func BuildItemControlPrevious(enabled bool) ItemControl {
+	return ItemControl{Type: ItemControlTypeCommand, Name: ItemControlNamePrevious, Enabled: enabled}
 }
 
 // ItemRules describes rules for what the user can do with an item.

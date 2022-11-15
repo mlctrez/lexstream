@@ -3,53 +3,34 @@ package amsapi
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/mlctrez/lexstream/amsapi/header"
 )
 
-type Header struct {
-	Namespace      string `json:"namespace"`
-	Name           string `json:"name"`
-	MessageId      string `json:"messageId"`
-	PayloadVersion string `json:"payloadVersion"`
-}
-
 type Request struct {
-	Header  Header      `json:"header"`
-	Payload interface{} `json:"payload"`
+	Header       *header.Header   `json:"header"`
+	Payload      *json.RawMessage `json:"payload,omitempty"`
+	BoundPayload any              `json:"bound_payload,omitempty"`
 }
 
-func (m *Request) BindPayload(p interface{}) (err error) {
-	var marshal []byte
-	if marshal, err = json.Marshal(m.Payload); err != nil {
-		return
+// Bind unmarshalls the request payload into p
+func Bind[K any](j *Request, value K) K {
+	if j.Payload == nil {
+		panic(fmt.Errorf("no payload to bind"))
 	}
-	return json.Unmarshal(marshal, p)
-}
-
-func (m *Request) LogPayload() {
-	if m == nil {
-		fmt.Println("Request.LogPayload with nil *Request")
-	}
-	marshal, err := json.Marshal(m)
+	marshalJSON, err := j.Payload.MarshalJSON()
 	if err != nil {
-		fmt.Println("Request.LogPayload marshal error", err)
-		return
+		panic(err)
 	}
-	fmt.Println("Request.LogPayload", string(marshal))
+	err = json.Unmarshal(marshalJSON, value)
+	if err != nil {
+		panic(err)
+	}
+	j.BoundPayload = value
+	j.Payload = nil
+	return value
 }
 
 type Response struct {
-	Header  *Header     `json:"header"`
-	Payload interface{} `json:"payload"`
-}
-
-func (m *Response) LogPayload() {
-	if m == nil {
-		fmt.Println("Response.LogPayload with nil *Response")
-	}
-	marshal, err := json.Marshal(m)
-	if err != nil {
-		fmt.Println("Response.LogPayload marshal error", err)
-		return
-	}
-	fmt.Println("Response.LogPayload", string(marshal))
+	Header  *header.Header `json:"header"`
+	Payload any            `json:"payload"`
 }
