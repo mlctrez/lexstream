@@ -8,9 +8,13 @@ import (
 )
 
 type Header struct {
-	Type    string   `json:"type"`
-	Version float64  `json:"version"`
-	Locales []Locale `json:"locales"`
+	Type    HeaderType `json:"type"`
+	Version float64    `json:"version"`
+	Locales []Locale   `json:"locales"`
+}
+
+func (h Header) TypeMatches(other Header) bool {
+	return h.Type == other.Type
 }
 
 type HeaderType string
@@ -18,9 +22,10 @@ type HeaderType string
 const MusicAlbum HeaderType = "AMAZON.MusicAlbum"
 const MusicGroup HeaderType = "AMAZON.MusicGroup"
 const MusicRecording HeaderType = "AMAZON.MusicRecording"
+const MusicPlaylist HeaderType = "AMAZON.MusicPlaylist"
 
 func buildHeader(headerType HeaderType) Header {
-	return Header{Type: string(headerType), Version: 2.0, Locales: DefaultLocales()}
+	return Header{Type: headerType, Version: 2.0, Locales: DefaultLocales()}
 }
 
 type Locale struct {

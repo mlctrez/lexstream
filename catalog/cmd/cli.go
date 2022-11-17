@@ -1,57 +1,56 @@
 package main
 
 import (
-	"encoding/json"
 	"github.com/mlctrez/lexstream/catalog"
-	"io"
 	"os"
 	"path/filepath"
 	"strings"
+	"time"
 )
 
 func main() {
 
 	builder := catalog.New()
 
-	dir, err := os.UserHomeDir()
+	//builder.AddMetaData(catalog.DeletedMetaData("001", "001", "001", ""), time.Now())
+	//builder.ScanUserMusicFolder()
+
+	builder.AddMetaData(&catalog.StaticMetaData{
+		ArtistValue:     "Toby Fox",
+		ArtistIDValue:   "001",
+		AlbumValue:      "Undertale Soundtrack",
+		AlbumIDValue:    "001",
+		TrackValue:      "Home",
+		TrackIDValue:    "001",
+		PlaylistValue:   "Current",
+		PlaylistIDValue: "001",
+		DeletedValue:    false,
+	}, time.Now())
+
+	dir := "catalog_staging"
+	err := os.MkdirAll(dir, 0755)
 	if err != nil {
 		panic(err)
 	}
 
-	err = builder.Walk(filepath.Join(dir, "Music"))
-	if err != nil {
+	if err = catalog.WriteToStaging(builder.ArtistCatalog); err != nil {
 		panic(err)
 	}
 
-	dir = "catalog_staging"
-	err = os.MkdirAll(dir, 0755)
-	if err != nil {
+	if err = catalog.WriteToStaging(builder.AlbumCatalog); err != nil {
 		panic(err)
 	}
-
-	jsFile := func(in catalog.HeaderType) string {
-		noPrefix := strings.TrimPrefix(string(in), "AMAZON.")
-		return strings.ToLower(noPrefix + ".json")
+	if err = catalog.WriteToStaging(builder.TrackCatalog); err != nil {
+		panic(err)
 	}
-
-	writeCatalogFile(filepath.Join(dir, jsFile(catalog.MusicGroup)), builder.ArtistCatalog)
-	writeCatalogFile(filepath.Join(dir, jsFile(catalog.MusicAlbum)), builder.AlbumCatalog)
-	writeCatalogFile(filepath.Join(dir, jsFile(catalog.MusicRecording)), builder.TrackCatalog)
+	if err = catalog.WriteToStaging(builder.PlaylistCatalog); err != nil {
+		panic(err)
+	}
 
 }
 
-func writeCatalogFile(path string, i interface{}) {
-	out, err := os.Create(path)
-	if err != nil {
-		panic(err)
-	}
-	writeCatalog(out, i)
-}
-
-func writeCatalog(out io.WriteCloser, i interface{}) {
-	defer func() { _ = out.Close() }()
-	err := json.NewEncoder(out).Encode(i)
-	if err != nil {
-		panic(err)
-	}
+func jsFile(dir string, in catalog.HeaderType) string {
+	noPrefix := strings.TrimPrefix(string(in), "AMAZON.")
+	name := strings.ToLower(noPrefix + ".json")
+	return filepath.Join(dir, name)
 }

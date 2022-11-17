@@ -12,12 +12,18 @@ import (
 	"github.com/mlctrez/lexstream/amsapi/header"
 	errorResponse "github.com/mlctrez/lexstream/amsapi/response"
 	"github.com/mlctrez/lexstream/amsapi/types"
+	"github.com/mlctrez/lexstream/internal/jutil"
 	"go.etcd.io/bbolt"
 	"os"
 	"time"
 )
 
 func Handle(_ context.Context, request *amsapi.Request) (res *amsapi.Response, err error) {
+
+	buf, err := jutil.Marshal(request, false)
+	if err == nil {
+		fmt.Println("request:", buf.String())
+	}
 
 	if request == nil || request.Header == nil || request.Header.Namespace == "" {
 		res = internalError(fmt.Errorf("missing request headers"))
@@ -67,6 +73,11 @@ func Handle(_ context.Context, request *amsapi.Request) (res *amsapi.Response, e
 	// no res created, return invalid directive error res
 	if res == nil {
 		res = invalidNamespace(request.Header.Namespace)
+	}
+
+	buf, err = jutil.Marshal(res, false)
+	if err == nil {
+		fmt.Println("response:", buf.String())
 	}
 
 	return

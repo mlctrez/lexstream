@@ -5,6 +5,7 @@ import (
 	"bytes"
 	"fmt"
 	"io/fs"
+	"os"
 	"os/exec"
 	"path/filepath"
 	"regexp"
@@ -12,17 +13,21 @@ import (
 	"time"
 )
 
+var _ MetaDataReceiver = (*Builder)(nil)
+
 type Builder struct {
-	ArtistCatalog *ArtistCatalog
-	AlbumCatalog  *AlbumCatalog
-	TrackCatalog  *TrackCatalog
+	ArtistCatalog   *ArtistCatalog
+	AlbumCatalog    *AlbumCatalog
+	TrackCatalog    *TrackCatalog
+	PlaylistCatalog *PlaylistCatalog
 }
 
 func New() *Builder {
 	return &Builder{
-		ArtistCatalog: CreateArtistCatalog(),
-		AlbumCatalog:  CreateAlbumCatalog(),
-		TrackCatalog:  CreateTrackCatalog(),
+		ArtistCatalog:   CreateArtistCatalog(),
+		AlbumCatalog:    CreateAlbumCatalog(),
+		TrackCatalog:    CreateTrackCatalog(),
+		PlaylistCatalog: CreatePlaylistCatalog(),
 	}
 }
 
@@ -52,10 +57,7 @@ func (b *Builder) walkFunc(path string, info fs.FileInfo, err error) error {
 			fmt.Println(missingError)
 			return nil
 		}
-
-		b.ArtistCatalog.AddMetaData(md, lastModified)
-		b.AlbumCatalog.AddMetaData(md, lastModified)
-		b.TrackCatalog.AddMetaData(md, lastModified)
+		b.AddMetaData(md, lastModified)
 
 	case ".ogg", ".mp3":
 		// TODO: make ogg and mp3 md scanners
@@ -64,6 +66,21 @@ func (b *Builder) walkFunc(path string, info fs.FileInfo, err error) error {
 		// ignore all other files
 	}
 	return nil
+}
+
+func (b *Builder) AddMetaData(md MetaData, lastModified time.Time) {
+	b.ArtistCatalog.AddMetaData(md, lastModified)
+	b.AlbumCatalog.AddMetaData(md, lastModified)
+	b.TrackCatalog.AddMetaData(md, lastModified)
+	b.PlaylistCatalog.AddMetaData(md, lastModified)
+}
+
+func (b *Builder) ScanUserMusicFolder() error {
+	dir, err := os.UserHomeDir()
+	if err != nil {
+		return err
+	}
+	return b.Walk(filepath.Join(dir, "Music"))
 }
 
 // MetaData represents the musicbrainz data extracted from VORBIS_COMMENT
@@ -80,18 +97,44 @@ type MetaData interface {
 	Track() string
 	// TrackID is the tag data MUSICBRAINZ_TRACKID
 	TrackID() string
+	// Playlist is the playlist name
+	Playlist() string
+	// PlaylistID is the playlist id
+	PlaylistID() string
+	// Deleted indicates the entity has been removed from the catalog
+	Deleted() bool
 }
 
 var _ MetaData = (*metaData)(nil)
 
 type metaData map[string]string
 
-func (m metaData) Artist() string   { return m["ARTIST"] }
-func (m metaData) ArtistID() string { return m["MUSICBRAINZ_ARTISTID"] }
-func (m metaData) Album() string    { return m["ALBUM"] }
-func (m metaData) AlbumID() string  { return m["MUSICBRAINZ_ALBUMID"] }
-func (m metaData) Track() string    { return m["TITLE"] }
-func (m metaData) TrackID() string  { return m["MUSICBRAINZ_TRACKID"] }
+func (m metaData) Artist() string     { return m["ARTIST"] }
+func (m metaData) ArtistID() string   { return m["MUSICBRAINZ_ARTISTID"] }
+func (m metaData) Album() string      { return m["ALBUM"] }
+func (m metaData) AlbumID() string    { return m["MUSICBRAINZ_ALBUMID"] }
+func (m metaData) Track() string      { return m["TITLE"] }
+func (m metaData) TrackID() string    { return m["MUSICBRAINZ_TRACKID"] }
+func (m metaData) Deleted() bool      { return m["DELETED_FLAG"] != "" }
+func (m metaData) Playlist() string   { return m["PLAYLIST_NAME"] }
+func (m metaData) PlaylistID() string { return m["PLAYLIST_ID"] }
+
+func DeletedMetaData(artistId, albumId, trackId, playlistId string) MetaData {
+	return metaData{
+		"MUSICBRAINZ_ARTISTID": artistId,
+		"MUSICBRAINZ_ALBUMID":  albumId,
+		"MUSICBRAINZ_TRACKID":  trackId,
+		"PLAYLIST_ID":          playlistId,
+		"DELETED_FLAG":         "true",
+	}
+}
+
+func PlaylistMetadata(playlistId, name string) MetaData {
+	return metaData{
+		"PLAYLIST_ID":   playlistId,
+		"PLAYLIST_NAME": name,
+	}
+}
 
 func flacMetaDataFromPath(path string) (md MetaData, err error) {
 	command := exec.Command("metaflac", "--list", "--block-type=VORBIS_COMMENT", path)
@@ -105,11 +148,9 @@ func flacMetaDataFromPath(path string) (md MetaData, err error) {
 	reg := regexp.MustCompile(`^comment\[\d+]: (\w+)=(.*)`)
 	for scanner.Scan() {
 		line := strings.TrimSpace(scanner.Text())
-		//fmt.Println(line)
 		matches := reg.FindStringSubmatch(line)
 		if len(matches) == 3 {
 			m[matches[1]] = matches[2]
-			//fmt.Println(strings.Join(matches[1:], "++"))
 		}
 	}
 	err = scanner.Err()
@@ -145,3 +186,27 @@ var exampleFlacMetadata = `
   "TRACKNUMBER": "1",
   "TRACKTOTAL": "13"
 }`
+
+var _ MetaData = (*StaticMetaData)(nil)
+
+type StaticMetaData struct {
+	ArtistValue     string
+	ArtistIDValue   string
+	AlbumValue      string
+	AlbumIDValue    string
+	TrackValue      string
+	TrackIDValue    string
+	PlaylistValue   string
+	PlaylistIDValue string
+	DeletedValue    bool
+}
+
+func (s *StaticMetaData) Artist() string     { return s.ArtistValue }
+func (s *StaticMetaData) ArtistID() string   { return s.ArtistIDValue }
+func (s *StaticMetaData) Album() string      { return s.AlbumValue }
+func (s *StaticMetaData) AlbumID() string    { return s.AlbumIDValue }
+func (s *StaticMetaData) Track() string      { return s.TrackValue }
+func (s *StaticMetaData) TrackID() string    { return s.TrackIDValue }
+func (s *StaticMetaData) Playlist() string   { return s.PlaylistValue }
+func (s *StaticMetaData) PlaylistID() string { return s.PlaylistIDValue }
+func (s *StaticMetaData) Deleted() bool      { return s.DeletedValue }
