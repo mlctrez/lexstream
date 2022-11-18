@@ -45,7 +45,7 @@ type MediaMetadata struct {
 	Type    types.EntityType `json:"type"`
 	Name    MetadataName     `json:"name"`
 	Art     Art              `json:"art"`
-	Authors []EntityMetadata `json:"authors"`
+	Authors []EntityMetadata `json:"authors,omitempty"`
 	Album   EntityMetadata   `json:"albums,omitempty"`
 	Artists []EntityMetadata `json:"artists,omitempty"`
 }

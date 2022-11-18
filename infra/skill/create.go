@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/mlctrez/lexstream/skill/settings"
+	"github.com/mlctrez/lexstream/internal/settings"
 	"github.com/mlctrez/lexstream/smapi"
 	"github.com/mlctrez/lexstream/smapiv1/skill"
 	manifest "github.com/mlctrez/lexstream/smapiv1/skill/Manifest"
@@ -95,7 +95,7 @@ func (cs *CreateSkill) createSkill(skillName string) *skill.CreateSkillResponse 
 			},
 			Apis: &manifest.SkillManifestApis{
 				Music: &manifest.MusicApis{
-					Interfaces: MusicInterfaces(),
+					Interfaces: MusicInterfaces(false),
 					Locales: map[string]manifest.LocalizedMusicInfo{
 						"en-US": {
 							PromptName: skillName,
@@ -114,9 +114,10 @@ func (cs *CreateSkill) createSkill(skillName string) *skill.CreateSkillResponse 
 	return response
 }
 
-func MusicInterfaces() []*manifest.MusicInterfaces {
+func MusicInterfaces(hasMediaPlayQueue bool) []*manifest.MusicInterfaces {
 
-	return []*manifest.MusicInterfaces{
+	// first four are always required
+	interfaces := []*manifest.MusicInterfaces{
 		{
 			Namespace: "Alexa.Media.Playback",
 			Version:   "1.0",
@@ -136,6 +137,24 @@ func MusicInterfaces() []*manifest.MusicInterfaces {
 			},
 		},
 	}
+
+	if hasMediaPlayQueue {
+		mediaPlayQueue := &manifest.MusicInterfaces{
+			Namespace: "Alexa.Media.PlayQueue",
+			Version:   "1.0",
+			Requests: []*manifest.MusicRequest{
+				{Name: "GetItem"},
+				{Name: "GetView"},
+				{Name: "SetShuffle"},
+				{Name: "SetRepeat"},
+				{Name: "SetLoop"},
+			},
+		}
+		interfaces = append(interfaces, mediaPlayQueue)
+
+	}
+
+	return interfaces
 
 }
 

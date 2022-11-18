@@ -3,8 +3,6 @@ package main
 import (
 	"github.com/mlctrez/lexstream/catalog"
 	"os"
-	"path/filepath"
-	"strings"
 	"time"
 )
 
@@ -47,10 +45,4 @@ func main() {
 		panic(err)
 	}
 
-}
-
-func jsFile(dir string, in catalog.HeaderType) string {
-	noPrefix := strings.TrimPrefix(string(in), "AMAZON.")
-	name := strings.ToLower(noPrefix + ".json")
-	return filepath.Join(dir, name)
 }

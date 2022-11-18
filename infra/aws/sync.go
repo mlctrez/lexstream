@@ -15,7 +15,7 @@ import (
 	_ "github.com/aws/aws-sdk-go-v2/service/s3/types"
 	s3Types "github.com/aws/aws-sdk-go-v2/service/s3/types"
 	"github.com/mlctrez/bolt"
-	"github.com/mlctrez/lexstream/skill/settings"
+	"github.com/mlctrez/lexstream/internal/settings"
 	"io"
 	"os"
 	"os/exec"
@@ -39,7 +39,7 @@ var assumeRoleDoc = `{
 
 const AWSManaged = "arn:aws:iam::aws:policy/"
 
-var RolePolicies = []string{"CloudWatchLogsFullAccess", "AmazonS3FullAccess"}
+var RolePolicies = []string{"CloudWatchLogsFullAccess", "AmazonS3FullAccess", "AmazonSQSFullAccess"}
 
 const LambdaRole = "lexstream_role"
 
@@ -96,7 +96,11 @@ func (i *Infra) SetupRole() (err error) {
 
 	for _, policyName := range RolePolicies {
 		if !foundPolicyNames[policyName] {
-			_, err = iac.AttachRolePolicy(ctx, &iam.AttachRolePolicyInput{RoleName: roleName, PolicyArn: aws.String(AWSManaged + policyName)})
+			policyInput := &iam.AttachRolePolicyInput{
+				RoleName:  roleName,
+				PolicyArn: aws.String(AWSManaged + policyName),
+			}
+			_, err = iac.AttachRolePolicy(ctx, policyInput)
 			if err != nil {
 				return err
 			}

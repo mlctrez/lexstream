@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"github.com/mlctrez/lexstream/catalog"
 	"github.com/mlctrez/lexstream/internal/jutil"
-	"github.com/mlctrez/lexstream/skill/settings"
+	"github.com/mlctrez/lexstream/internal/settings"
 	"github.com/mlctrez/lexstream/smapi"
 	v0catalog "github.com/mlctrez/lexstream/smapiv0/catalog"
 	"github.com/mlctrez/lexstream/smapiv0/catalog/upload"

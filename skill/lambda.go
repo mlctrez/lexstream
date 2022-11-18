@@ -6,6 +6,7 @@ import (
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/config"
 	"github.com/aws/aws-sdk-go-v2/service/s3"
+	"github.com/aws/aws-sdk-go-v2/service/sqs"
 	"github.com/google/uuid"
 	"github.com/mlctrez/bolt"
 	"github.com/mlctrez/lexstream/amsapi"
@@ -19,11 +20,6 @@ import (
 )
 
 func Handle(_ context.Context, request *amsapi.Request) (res *amsapi.Response, err error) {
-
-	buf, err := jutil.Marshal(request, false)
-	if err == nil {
-		fmt.Println("request:", buf.String())
-	}
 
 	if request == nil || request.Header == nil || request.Header.Namespace == "" {
 		res = internalError(fmt.Errorf("missing request headers"))
@@ -74,22 +70,94 @@ func Handle(_ context.Context, request *amsapi.Request) (res *amsapi.Response, e
 	if res == nil {
 		res = invalidNamespace(request.Header.Namespace)
 	}
-
-	buf, err = jutil.Marshal(res, false)
-	if err == nil {
-		fmt.Println("response:", buf.String())
-	}
+	pushPayloadToSQS(map[string]any{"request": request, "response": res}, request.Header.MessageId)
 
 	return
 }
 
-func invalidNamespace(name header.Namespace) *amsapi.Response {
-	message := fmt.Sprintf("unhandled header.namespace %q", name)
-	return errorResponse.AlexaError(types.ErrorInvalidDirective, uuid.NewString(), message)
+func GetPlayableContent(payload *amsapi.GetPlayableContent) (response *amsapi.Response) {
+
+	_, imageUrl, errResponse := media("")
+	if errResponse != nil {
+		return errResponse
+	}
+
+	responsePayload := amsapi.GetPlayableContentResponse{
+		Content: amsapi.Content{
+			Id:      "track.001",
+			Actions: amsapi.ContentActions{Playable: true, Browsable: false},
+			Metadata: amsapi.MediaMetadata{
+				Type: "TRACK",
+				Name: amsapi.MetadataName{
+					Speech: amsapi.SpeechInfo{Type: "PLAIN_TEXT", Text: "home"}, Display: "Home"},
+				Authors: []amsapi.EntityMetadata{
+					{Name: amsapi.MetadataNameProperty{
+						Speech: amsapi.SpeechInfo{Type: "PLAIN_TEXT", Text: "toby fox"}, Display: "Toby Fox"},
+					},
+				},
+				Album: amsapi.EntityMetadata{Name: amsapi.MetadataNameProperty{
+					Speech:  amsapi.SpeechInfo{Type: "PLAIN_TEXT", Text: "under tale soundtrack"},
+					Display: "Undertale Soundtrack",
+				}},
+				Art: amsapi.Art{Sources: []amsapi.ArtSource{{Url: imageUrl}}},
+			},
+		},
+	}
+	response = &amsapi.Response{
+		Header:  header.GetPlayableContentResponseHeader(),
+		Payload: responsePayload,
+	}
+	return
 }
-func invalidName(name header.Name) *amsapi.Response {
-	message := fmt.Sprintf("unhandled header.name %q", name)
-	return errorResponse.AlexaError(types.ErrorInvalidDirective, uuid.NewString(), message)
+
+func Initiate(payload *amsapi.Initiate) (response *amsapi.Response) {
+	_ = payload
+
+	mediaUrl, imageUrl, errResponse := media("")
+	if errResponse != nil {
+		return errResponse
+	}
+
+	trackID := "track.001"
+
+	responsePayload := &amsapi.InitiateResponse{
+		PlaybackMethod: amsapi.PlaybackMethod{
+			Type: amsapi.PlaybackMethodType,
+			Id:   uuid.NewString(),
+			Controls: []amsapi.QueueControl{
+				{Type: "COMMAND", Name: "NEXT", Enabled: true},
+				{Type: "COMMAND", Name: "PREVIOUS", Enabled: true},
+			},
+			Rules: amsapi.QueueRules{Feedback: amsapi.QueueFeedbackRule{Type: "PREFERENCE", Enabled: false}},
+			FirstItem: amsapi.Item{
+				Id:           trackID,
+				PlaybackInfo: amsapi.PlaybackInfo{Type: amsapi.PlaybackInfoTypeDefault},
+				Metadata: amsapi.MediaMetadata{
+					Type: types.TRACK,
+
+					Name: amsapi.MetadataName{
+						Speech: amsapi.SpeechInfo{Type: "PLAIN_TEXT", Text: "home"}, Display: "Home"},
+					Art: amsapi.Art{Sources: []amsapi.ArtSource{{Url: imageUrl}}},
+					Authors: []amsapi.EntityMetadata{{Name: amsapi.MetadataNameProperty{
+						Speech: amsapi.SpeechInfo{Type: "PLAIN_TEXT", Text: "toby fox"}, Display: "Toby Fox",
+					}}},
+					Album: amsapi.EntityMetadata{},
+				},
+				Controls: []amsapi.ItemControl{
+					{Type: "COMMAND", Name: "NEXT", Enabled: true},
+					{Type: "COMMAND", Name: "PREVIOUS", Enabled: true},
+				},
+				Rules:  amsapi.ItemRules{FeedbackEnabled: false},
+				Stream: amsapi.Stream{Id: trackID, Uri: mediaUrl, ValidUntil: time.Now().Add(10 * time.Minute).UTC()},
+			},
+		},
+	}
+	response = &amsapi.Response{
+		Header:  header.InitiateResponseHeader(),
+		Payload: responsePayload,
+	}
+
+	return
 }
 
 func GetNextItem(payload *amsapi.GetNextItem) (response *amsapi.Response) {
@@ -183,96 +251,6 @@ func media(id string) (mediaUrl, imageUrl string, errResponse *amsapi.Response) 
 	return
 }
 
-func internalError(err error) *amsapi.Response {
-	return errorResponse.AlexaError(types.ErrorInternalError, uuid.NewString(), err.Error())
-}
-
-func Initiate(payload *amsapi.Initiate) (response *amsapi.Response) {
-	_ = payload
-
-	mediaUrl, imageUrl, errResponse := media("")
-	if errResponse != nil {
-		return errResponse
-	}
-
-	trackID := "track.001"
-
-	responsePayload := &amsapi.InitiateResponse{
-		PlaybackMethod: amsapi.PlaybackMethod{
-			Type: amsapi.PlaybackMethodType,
-			Id:   uuid.NewString(),
-			Controls: []amsapi.QueueControl{
-				{Type: "COMMAND", Name: "NEXT", Enabled: true},
-				{Type: "COMMAND", Name: "PREVIOUS", Enabled: true},
-			},
-			Rules: amsapi.QueueRules{Feedback: amsapi.QueueFeedbackRule{Type: "PREFERENCE", Enabled: false}},
-			FirstItem: amsapi.Item{
-				Id:           trackID,
-				PlaybackInfo: amsapi.PlaybackInfo{Type: amsapi.PlaybackInfoTypeDefault},
-				Metadata: amsapi.MediaMetadata{
-					Type: types.TRACK,
-
-					Name: amsapi.MetadataName{
-						Speech: amsapi.SpeechInfo{Type: "PLAIN_TEXT", Text: "home"}, Display: "Home"},
-					Art: amsapi.Art{Sources: []amsapi.ArtSource{{Url: imageUrl}}},
-					Authors: []amsapi.EntityMetadata{{Name: amsapi.MetadataNameProperty{
-						Speech: amsapi.SpeechInfo{Type: "PLAIN_TEXT", Text: "toby fox"}, Display: "Toby Fox",
-					}}},
-					Album: amsapi.EntityMetadata{},
-				},
-				Controls: []amsapi.ItemControl{
-					{Type: "COMMAND", Name: "NEXT", Enabled: true},
-					{Type: "COMMAND", Name: "PREVIOUS", Enabled: true},
-				},
-				Rules:  amsapi.ItemRules{FeedbackEnabled: false},
-				Stream: amsapi.Stream{Id: trackID, Uri: mediaUrl, ValidUntil: time.Now().Add(10 * time.Minute).UTC()},
-			},
-		},
-	}
-	response = &amsapi.Response{
-		Header:  header.InitiateResponseHeader(),
-		Payload: responsePayload,
-	}
-
-	return
-}
-
-func GetPlayableContent(payload *amsapi.GetPlayableContent) (response *amsapi.Response) {
-	_ = payload
-
-	_, imageUrl, errResponse := media("")
-	if errResponse != nil {
-		return errResponse
-	}
-
-	responsePayload := amsapi.GetPlayableContentResponse{
-		Content: amsapi.Content{
-			Id:      "track.001",
-			Actions: amsapi.ContentActions{Playable: true, Browsable: false},
-			Metadata: amsapi.MediaMetadata{
-				Type: "TRACK",
-				Name: amsapi.MetadataName{
-					Speech: amsapi.SpeechInfo{Type: "PLAIN_TEXT", Text: "home"}, Display: "Home"},
-				Authors: []amsapi.EntityMetadata{
-					{Name: amsapi.MetadataNameProperty{
-						Speech: amsapi.SpeechInfo{Type: "PLAIN_TEXT", Text: "toby fox"}, Display: "Toby Fox"},
-					},
-				},
-				Album: amsapi.EntityMetadata{Name: amsapi.MetadataNameProperty{
-					Speech:  amsapi.SpeechInfo{Type: "PLAIN_TEXT", Text: "under tale soundtrack"},
-					Display: "Undertale Soundtrack",
-				}},
-				Art: amsapi.Art{Sources: []amsapi.ArtSource{{Url: imageUrl}}},
-			},
-		},
-	}
-	response = &amsapi.Response{
-		Header:  header.GetPlayableContentResponseHeader(),
-		Payload: responsePayload,
-	}
-	return
-}
-
 func boltTest() (err error) {
 	// testing bolt db access from within lambda execution
 	options := &bbolt.Options{ReadOnly: true, Timeout: 50 * time.Millisecond}
@@ -289,6 +267,37 @@ func boltTest() (err error) {
 	}
 	fmt.Println("value from db is: ", string(v.V))
 	return
+}
+
+func internalError(err error) *amsapi.Response {
+	return errorResponse.AlexaError(types.ErrorInternalError, uuid.NewString(), err.Error())
+}
+
+func pushPayloadToSQS(payload map[string]any, messageId string) {
+	cfg, err := config.LoadDefaultConfig(context.TODO())
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+
+	buf, err := jutil.Marshal(payload, true)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	messageInput := &sqs.SendMessageInput{
+		MessageBody:            aws.String(buf.String()),
+		QueueUrl:               aws.String("https://sqs.us-east-1.amazonaws.com/359625541351/lexstream.fifo"),
+		DelaySeconds:           0,
+		MessageGroupId:         aws.String("lexstream"),
+		MessageDeduplicationId: aws.String(messageId),
+	}
+	client := sqs.NewFromConfig(cfg)
+	_, err = client.SendMessage(context.TODO(), messageInput)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
 }
 
 func signedUrlToItem(item string, dur time.Duration) (url string, err error) {
@@ -309,4 +318,14 @@ func signedUrlToItem(item string, dur time.Duration) (url string, err error) {
 		return "", err
 	}
 	return req.URL, nil
+}
+
+func invalidName(name header.Name) *amsapi.Response {
+	message := fmt.Sprintf("unhandled header.name %q", name)
+	return errorResponse.AlexaError(types.ErrorInvalidDirective, uuid.NewString(), message)
+}
+
+func invalidNamespace(name header.Namespace) *amsapi.Response {
+	message := fmt.Sprintf("unhandled header.namespace %q", name)
+	return errorResponse.AlexaError(types.ErrorInvalidDirective, uuid.NewString(), message)
 }

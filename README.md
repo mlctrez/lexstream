@@ -66,7 +66,7 @@ Various documentation links that have been useful when building out this project
 
 ### Deploy Skill
 
-* Run `skill/cmd/create.go` to create the skill.
+* Run `go run infra/skill/create.go` to create the skill.
 * TODO: instructions for creating catalog, uploading, and associating with skill
 
 ### Create S3 bucket and Deploy Lambda
@@ -75,7 +75,7 @@ Various documentation links that have been useful when building out this project
 > if the provided bucket already exists the permissions will be re-set to no public access
 * Run the following command to create the required Bucket, IAM Role, and Lambda
     ```shell
-  $ go run infra/sync.go
+  $ go run infra/aws/sync.go
     ```
 
 ### Update Endpoint and Re-Validate
