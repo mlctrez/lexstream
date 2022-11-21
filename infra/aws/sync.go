@@ -19,6 +19,7 @@ import (
 	"io"
 	"os"
 	"os/exec"
+	"path/filepath"
 	"reflect"
 	"runtime"
 	"time"
@@ -292,9 +293,9 @@ func (i *Infra) BuildCode() (err error) {
 	if archive, err = os.Create("temp/lexstream.zip"); err != nil {
 		return
 	}
-	defer archive.Close()
+	defer func() { _ = archive.Close() }()
 	zipWriter := zip.NewWriter(archive)
-	defer zipWriter.Close()
+	defer func() { _ = zipWriter.Close() }()
 
 	if err = writeFile("lexstream", zipWriter); err != nil {
 		return
@@ -337,7 +338,7 @@ func (i *Infra) UploadCode() (err error) {
 	if archive, err = os.Open("temp/lexstream.zip"); err != nil {
 		return
 	}
-	defer archive.Close()
+	defer func() { _ = archive.Close() }()
 
 	s3c := s3.NewFromConfig(i.cfg)
 	_, err = s3c.PutObject(context.TODO(), &s3.PutObjectInput{
@@ -349,7 +350,15 @@ func (i *Infra) UploadCode() (err error) {
 }
 
 func (i *Infra) Cleanup() (err error) {
-	return os.RemoveAll("temp")
+
+	toRemove := []string{"lexstream", "lexstream.zip", "bolt.db"}
+	for _, name := range toRemove {
+		if err = os.Remove(filepath.Join("temp", name)); err != nil {
+			return
+		}
+	}
+
+	return nil
 }
 
 func execute(functions ...func() error) {

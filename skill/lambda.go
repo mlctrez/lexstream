@@ -29,7 +29,6 @@ func Handle(_ context.Context, request *amsapi.Request) (res *amsapi.Response, e
 	defer func() {
 		if pe, ok := recover().(error); ok {
 			res = internalError(pe)
-			panic(pe)
 		}
 	}()
 
@@ -70,12 +69,17 @@ func Handle(_ context.Context, request *amsapi.Request) (res *amsapi.Response, e
 	if res == nil {
 		res = invalidNamespace(request.Header.Namespace)
 	}
-	pushPayloadToSQS(map[string]any{"request": request, "response": res}, request.Header.MessageId)
+
+	if os.Getenv("LEXSTREAM_QUEUE_NAME") != "" {
+		pushPayloadToSQS(map[string]any{"request": request, "response": res}, request.Header.MessageId)
+	}
 
 	return
 }
 
 func GetPlayableContent(payload *amsapi.GetPlayableContent) (response *amsapi.Response) {
+
+	_ = payload
 
 	_, imageUrl, errResponse := media("")
 	if errResponse != nil {
@@ -251,6 +255,8 @@ func media(id string) (mediaUrl, imageUrl string, errResponse *amsapi.Response) 
 	return
 }
 
+var _ = boltTest
+
 func boltTest() (err error) {
 	// testing bolt db access from within lambda execution
 	options := &bbolt.Options{ReadOnly: true, Timeout: 50 * time.Millisecond}
@@ -287,7 +293,7 @@ func pushPayloadToSQS(payload map[string]any, messageId string) {
 	}
 	messageInput := &sqs.SendMessageInput{
 		MessageBody:            aws.String(buf.String()),
-		QueueUrl:               aws.String("https://sqs.us-east-1.amazonaws.com/359625541351/lexstream.fifo"),
+		QueueUrl:               aws.String(os.Getenv("LEXSTREAM_QUEUE_NAME")),
 		DelaySeconds:           0,
 		MessageGroupId:         aws.String("lexstream"),
 		MessageDeduplicationId: aws.String(messageId),
