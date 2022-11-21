@@ -13,7 +13,7 @@ Completed models have links
 * JumpToItem directive [JumpToItem](playqueue.go#L44)
     * response [JumpToItemResponse](playqueue.go#L57)
 
-## [Media.Playback](https://developer.amazon.com/en-US/docs/alexa/device-apis/alexa-media-playqueue.html)
+## [Media.Playback](https://developer.amazon.com/en-US/docs/alexa/device-apis/alexa-media-playback.html)
 
 ### Enable playback directives
 
@@ -21,7 +21,7 @@ Completed models have links
     * response [InitiateResponse](playback.go#L46)
 * ReInitiate directive
 
-## [Media.PlayQueue](https://developer.amazon.com/en-US/docs/alexa/device-apis/alexa-media-playback.html)
+## [Media.PlayQueue](https://developer.amazon.com/en-US/docs/alexa/device-apis/alexa-media-playqueue.html)
 
 ### Item Control directives
 
