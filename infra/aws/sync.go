@@ -373,6 +373,11 @@ func execute(functions ...func() error) {
 
 func main() {
 
+	fmt.Println("deprecated - use mage instead")
+	if os.Getenv("FOO_BAD") == "" {
+		os.Exit(-1)
+	}
+
 	i := &Infra{}
 
 	execute(

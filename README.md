@@ -75,7 +75,8 @@ Various documentation links that have been useful when building out this project
 > if the provided bucket already exists the permissions will be re-set to no public access
 * Run the following command to create the required Bucket, IAM Role, and Lambda
     ```shell
-  $ go run infra/aws/sync.go
+  # requires golang mage to be installed
+  $ mage -v
     ```
 
 ### Update Endpoint and Re-Validate
